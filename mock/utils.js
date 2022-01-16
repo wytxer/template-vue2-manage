@@ -73,13 +73,18 @@ module.exports = {
       let newFn = fn
       if (typeof fn === 'function') {
         newFn = options => {
-          const body = {}
-          // 将数据转换成对象，a=1&b=2 => {a: 1, b: 2}
+          let body = {}
           if (options.body) {
-            options.body.split('&').forEach((params) => {
-              const [key, value] = params.split('=')
-              body[key] = value
-            })
+            try {
+              // 如果是 JSON 字符串
+              body = JSON.parse(options.body)
+            } catch (error) {
+              // 否则将数据转换成对象，a=1&b=2 => {a: 1, b: 2}
+              options.body.split('&').forEach((params) => {
+                const [key, value] = params.split('=')
+                body[key] = value
+              })
+            }
           }
           const query = {}
           const queryString = options.url.split('?')[1]

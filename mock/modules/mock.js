@@ -158,11 +158,8 @@ const actionLogs = builder({
 
 // 表盒数据支持简单的分页查询
 const queryTableData = (req, res) => {
-  const { id, pageSize, currentPage } = req.body
-  let result = builder(createTablePage(+currentPage, +pageSize, tableList))
-  if (id) {
-    result = builder([])
-  }
+  const { pageSize, currentPage } = req.body
+  const result = builder(createTablePage(+currentPage, +pageSize, tableList))
   return res.json(result)
 }
 
