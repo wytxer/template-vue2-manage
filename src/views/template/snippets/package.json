@@ -1,5 +1,5 @@
 {
-  "name": "@wytxer/ak-snippets",
+  "name": "ak-snippets",
   "displayName": "ak-snippets",
   "description": "给 template-vue2-manage 脚手架提供的模板库。",
   "version": "1.0.0",
