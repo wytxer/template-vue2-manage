@@ -1,0 +1,326 @@
+{
+  "单行筛选项布局 - 简单": {
+    "prefix": "ak-layout-query-filter1",
+    "body": [
+      "<a-form-model ref=\"form\" class=\"ak-query-filter\" :model=\"queryFilters\" :colon=\"false\">",
+      "\t<a-row :gutter=\"24\">",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t<a-form-model-item label=\"名称\">",
+      "\t\t\t\t<a-input v-model=\"queryFilters.name\" placeholder=\"请输入\" />",
+      "\t\t\t</a-form-model-item>",
+      "\t\t</a-col>",
+      "",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t<a-form-model-item label=\"案件状态\">",
+      "\t\t\t\t<a-input v-model=\"queryFilters.status\" placeholder=\"请输入\" />",
+      "\t\t\t</a-form-model-item>",
+      "\t\t</a-col>",
+      "",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t<a-form-model-item label=\"文书内容\">",
+      "\t\t\t\t<a-input v-model=\"queryFilters.content\" placeholder=\"请输入\" />",
+      "\t\t\t</a-form-model-item>",
+      "\t\t</a-col>",
+      "",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\" class=\"action-btn-main\">",
+      "\t\t\t<a-button @click=\"onResetForm\">重置</a-button>",
+      "\t\t\t<a-button type=\"primary\" class=\"ML12\" @click=\"\\$refs.table && \\$refs.table.refresh()\">查询</a-button>",
+      "\t\t</a-col>",
+      "\t</a-row>",
+      "</a-form-model>"
+    ],
+    "description": "左边是表单，右边是查询和重置操作"
+  },
+  "单行筛选项布局 - 带展开收起": {
+    "prefix": "ak-layout-query-filter2",
+    "body": [
+      "<a-form-model ref=\"form\" class=\"ak-query-filter\" :model=\"queryFilters\" :colon=\"false\">",
+      "\t<a-row :gutter=\"24\">",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t<a-form-model-item label=\"姓名\" prop=\"name\">",
+      "\t\t\t\t<a-input v-model=\"queryFilters.name\" placeholder=\"请输入\" />",
+      "\t\t\t</a-form-model-item>",
+      "\t\t</a-col>",
+      "",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t<a-form-model-item label=\"手机号\" prop=\"phone\">",
+      "\t\t\t\t<a-input v-model=\"queryFilters.phone\" class=\"W100\" placeholder=\"请输入\" />",
+      "\t\t\t</a-form-model-item>",
+      "\t\t</a-col>",
+      "",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t<a-form-model-item label=\"使用状态\" prop=\"status\">",
+      "\t\t\t\t<ak-select :loadData=\"querySelectData\" allowClear v-model=\"queryFilters.status\" placeholder=\"请选择\" />",
+      "\t\t\t</a-form-model-item>",
+      "\t\t</a-col>",
+      "",
+      "\t\t<div v-show=\"advanced\">",
+      "\t\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t\t<a-form-model-item label=\"标的额\" prop=\"money\">",
+      "\t\t\t\t\t<a-input-number v-model=\"queryFilters.money\" class=\"W100\" placeholder=\"请输入\" />",
+      "\t\t\t\t</a-form-model-item>",
+      "\t\t\t</a-col>",
+      "",
+      "\t\t\t<a-col v-bind=\"\\$wrapperCol\">",
+      "\t\t\t\t<a-form-model-item label=\"更新日期\" prop=\"date1\">",
+      "\t\t\t\t\t<a-date-picker v-model=\"queryFilters.date1\" class=\"W100\" placeholder=\"请选择\" format=\"YYYY-MM-DD\" valueFormat=\"YYYY-MM-DD\" />",
+      "\t\t\t\t</a-form-model-item>",
+      "\t\t\t</a-col>",
+      "",
+      "\t\t\t<a-col v-bind=\"\\$wrapperHalfCol\">",
+      "\t\t\t\t<a-form-model-item label=\"委托日期\" prop=\"date2\">",
+      "\t\t\t\t\t<a-range-picker v-model=\"queryFilters.date2\" class=\"W100\" format=\"YYYY-MM-DD\" valueFormat=\"YYYY-MM-DD\" />",
+      "\t\t\t\t</a-form-model-item>",
+      "\t\t\t</a-col>",
+      "\t\t</div>",
+      "",
+      "\t\t<a-col v-bind=\"\\$wrapperCol\" class=\"action-btn-main\">",
+      "\t\t\t<a-button @click=\"onResetForm\">重置</a-button>",
+      "\t\t\t<a-button type=\"primary\" class=\"ML12\" @click=\"\\$refs.table && \\$refs.table.refresh()\">查询</a-button>",
+      "\t\t\t<!-- 展开收起 -->",
+      "\t\t\t<a @click=\"advanced = !advanced\" class=\"ML10\">",
+      "\t\t\t\t<span v-if=\"advanced\" key=\"up\">",
+      "\t\t\t\t\t收起 <a-icon type=\"up\" />",
+      "\t\t\t\t</span>",
+      "\t\t\t\t<span v-else key=\"down\">",
+      "\t\t\t\t\t展开 <a-icon type=\"down\" />",
+      "\t\t\t\t</span>",
+      "\t\t\t</a>",
+      "\t\t</a-col>",
+      "\t</a-row>",
+      "</a-form-model>"
+    ],
+    "description": "多行表单，默认展示第一行，第二行点击展开查看更多"
+  },
+  "卡片和两行栅格标签": {
+    "prefix": "ak-layout-card-row1",
+    "body": [
+      "<ak-container>",
+      "\t<a-card title=\"证券信息\" :loading=\"false\" :bordered=\"false\">",
+      "\t\t<a-row :gutter=\"24\" class=\"PB24\">",
+      "\t\t\t<a-col :span=\"8\">",
+      "\t\t\t\t<div class=\"PB6 C-666\">股票代码</div>",
+      "\t\t\t\t<div>300300.SH</div>",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"8\">",
+      "\t\t\t\t<div class=\"PB6 C-666\">涉及证券名称</div>",
+      "\t\t\t\t<div>华泰证券</div>",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"8\">",
+      "\t\t\t\t<div class=\"PB6 C-666\">标的金额</div>",
+      "\t\t\t\t<div>210000.28</div>",
+      "\t\t\t</a-col>",
+      "\t\t</a-row>",
+      "",
+      "\t\t<a-row :gutter=\"24\" class=\"PB24\">",
+      "\t\t\t<a-col :span=\"8\">",
+      "\t\t\t\t<div class=\"PB6 C-666\">中国证监会处罚决定书编号</div>",
+      "\t\t\t\t<div>SDSDSL233SH</div>",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"8\">",
+      "\t\t\t\t<div class=\"PB6 C-666\">股票市场</div>",
+      "\t\t\t\t<div>中证500</div>",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"8\">",
+      "\t\t\t\t<div class=\"PB6 C-666\">涉及证券账户</div>",
+      "\t\t\t\t<div>巴菲特的破产申请</div>",
+      "\t\t\t</a-col>",
+      "\t\t</a-row>",
+      "\t</a-card>",
+      "</ak-container>"
+    ],
+    "description": "卡片和两行栅格标签，字段一行三列展示"
+  },
+  "多行栅格标签和操作": {
+    "prefix": "ak-layout-card-row2",
+    "body": [
+      "<ak-container type=\"white\">",
+      "\t<a-spin class=\"header-info-main\" :spinning=\"false\">",
+      "\t\t<a-row :gutter=\"gutter\" class=\"MB16\">",
+      "\t\t\t<a-col :span=\"24\" class=\"FB FBJC-SB FBAI-C\">",
+      "\t\t\t\t<div class=\"F18\" style=\"font-weight: bold\">粤0304民初888号</div>",
+      "\t\t\t\t<div>",
+      "\t\t\t\t\t<a-button-group>",
+      "\t\t\t\t\t\t<a-button>操作</a-button>",
+      "\t\t\t\t\t\t<a-button>操作</a-button>",
+      "\t\t\t\t\t\t<a-button>操作</a-button>",
+      "\t\t\t\t\t</a-button-group>",
+      "\t\t\t\t\t<a-button type=\"primary\" @click=\"onMainClick\" style=\"margin-left: 16px\">",
+      "\t\t\t\t\t\t主操作",
+      "\t\t\t\t\t</a-button>",
+      "\t\t\t\t</div>",
+      "\t\t\t</a-col>",
+      "\t\t</a-row>",
+      "",
+      "\t\t<a-row :gutter=\"gutter\" class=\"PB16\">",
+      "\t\t\t<a-col :span=\"6\">",
+      "\t\t\t\t<span class=\"C-666\">审判法官：</span>",
+      "\t\t\t\t比比东",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"6\">",
+      "\t\t\t\t<span class=\"C-666\">立案时间：</span>",
+      "\t\t\t\t<ak-text-fill text=\"2022-01-01\" />",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"6\">",
+      "\t\t\t\t<span class=\"C-666\">开庭时间：</span>",
+      "\t\t\t\t2022-01-02",
+      "\t\t\t</a-col>",
+      "\t\t</a-row>",
+      "",
+      "\t\t<a-row :gutter=\"gutter\" class=\"PB16\">",
+      "\t\t\t<a-col :span=\"6\">",
+      "\t\t\t\t<span class=\"C-666\">原告：</span>",
+      "\t\t\t\t萧炎",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"6\">",
+      "\t\t\t\t<span class=\"C-666\">被告：</span>",
+      "\t\t\t\t秦羽",
+      "\t\t\t</a-col>",
+      "\t\t\t<a-col :span=\"6\">",
+      "\t\t\t\t<span class=\"C-666\">案件状态：</span>",
+      "\t\t\t\t<a-tag color=\"blue\" class=\"status\">",
+      "\t\t\t\t\t已结案",
+      "\t\t\t\t</a-tag>",
+      "\t\t\t</a-col>",
+      "\t\t</a-row>",
+      "\t</a-spin>",
+      "</ak-container>"
+    ],
+    "description": "多行货栅格标签和操作，最常见的案件详情顶部布局"
+  },
+  "卡片和进度条": {
+    "prefix": "ak-layout-card-steps",
+    "body": [
+      "<a-card class=\"MB16\" title=\"流程进度\" :loading=\"false\" :bordered=\"false\">",
+      " <a-steps progress-dot :current=\"1\" class=\"ak-step-overflow-x\">",
+      "\t\t<a-step title=\"立案\"></a-step>",
+      "\t\t<a-step title=\"分案\">",
+      "\t\t\t<span slot=\"description\">待分案</span>",
+      "\t\t</a-step>",
+      "\t\t<a-step title=\"排期\"></a-step>",
+      "\t\t<a-step title=\"送达\"></a-step>",
+      "\t\t<a-step title=\"开庭审理\"></a-step>",
+      "\t\t<a-step title=\"结案\"></a-step>",
+      "\t\t<a-step title=\"归档\"></a-step>",
+      "\t</a-steps>",
+      "</a-card>"
+    ],
+    "description": "卡片和进度条组合展示"
+  },
+  "form-input": {
+    "prefix": "ak-form-input",
+    "body": [
+      "<a-form-model-item label=\"文本表单\" prop=\"code\">",
+      "\t<a-input v-model=\"values.code\" placeholder=\"请输入\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-input"
+  },
+  "form-textarea": {
+    "prefix": "ak-form-textarea",
+    "body": [
+      "<a-form-model-item label=\"多行文本表单\" prop=\"message\">",
+      "\t<a-textarea v-model=\"values.message\" placeholder=\"请输入\" rows=\"4\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-textarea"
+  },
+  "form-input-number": {
+    "prefix": "ak-form-input-number",
+    "body": [
+      "<a-form-model-item label=\"数字表单\" ref=\"money\" prop=\"money\">",
+      "\t<a-input-number v-model=\"values.money\" placeholder=\"请输入\" class=\"W100\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-input-number"
+  },
+  "form-select": {
+    "prefix": "ak-form-select",
+    "body": [
+      "<a-form-model-item label=\"下拉表单\" prop=\"select\">",
+      "\t<ak-select v-model=\"values.select\" placeholder=\"请选择\" :load-data=\"queryRoles\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-select"
+  },
+  "form-switch": {
+    "prefix": "ak-form-switch",
+    "body": [
+      "<a-form-model-item label=\"开关表单\" prop=\"switch\">",
+      "\t<a-switch v-model=\"values.switch\" default-checked />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-switch"
+  },
+  "form-radio": {
+    "prefix": "ak-form-radio",
+    "body": [
+      "<a-form-model-item label=\"单选表单\" prop=\"radio\">",
+      "\t<a-radio-group v-model=\"values.radio\">",
+      "\t\t<a-radio value=\"y\">是</a-radio>",
+      "\t\t<a-radio value=\"n\">否</a-radio>",
+      "\t</a-radio-group>",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-radio"
+  },
+  "form-checkbox": {
+    "prefix": "ak-form-checkbox",
+    "body": [
+      "<a-form-model-item label=\"多选表单\" prop=\"checked\">",
+      "\t<a-checkbox-group v-model=\"values.checked\">",
+      "\t\t<a-checkbox value=\"A\">A</a-checkbox>",
+      "\t\t<a-checkbox value=\"B\">B</a-checkbox>",
+      "\t\t<a-checkbox value=\"C\">C</a-checkbox>",
+      "\t</a-checkbox-group>",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-checkbox"
+  },
+  "form-upload": {
+    "prefix": "ak-form-upload",
+    "body": [
+      "<a-form-model-item label=\"上传表单\" prop=\"file\">",
+      "\t<ak-upload v-model=\"values.file\" style=\"min-width: 300px\" :action=\"\\$api.mockUpload\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + ex-upload-file"
+  },
+  "form-date-picker": {
+    "prefix": "ak-form-date-picker",
+    "body": [
+      "<a-form-model-item label=\"时间表单\" prop=\"time\">",
+      "\t<a-date-picker v-model=\"values.time\" show-time type=\"date\" placeholder=\"请选择日期\" class=\"W100\" format=\"YYYY-MM-DD\" valueFormat=\"YYYY-MM-DD\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-date-picker"
+  },
+  "form-range-picker": {
+    "prefix": "ak-form-range-picker",
+    "body": [
+      "<a-form-model-item label=\"日期表单\" prop=\"date\">",
+      "\t<a-range-picker v-model=\"values.date\" class=\"W100\" format=\"YYYY-MM-DD\" valueFormat=\"YYYY-MM-DD\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-range-picker"
+  },
+  "form-cascader": {
+    "prefix": "ak-form-cascader",
+    "body": [
+      "<a-form-model-item label=\"多级下拉表单\" prop=\"cascader\">",
+      "\t<a-cascader v-model=\"values.cascader\" placeholder=\"请选择\" :options=\"options\" />",
+      "</a-form-model-item>"
+    ],
+    "description": "a-form-item + a-cascader"
+  },
+  "form-model-base": {
+    "prefix": "ak-form-model-base",
+    "body": [
+      "",
+      "<a-form-model ref=\"form\" layout=\"vertical\" :model=\"values\" :rules=\"rules\" :colon=\"false\">",
+      "",
+      "</a-form-model>"
+    ],
+    "description": "form-model-base + a-form-item"
+  }
+}

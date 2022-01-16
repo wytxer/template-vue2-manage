@@ -1,0 +1,33 @@
+{
+  "name": "@wytxer/ak-snippets",
+  "displayName": "ak-snippets",
+  "description": "给 template-vue2-manage 脚手架提供的模板库。",
+  "version": "1.0.0",
+  "publisher": "wytxer",
+  "engines": {
+    "vscode": "^1.42.1"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "scripts": {
+    "build": "vsce package",
+    "publish": "vsce publish"
+	},
+  "contributes": {
+    "snippets": [
+      {
+        "language": "vue",
+        "path": "./snippets/vue-snippets.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html-snippets.json"
+      },
+      {
+        "language": "vue-html",
+        "path": "./snippets/html-snippets.json"
+      }
+    ]
+  }
+}

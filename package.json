@@ -1,0 +1,107 @@
+{
+  "name": "template-vue2-manage",
+  "version": "1.0.0",
+  "description": "基于 Vue.js 2.x 和 ant-design-vue 组件库且风格统一的用于快速构建中后台系统的脚手架。",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env BUILD_ENV=development vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:dev": "cross-env BUILD_ENV=development vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "app": "wy app",
+    "start": "pm2 start --name \"template-vu2-manage\" npm -- run app",
+    "stop": "pm2 stop \"template-vu2-manage\""
+  },
+  "nodeApp": {
+    "cross-env": "^7.0.2",
+    "mocker-api": "^2.2.0",
+    "mockjs2": "^1.0.8"
+  },
+  "dependencies": {
+    "@wytxer/antdv-kit": "^1.0.0",
+    "@wytxer/shepherd-vue": "^1.0.0",
+    "@wytxer/style-utils": "^1.0.5",
+    "ant-design-vue": "^1.7.8",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
+    "mocker-api": "^2.2.0",
+    "mockjs2": "^1.0.8",
+    "moment": "^2.25.3",
+    "nprogress": "^0.2.0",
+    "qs": "^6.10.2",
+    "vue": "^2.6.14",
+    "vue-color": "2.7.0",
+    "vue-ls": "^3.2.1",
+    "vue-router": "^3.5.3",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "@vue/test-utils": "^1.3.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-import": "^1.13.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.13.1",
+    "less-loader": "^4.1.0",
+    "lint-staged": "^9.5.0",
+    "style-resources-loader": "^1.3.3",
+    "vue-cli-plugin-style-resources-loader": "^0.1.4",
+    "vue-template-compiler": "^2.6.14",
+    "webpack-theme-color-replacer": "^1.3.11"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/wytxer/template-vue2-manage/#readme",
+  "keywords": [
+    "vue template",
+    "template",
+    "vue",
+    "vue scaffold",
+    "manage scaffold",
+    "admin",
+    "antd admin"
+  ],
+  "author": {
+    "name": "wytxer",
+    "url": "https://github.com/wytxer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wytxer/template-vue2-manage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wytxer/template-vue2-manage/issues"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie >= 11"
+  ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@wytxer/template",
+  "version": "1.0.0",
+  "description": "模板库代码",
+  "private": true,
+  "scripts": {
+    "build": "node build/template.config.js"
+  }
+}
