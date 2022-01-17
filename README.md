@@ -23,7 +23,7 @@ yarn build:dev
 ### 使用文档
 
 - [项目配置](https://cli.vuejs.org/zh/config/)
-- [脚手架使用文档](http://v2.docs.bszhct.com/docs/template-vue2.manage.html)
+- [脚手架使用文档](http://v2.docs.bszhct.com/docs/template-vue2-manage.html)
 
 
 ## License
