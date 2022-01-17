@@ -10,23 +10,20 @@
     <a-button @click="onOpenDriver" class="ML10">打开新手引导</a-button>
 
     <div class="PT24 PB24">
-      <a target="_blank" class="MR10" href="https://wytxer.github.io/">
+      <a target="_blank" class="MR10" href="http://v2.docs.bszhct.com/docs/cli.html">
+        <a-button type="primary">小工具</a-button>
+      </a>
+      <a target="_blank" class="MR10" href="http://v2.docs.bszhct.com/docs/tv2m-template.html">
         <a-button type="primary">模板库</a-button>
       </a>
-      <a target="_blank" class="MR10" href="https://wytxer.github.io/">
-        <a-button type="primary">组件库</a-button>
-      </a>
-      <a target="_blank" class="MR10" href="https://wytxer.github.io/">
-        <a-button type="primary">样式库</a-button>
-      </a>
-      <a target="_blank" class="MR10" href="https://wytxer.github.io/">
-        <a-button type="primary">小工具</a-button>
+      <a target="_blank" class="MR10" href="http://v2.docs.bszhct.com/components/quick-start.html">
+        <a-button type="primary">antdv-kit 组件库</a-button>
       </a>
       <a target="_blank" class="MR10" href="https://www.antdv.com/components/button-cn/">
         <a-button type="primary">Antd 组件库</a-button>
       </a>
-      <a target="_blank" class="MR10" href="https://wytxer.github.io/">
-        <a-button type="primary">Vue 填坑指南</a-button>
+      <a target="_blank" class="MR10" href="http://v2.docs.bszhct.com/docs/style-utils.html">
+        <a-button type="primary">样式库</a-button>
       </a>
     </div>
   </ak-container>
