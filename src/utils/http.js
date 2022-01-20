@@ -61,7 +61,7 @@ const instance = axios.create({
   baseURL: ''
 })
 
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+instance.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8'
 
 // 添加请求拦截器
 instance.interceptors.request.use(config => {
