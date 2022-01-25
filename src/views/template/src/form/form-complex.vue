@@ -1,5 +1,5 @@
 <template>
-  <div class="form-complex-view W100">
+  <div class="form-complex-view W100" style="padding-bottom: 56px">
     <ak-container type="white">
       <a-spin :spinning="loading" style="position: relative">
         <a-row :gutter="gutter" class="MB16">
