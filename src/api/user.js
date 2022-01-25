@@ -1,8 +1,8 @@
-import http from '@/utils/http'
+import request from '@/utils/request'
 
 // 登录
 export function login (data) {
-  return http({
+  return request({
     method: 'post',
     url: '',
     mockUrl: '/mock/user/info',
@@ -13,7 +13,7 @@ export function login (data) {
 
 // 登出
 export function logout (data) {
-  return http({
+  return request({
     method: 'post',
     url: '',
     mockUrl: '/mock/user/logout',
@@ -23,7 +23,7 @@ export function logout (data) {
 
 // 获取用户信息
 export function getUser (data) {
-  return http({
+  return request({
     method: 'post',
     url: '',
     mockUrl: '/mock/user/info',
@@ -36,7 +36,7 @@ export function getUser (data) {
 
 // 获取菜单树
 export function getMenus (data) {
-  return http({
+  return request({
     method: 'post',
     url: '',
     mockUrl: '/mock/menus',
@@ -46,7 +46,7 @@ export function getMenus (data) {
 
 // 获取短信验证码
 export function getSmsCode (data) {
-  return http({
+  return request({
     method: 'post',
     closeAutoTips: true,
     url: '',
@@ -58,7 +58,7 @@ export function getSmsCode (data) {
 
 // 重置密码（用于未登录）
 export function resetPassword (data) {
-  return http({
+  return request({
     method: 'post',
     closeAutoTips: true,
     url: '',
@@ -70,7 +70,7 @@ export function resetPassword (data) {
 
 // 重置密码（用于已登录）
 export function modifyPassword (data) {
-  return http({
+  return request({
     method: 'post',
     closeAutoTips: true,
     url: '',
@@ -82,7 +82,7 @@ export function modifyPassword (data) {
 
 // 注册
 export function register (data) {
-  return http({
+  return request({
     method: 'post',
     closeAutoTips: true,
     url: '',

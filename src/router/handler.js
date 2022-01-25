@@ -1,5 +1,5 @@
 import * as layouts from '@/layouts'
-import { isString } from '@/utils'
+import { isString } from '@/utils/utils'
 
 // 格式化树形结构数据，生成 vue-router 层级路由表
 export const generator = (routes, routeComponents = {}, parent) => {

@@ -139,7 +139,7 @@
 
 <script>
 import { queryDetailInfo, queryCallRecords, queryActionLogs } from '@/api/mock'
-import { fullZero } from '@/utils'
+import { fullZero } from '@/utils/utils'
 import { mapGetters } from 'vuex'
 
 // 通话记录的表头信息
