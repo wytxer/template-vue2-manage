@@ -4,16 +4,16 @@
       <a class="ant-dropdown-link" @click="e => e.preventDefault()"> 列筛选
         <a-icon type="down" />
       </a>
-      <a-menu slot="overlay" class="PL10 FB FBFD-C">
+      <a-menu slot="overlay" class="FB FBFD-C">
         <!-- 全选控制 -->
-        <a-checkbox-group v-if="allColumns.length > 5" v-model="checkAll" @change="onCheckAllChange">
+        <a-checkbox-group style="border-bottom: 1px solid #dfdfdf" class="PL8" v-if="allColumns.length > 5" v-model="checkAll" @change="onCheckAllChange">
           <a-checkbox class="PL8 PR8 PT4 PB4" :indeterminate="indeterminate" value="all">
             全选
           </a-checkbox>
         </a-checkbox-group>
 
         <!-- 字段列表 -->
-        <a-checkbox-group :value="selectedMenus" @change="onColumnChange">
+        <a-checkbox-group class="PL8" :value="selectedMenus" @change="onColumnChange">
           <a-menu-item class="PL8 PR8 PT4 PB4" v-for="item in menus" :key="item.value">
             <a-checkbox :value="item.value">{{ item.title }}</a-checkbox>
           </a-menu-item>
@@ -118,6 +118,7 @@ export default {
       this.selectedMenus = value.length ? this.allColumns.map(item => item.dataIndex) : []
       this.indeterminate = false
       this.onChange(value.length ? this.allColumns.slice() : [])
+      this.$utils.setStorage(this.$route.path, { selectedMenus: this.selectedMenus })
     }
   }
 }
