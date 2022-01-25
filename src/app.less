@@ -1,0 +1,236 @@
+body {
+  color: @main-color !important;
+  font-size: 14px;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
+  width: 100%;
+  min-height: 100vh;
+  -webkit-overflow-scrolling: touch;
+}
+
+.C-OK {
+  color: @primary-color;
+}
+.C-FAIL {
+  color: @error-color;
+}
+.C-WARNING {
+  color: @warning-color;
+}
+.C-FFF {
+  color: @white;
+}
+.C-BG-FFF {
+  background-color: @white;
+}
+.H100 {
+  height: 100%;
+}
+
+// 在这里添加跟视觉规范不太一致的样式改动
+// ! 但请勿随便在这里改动全局样式
+
+.ant-card {
+  color: @main-color !important;
+}
+// 全局通用的样式
+.ak-text-line,
+.ak-card-line > .ant-card-head {
+  position: relative;
+  padding-left: 15px;
+  &::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 5px;
+    height: 30px;
+    background-color: @primary-color;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+// 适配进度组件，超出内容横向滚动
+.ak-step-overflow-x {
+  overflow-x: auto;
+  padding-top: 2px;
+}
+// 带表单的、定制的抽屉样式
+.ak-drawer-form-wrap {
+  .ant-drawer-wrapper-body {
+    padding-top: 55px;
+  }
+  .ant-drawer-header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .drawer-modal-content-main {
+    padding-bottom: 36px;
+  }
+  .drawer-modal-action-main {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #e9e9e9;
+    padding: 10px 24px;
+    background: #fff;
+    text-align: right;
+    z-index: 1;
+  }
+}
+// 表单统一更改样式，form 表单需要设置属性 layout 等于 vertical
+.ant-form-vertical {
+  .ant-form-item {
+    padding-bottom: 0;
+  }
+}
+// 为保证 card、modal 里面的表单上下间距保持 24px，在外层 a-card、a-modal 上增加类名 ak-pb0
+.ak-pb0 {
+  > .ant-card-body {
+    padding-bottom: 0;
+  }
+  .ant-modal-body {
+    padding-bottom: 0;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .ant-modal-body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .ant-modal-body::-webkit-scrollbar-track {
+    background: rgb(239, 239, 239);
+    border-radius: 2px;
+  }
+  .ant-modal-body::-webkit-scrollbar-thumb {
+    background: #bfbfbf;
+    border-radius: 10px;
+  }
+  .ant-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  }
+  .ant-modal-body::-webkit-scrollbar-corner {
+    background: #757975;
+  }
+}
+// 列表样式统一维护，在 table 外层的 card 上增加类名 ak-card-table
+.ak-card-table {
+  > .ant-card-body {
+    padding: 0;
+  }
+  .ak-table .ant-table {
+    border-left: none;
+    border-right: none;
+  }
+  // alert 组件
+  .ant-alert:first-child {
+    margin: 16px 24px;
+  }
+}
+// 列表操作按钮
+.ak-table-actions {
+  margin: 16px 24px;
+}
+// 筛选栏底部添加灰色背景
+.ak-query-filter {
+  padding: 16px 24px 0;
+  &::after {
+    content: "";
+    display: block;
+    margin: 0 -24px 0;
+    height: 16px;
+    background-color: @gray-border-background;
+  }
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+  .action-btn-main {
+    line-height: 40px;
+    float: right;
+    padding-bottom: 16px;
+    text-align: right;
+  }
+  // 如果需要 label 换行，增加这个类名
+  .ak-form-item-wrap {
+    .ant-form-item-label {
+      line-height: 16px;
+    }
+  }
+  .ant-form-item {
+    display: flex;
+    align-items: center;
+    .ant-form-item-label {
+      width: 78px;
+      text-align: right;
+      flex-shrink: 0;
+      padding-right: 10px;
+      label {
+        white-space: pre-line;
+      }
+      label:after {
+        display: none;
+      }
+    }
+    .ant-form-item-control-wrapper {
+      flex: 1;
+    }
+  }
+}
+// 卡片列表上方导航
+.ak-tabs-nav {
+  background: #fff;
+  margin: -24px -24px 16px;
+  padding: 0 24px;
+  .ant-tabs-bar {
+    margin: 0;
+    border-color: transparent;
+    .ant-tabs-tab {
+      padding: 10px 0 16px;
+    }
+  }
+}
+
+.ant-table-bordered .ant-table-tbody > tr > td,
+.ant-table-bordered .ant-table-thead > tr > th {
+  border-right: 1px solid #e8e8e8;
+}
+
+// btn hover 清除
+.ant-btn-link {
+  border: none;
+}
+
+// 单列多表单时，内置常用的表单宽度选项
+.ak-form-horizontal {
+  .ant-row.ant-form-item {
+    display: flex;
+    .ant-col.ant-form-item-label {
+      width: 220px;
+    }
+    .ant-col.ant-form-item-control-wrapper {
+      flex: 1;
+    }
+  }
+  .W50 {
+    width: 50px;
+  }
+  .W200 {
+    width: 200px;
+  }
+  .W350 {
+    width: 350px;
+  }
+  .W750 {
+    width: 750px;
+  }
+  .ak-upload-box-wrap {
+    display: block;
+  }
+}
