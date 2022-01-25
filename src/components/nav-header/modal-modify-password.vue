@@ -115,7 +115,7 @@ export default {
               this.$message.success('密码修改成功，请重新登录')
               this.onHideModal()
               setTimeout(() => {
-                location.href = `${process.env.PROJECT_CONFIG.ROUTER_BASE_URL}user/login`
+                location.href = `${process.env.BASE_URL}user/login`
               }, 1000)
             })
             .catch(e => {

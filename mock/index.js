@@ -1,6 +1,5 @@
 const Mock = require('mockjs2')
 const delay = require('mocker-api/lib/delay')
-const config = require('../build/project.config')
 const { addPrefix, mockerToMock } = require('./utils')
 const user = require('./modules/user')
 const mock = require('./modules/mock')
@@ -15,7 +14,7 @@ const data = {
   ...addPrefix(mock)
 }
 
-if (config.client.env.MOCKER) {
+if (process.env.VUE_APP_USE_MOCKER === 'true') {
   module.exports = delay(data, timeout)
 } else {
   mockerToMock(data).forEach(([method, link, fn]) => {

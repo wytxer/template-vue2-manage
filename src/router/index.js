@@ -41,7 +41,7 @@ const routerConfig = {
    * hash：hash 路由模式
    */
   mode: 'history',
-  base: process.env.PROJECT_CONFIG.ROUTER_BASE_URL,
+  base: process.env.BASE_URL,
   routes
 }
 

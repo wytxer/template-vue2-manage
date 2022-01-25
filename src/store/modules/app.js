@@ -34,7 +34,7 @@ const initState = {
   /**
    * 默认的主题色，跟随 ant-design-vue 库
    */
-  themeColor: Vue.ls.get(types.THEME_COLOR, '#1890ff'),
+  themeColor: Vue.ls.get(types.THEME_COLOR, process.env.VUE_APP_THEME_COLOR),
   /**
    * 路由模式
    * static：静态。如果是静态模式，路由的增删改在 src/router/route-static.js 中完成

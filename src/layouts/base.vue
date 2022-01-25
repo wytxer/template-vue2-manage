@@ -19,7 +19,7 @@
     <div v-else key="tab-body-main" class="body-main tab-body-main">
       <nav-tab />
     </div>
-    <dev-drawer v-if="isDev"></dev-drawer>
+    <dev-drawer v-if="showDevDrawer"></dev-drawer>
   </div>
 </template>
 
@@ -38,7 +38,8 @@ export default {
   },
   data () {
     return {
-      isDev: process.env.NODE_ENV === 'development'
+      // 如果是开发环境或者是预览环境的话显示项目配置入口
+      showDevDrawer: process.env.NODE_ENV === 'development' || process.env.VUE_APP_BUILD_ENV === 'preview'
     }
   },
   computed: {

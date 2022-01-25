@@ -25,8 +25,8 @@ const routes = [{
   }
 }]
 
-// 如果是开发环境，添加测试页面进去
-if (process.env.NODE_ENV === 'development') {
+// 如果是开发环境或者预览环境，添加测试页面进去
+if (process.env.NODE_ENV === 'development' || process.env.VUE_APP_BUILD_ENV === 'preview') {
   routes.push({
     path: 'demo',
     component: () => import('@/views/demo/index.vue'),
@@ -39,17 +39,19 @@ if (process.env.NODE_ENV === 'development') {
   })
 }
 // <test>
-// 脚手架开发时的自测页面，在初始化脚手架时不会被创建
-routes.push({
-  path: 'test',
-  component: () => import('@/views/test/index.vue'),
-  meta: {
-    title: '自测页面',
-    icon: 'bank',
-    // 如果要在菜单里面显示出来测试页面，可以将 hidden 设置为 false
-    hidden: false
-  }
-})
+// 脚手架开发时的自测页面，仅在开发环境生效
+if (process.env.NODE_ENV === 'development') {
+  routes.push({
+    path: 'test',
+    component: () => import('@/views/test/index.vue'),
+    meta: {
+      title: '自测页面',
+      icon: 'bank',
+      // 如果要在菜单里面显示出来测试页面，可以将 hidden 设置为 false
+      hidden: false
+    }
+  })
+}
 // </test>
 // 这个页面必须放到最后
 routes.push({
