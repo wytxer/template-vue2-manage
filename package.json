@@ -4,19 +4,17 @@
   "description": "基于 Vue.js 2.x 和 ant-design-vue 组件库且风格统一的用于快速构建中后台系统的脚手架。",
   "private": true,
   "scripts": {
-    "dev": "cross-env BUILD_ENV=development vue-cli-service serve",
+    "dev": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:dev": "cross-env BUILD_ENV=development vue-cli-service build",
+    "build:test": "cross-env VUE_APP_BUILD_ENV=test vue-cli-service build",
+    "build:demo": "cross-env VUE_APP_BUILD_ENV=demo vue-cli-service build",
+    "build:preview": "cross-env VUE_APP_BUILD_ENV=preview vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "app": "wy app",
     "start": "pm2 start --name \"template-vu2-manage\" npm -- run app",
     "stop": "pm2 stop \"template-vu2-manage\""
-  },
-  "nodeApp": {
-    "cross-env": "^7.0.2",
-    "mocker-api": "^2.2.0",
-    "mockjs2": "^1.0.8"
   },
   "dependencies": {
     "@wytxer/antdv-kit": "^1.0.0",
@@ -62,6 +60,11 @@
     "vue-template-compiler": "^2.6.14",
     "webpack-theme-color-replacer": "^1.3.11"
   },
+  "serverDependencies": {
+    "cross-env": "^7.0.2",
+    "mocker-api": "^2.2.0",
+    "mockjs2": "^1.0.8"
+  },
   "engines": {
     "node": "16"
   },
@@ -70,11 +73,11 @@
   "keywords": [
     "vue template",
     "template",
-    "vue",
     "vue scaffold",
     "manage scaffold",
-    "admin",
-    "antd admin"
+    "antd admin",
+    "antdv admin",
+    "antdv manage"
   ],
   "author": {
     "name": "wytxer",

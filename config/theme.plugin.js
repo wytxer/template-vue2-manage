@@ -1,8 +1,13 @@
+/**
+ * 主题配置，自定义主题配置的时候会用到
+ */
+
 const path = require('path')
-const config = require('./project.config')
+const config = require('./config')
 const ThemeColorReplacer = require('webpack-theme-color-replacer')
 const generate = require('@ant-design/colors/lib/generate').default
 
+// 根据主色生成全套的主题色色值
 const getAntdSerials = (color) => {
   const lightens = new Array(9).fill().map((t, i) => {
     return ThemeColorReplacer.varyColor.lighten(color, i / 10)
@@ -12,12 +17,16 @@ const getAntdSerials = (color) => {
   return lightens.concat(colorPalettes).concat(rgb)
 }
 
-const themePluginOption = {
-  fileName: path.join(config.client.assetsDir, '/css/theme-colors-[contenthash:8].css'),
-  matchColors: getAntdSerials('#1890ff'),
+// 主色值，配合 modifyVars.primary-color 使用
+const mainColor = config.modifyVars['primary-color'] || process.env.VUE_APP_THEME_COLOR
+
+const pluginConfig = {
+  fileName: path.join(config.assetsDir, '/css/theme-colors-[contenthash:8].css'),
+  matchColors: getAntdSerials(mainColor),
   // 改变样式选择器，解决样式覆盖问题
   // https://segmentfault.com/a/1190000019293177
   changeSelector (selector) {
+    console.log('selector', selector)
     switch (selector) {
       case '.ant-calendar-today .ant-calendar-date':
         return ':not(.ant-calendar-selected-date):not(.ant-calendar-selected-day)' + selector
@@ -43,4 +52,4 @@ const themePluginOption = {
   }
 }
 
-module.exports = () => new ThemeColorReplacer(themePluginOption)
+module.exports = () => new ThemeColorReplacer(pluginConfig)

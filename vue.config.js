@@ -5,42 +5,27 @@ const path = require('path')
 const webpack = require('webpack')
 const apiMocker = require('mocker-api')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const project = require('./build/project.config')
-const createThemeColorReplacerPlugin = require('./build/plugin.config')
-
-const {
-  env: { IS_PRIVATE, MOCKER },
-  cdn,
-  externals,
-  optimization,
-  showBuildReport,
-  modifyVars,
-  assetsDir
-} = project.client
-const { proxyHost, port } = project.server
+const custom = require('./config/config')
+const themePlugin = require('./config/theme.plugin')
 
 // 生产环境
 function isProd () {
   return process.env.NODE_ENV === 'production'
 }
-
-// 只有生产环境且设置了非私有化项目才使用 cdn 资源
+// 如果是打包是生产环境且设置了非私有云部署且不是预览环境，才使用 cdn 资源
 function useCdn () {
-  return isProd() && !IS_PRIVATE
-}
-
-// 只有生产环境且设置了显示构建报告才生成打包的可视化页面
-function createBuildReport () {
-  return isProd() && showBuildReport
+  return isProd() && process.env.VUE_APP_PRIVATE === 'false' && process.env.VUE_APP_BUILD_ENV !== 'preview'
 }
 
 const vueConfig = {
   runtimeCompiler: true,
+  // publicPath 配置同 process.env.BASE_URL，若要修改 publicPath，建议到 .env 中修改 BASE_URL
+  publicPath: process.env.BASE_URL,
   devServer: {
-    port,
+    port: 9901,
     before (app) {
       // 如果是使用 mocker-api
-      if (MOCKER) {
+      if (process.env.VUE_APP_USE_MOCKER === 'true') {
         apiMocker(app, path.resolve('mock/index.js'), {
           proxy: {
             '^/mock': '/mock'
@@ -49,8 +34,8 @@ const vueConfig = {
         })
       }
     },
-    // 代理配置，具体的匹配规则请移步 build/project.config.js 中修改
-    proxy: proxyHost.development
+    // 接口代理配置，具体的匹配规则请移步 config/config.js 中修改
+    proxy: custom.proxy
   },
   transpileDependencies: [
     // EDGE 和 IE11 里面不支持函数设置默认值，需要转化一下
@@ -61,20 +46,16 @@ const vueConfig = {
   ],
   configureWebpack: {
     plugins: [
-      // 注入项目的环境变量配置，用于控制打包、资源加载等
-      new webpack.DefinePlugin({
-        'process.env.PROJECT_CONFIG': JSON.stringify(project.client.env)
-      }),
-      createThemeColorReplacerPlugin(),
+      themePlugin(),
       // 过滤 moment 对语言包的打包
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
-    externals: useCdn() ? externals : {}
+    externals: useCdn() ? custom.externals : {}
   },
   css: {
     loaderOptions: {
       less: {
-        modifyVars,
+        modifyVars: custom.modifyVars,
         javascriptEnabled: true
       }
     }
@@ -82,7 +63,7 @@ const vueConfig = {
   chainWebpack: config => {
     if (useCdn()) {
       config.plugin('html').tap(args => {
-        args[0].cdn = cdn
+        args[0].cdn = custom.cdn
         return args
       })
     }
@@ -110,30 +91,18 @@ const vueConfig = {
       ]
     }
   },
-  assetsDir
+  // 放置生成的静态资源的目录
+  assetsDir: custom.assetsDir
 }
 
-// 如果是私有化项目增加打包配置
-if (IS_PRIVATE) {
-  vueConfig.configureWebpack.optimization = optimization
+// 如果是私有云部署或者是预览环境，增加打包配置
+if (process.env.VUE_APP_PRIVATE === 'true' || process.env.VUE_APP_BUILD_ENV === 'preview') {
+  vueConfig.configureWebpack.optimization = custom.optimization
 }
 
-if (createBuildReport()) {
-  // 打包完成后自动打开可视化分析页面
-  vueConfig.configureWebpack.plugins.push(
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'server',
-      analyzerHost: '127.0.0.1',
-      analyzerPort: 8899,
-      reportFilename: 'report.html',
-      defaultSizes: 'parsed',
-      openAnalyzer: true,
-      generateStatsFile: false,
-      statsFilename: 'stats.json',
-      statsOptions: null,
-      logLevel: 'info'
-    })
-  )
+// 只有生产环境且设置了显示构建报告才生成打包的可视化页面
+if (isProd() && process.env.VUE_APP_BUILD_REPORT === 'true') {
+  vueConfig.configureWebpack.plugins.push(new BundleAnalyzerPlugin(custom.bundleAnalyzerProps))
 }
 
 module.exports = vueConfig
