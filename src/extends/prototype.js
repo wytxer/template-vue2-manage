@@ -1,39 +1,10 @@
 /**
  *
- * 全局的指令、过滤器、和权限判断，直接挂到 Vue 上面去
+ * 对 Vue.prototype 的扩展统一定义在这里
  */
 
 import Vue from 'vue'
 import store from '@/store'
-
-/**
- * 权限指令，当前用户没有权限时，组件上使用了该指令则会被隐藏
- *   <el-button v-action.add>添加</a-button>
- *   <a-button v-action.add.edit>添加或编辑</a-button>
- *   <a v-action.edit @click="onEdit(record)">修改</a>
- */
-Vue.directive('action', {
-  inserted (el, binding, vnode) {
-    const actions = Object.keys(binding.modifiers)
-    const permissions = store.getters.permissions
-
-    if (actions.find(item => permissions.includes(item))) {
-      return
-    }
-    if (el.parentNode) {
-      el.parentNode.removeChild(el)
-    } else {
-      el.style.display = 'none'
-    }
-  }
-})
-
-// 表单自动聚焦
-Vue.directive('focus', {
-  inserted (el, binding, vnode) {
-    el.focus()
-  }
-})
 
 /**
  * $auth 方法，用于组件内方法调用
@@ -47,11 +18,11 @@ Vue.prototype.$auth = function (action) {
   const permissions = this.$store.getters.permissions
   // 如果是字符串
   if (this.$utils.isString(action)) {
-    return permissions.find(r => r === action)
+    return permissions.find(code => code === action)
   }
   // 如果是数组
   if (this.$utils.isArray(action)) {
-    return action.find(a => permissions.includes(a))
+    return action.find(code => permissions.includes(code))
   }
   return false
 }
@@ -75,4 +46,19 @@ if (store.getters.isCatchError) {
       })
     })
   }
+}
+
+// 默认的配置，用于表单布局
+Vue.prototype.$wrapperCol = {
+  xl: 6,
+  md: 8,
+  sm: 24
+}
+
+// 表单独占一半的配置，用于表单布局
+Vue.prototype.$wrapperHalfCol = {
+  xxl: 6,
+  xl: 12,
+  md: 16,
+  sm: 24
 }

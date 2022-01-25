@@ -32,7 +32,7 @@ const headerType = 'json'
 
 // 跳转到登录页面
 const onOk = () => {
-  location.href = `${process.env.PROJECT_CONFIG.ROUTER_BASE_URL}user/login`
+  location.href = `${process.env.BASE_URL}user/login`
 }
 // 下载文件
 const download = res => {
@@ -77,7 +77,7 @@ instance.interceptors.request.use(config => {
   // 如果是相对路径，自动拼接路由前缀
   if (!config.url.match(/^(\/|https?:\/\/)/i)) {
     // 去掉末尾的斜杠，避免出现 //
-    const baseUrl = process.env.PROJECT_CONFIG.API_BASE_URL.replace(/\/$/, '')
+    const baseUrl = process.env.VUE_APP_API_PREFIX.replace(/\/$/, '')
     config.url = `${baseUrl}/${config.url}`
   }
 
