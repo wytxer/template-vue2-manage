@@ -26,7 +26,6 @@ const pluginConfig = {
   // 改变样式选择器，解决样式覆盖问题
   // https://segmentfault.com/a/1190000019293177
   changeSelector (selector) {
-    console.log('selector', selector)
     switch (selector) {
       case '.ant-calendar-today .ant-calendar-date':
         return ':not(.ant-calendar-selected-date):not(.ant-calendar-selected-day)' + selector
