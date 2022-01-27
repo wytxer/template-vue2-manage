@@ -8,7 +8,7 @@ const apiPrefix = `^${process.env.VUE_APP_API_PREFIX}`
 module.exports = {
   server: {
     // 端口号
-    port: 9902,
+    port: 9909,
 
     // 生产环境接口代理配置，给 Node.js 部署包的配置项，只有使用 Node.js 部署包时才需要配置
     proxy: {
