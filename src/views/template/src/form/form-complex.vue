@@ -1,58 +1,56 @@
 <template>
   <div class="form-complex-view W100" style="padding-bottom: 56px">
-    <ak-container type="white">
-      <a-spin :spinning="loading" style="position: relative">
-        <a-row :gutter="gutter" class="MB16">
-          <a-col :span="24" class="FB FBJC-SB FBAI-C">
-            <div class="F18" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
-            <div class="action-main">
-              <a-button-group>
-                <a-button @click="$router.back()">返回</a-button>
-                <a-button>删除</a-button>
-              </a-button-group>
-              <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
-                预览
-              </a-button>
-            </div>
-          </a-col>
-        </a-row>
+    <ak-container type="white" class="header-info-main" card :bodyStyle="{padding: 0}" :loading="loading">
+      <a-row :gutter="gutter" class="MB16">
+        <a-col :span="24" class="FB FBJC-SB FBAI-C">
+          <div class="F18" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
+          <div class="action-main">
+            <a-button-group>
+              <a-button @click="$router.back()">返回</a-button>
+              <a-button>删除</a-button>
+            </a-button-group>
+            <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
+              预览
+            </a-button>
+          </div>
+        </a-col>
+      </a-row>
 
-        <a-row :gutter="gutter" class="PB16">
-          <a-col :span="6">
-            <span class="C-666">审判法官：</span>
-            {{ baseInfo.judgeName }}
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">立案时间：</span>
-            <ak-text-fill :text="baseInfo.startTime" />
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">开庭时间：</span>
-            {{ baseInfo.courtTime }}
-          </a-col>
-        </a-row>
+      <a-row :gutter="gutter" class="PB16">
+        <a-col :span="6">
+          <span class="C-666">审判法官：</span>
+          {{ baseInfo.judgeName }}
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">立案时间：</span>
+          <ak-text-fill :text="baseInfo.startTime" />
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">开庭时间：</span>
+          {{ baseInfo.courtTime }}
+        </a-col>
+      </a-row>
 
-        <a-row :gutter="gutter" class="PB16">
-          <a-col :span="6">
-            <span class="C-666">原告：</span>
-            {{ baseInfo.accuser }}
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">被告：</span>
-            {{ baseInfo.accused }}
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">案件状态：</span>
-            <a-tag color="blue" class="status">
-              {{ baseInfo.status }}
-            </a-tag>
-          </a-col>
-        </a-row>
-      </a-spin>
+      <a-row :gutter="gutter" class="PB16">
+        <a-col :span="6">
+          <span class="C-666">原告：</span>
+          {{ baseInfo.accuser }}
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">被告：</span>
+          {{ baseInfo.accused }}
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">案件状态：</span>
+          <a-tag color="blue" class="status">
+            {{ baseInfo.status }}
+          </a-tag>
+        </a-col>
+      </a-row>
     </ak-container>
 
     <ak-container>
-      <a-card title="流程进度" class="ak-card-line MB16" :bordered="false">
+      <a-card title="流程进度" class="ak-card-line MB16" :bordered="false" :loading="loading">
         <a-steps progress-dot :current="currentStep" class="ak-step-overflow-x">
           <a-step v-for="item in processInfo" :key="item.id" :title="item.name">
             <span slot="description" v-if="item.value">{{ item.value }}</span>
@@ -61,7 +59,7 @@
       </a-card>
 
       <!-- 申请人信息 -->
-      <a-card title="申请人信息" class="ak-card-line ak-pb0 MB16" :bordered="false">
+      <a-card title="申请人信息" class="ak-card-line ak-pb0 MB16" :bordered="false" :loading="loading">
         <a-form-model ref="form" :model="values" :rules="rules" :colon="false" layout="vertical">
           <a-row :gutter="gutter">
             <a-col :xl="8" :lg="8">
@@ -111,7 +109,7 @@
       </a-card>
 
       <!-- 成员管理 -->
-      <a-card class="ak-card-line ak-card-table ak-pb0" :bordered="false">
+      <a-card class="ak-card-line ak-card-table ak-pb0" :bordered="false" :loading="loading">
         <div slot="title" class="FB FBJC-SB FBAI-C">
           <span>成员管理</span>
           <a-button icon="plus-circle">新增成员</a-button>
@@ -233,3 +231,15 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.form-complex-view {
+  .header-info-main {
+    .C-666 {
+      display: inline-block;
+      width: 90px;
+      text-align: right;
+    }
+  }
+}
+</style>

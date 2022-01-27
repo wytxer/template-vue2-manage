@@ -22,7 +22,7 @@
 
         <div v-show="advanced">
           <a-col v-bind="$wrapperCol">
-            <a-form-model-item label="标的额" prop="money">
+            <a-form-model-item label="财富" prop="money">
               <a-input-number v-model="queryFilters.money" class="W100" placeholder="请输入" />
             </a-form-model-item>
           </a-col>
@@ -59,9 +59,9 @@
     <!-- 列筛选 -->
     <div class="ak-table-actions FB FBJC-SB FBAI-C">
       <div>
-        <a-button class="MR16">批量接收</a-button>
-        <a-button class="MR16">批量导入</a-button>
-        <a-button>批量导出</a-button>
+        <a-button class="MR16">批量封号</a-button>
+        <a-button class="MR16">批量开挂</a-button>
+        <a-button>批量刷本</a-button>
       </div>
       <column-filter :columns="columns" :onChange="value => columns = value"></column-filter>
     </div>
@@ -95,16 +95,16 @@
       </template>
 
       <!-- 需求方 -->
-      <a slot="name" slot-scope="text">
+      <template #name="text">
         <a-popover :title="text">
           <a-card slot="content" :hoverable="false" :body-style="{padding: 0}" :bordered="false">
             <a-card-meta title="负责人" description="这里是描述这里是描述这里是描述">
-              <a-avatar slot="avatar" src="https://img1.baidu.com/it/u=2476943548,3374522247&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400" />
+              <a-avatar #avatar src="https://img1.baidu.com/it/u=2476943548,3374522247&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400" />
             </a-card-meta>
           </a-card>
-          {{ text }}
+          <a>{{ text }}</a>
         </a-popover>
-      </a>
+      </template>
 
       <!-- 状态 -->
       <template #status="text">
@@ -153,7 +153,7 @@ const columns = [{
   ],
   onFilter: (value, record) => record.description.includes(value)
 }, {
-  title: '标的额',
+  title: '财富',
   dataIndex: 'money',
   scopedSlots: { customRender: 'money' },
   align: 'right',
@@ -232,7 +232,7 @@ export default {
     onDelete (id) {
       this.$message.info('点了确认删除')
     },
-    // 实时修改当前表格当前行标的额
+    // 实时修改当前表格当前行财富
     onMoneyChange (value, key, column) {
       const newData = [...this.$refs.table.localDataSource]
       const target = newData.filter(item => key === item.id)[0]

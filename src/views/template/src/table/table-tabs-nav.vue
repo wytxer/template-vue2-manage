@@ -7,13 +7,13 @@
     <a-card class="ak-card-table" :bordered="false">
       <div class="ak-table-actions">
         <a-button type="primary">
-          一键收案
+          一键下线
         </a-button>
         <a-button type="primary" class="ML24">
-          一键立案
+          一键送挂
         </a-button>
         <a-button type="primary" class="ML24">
-          一键分案
+          一键祭天
         </a-button>
       </div>
 
@@ -39,7 +39,7 @@
 
         <!-- 操作 -->
         <template #actions>
-          <a>查看详情</a>
+          <a>详情</a>
         </template>
       </ak-table>
     </a-card>
@@ -80,13 +80,13 @@ const tabs = [{
   tab: '全部（99）'
 }, {
   key: 'tab2',
-  tab: '待收案（19）'
+  tab: '已封号（19）'
 }, {
   key: 'tab3',
-  tab: '待立案（19）'
+  tab: '已下线（19）'
 }, {
   key: 'tab4',
-  tab: '待分案（13）'
+  tab: '已拉胯（13）'
 }]
 
 export default {

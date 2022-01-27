@@ -9,7 +9,7 @@
         </a-col>
 
         <a-col v-bind="$wrapperCol">
-          <a-form-model-item label="姓名" prop="name">
+          <a-form-model-item label="昵称" prop="name">
             <a-input v-model="queryFilters.name" placeholder="请输入" />
           </a-form-model-item>
         </a-col>
@@ -28,12 +28,7 @@
     </a-form-model>
 
     <ak-table ref="table" rowKey="id" :columns="columns" :loadData="queryData" :alert="options.alert" :rowSelection="options.rowSelection">
-      <!-- tooltip -->
-      <template #tooltip="text">
-        <ak-auto-tooltip :text="text" />
-      </template>
-
-      <!-- 标的额 -->
+      <!-- 财富 -->
       <template #money="text">
         <span>{{ $utils.formatCurrency(text) }}</span>
       </template>
@@ -46,7 +41,7 @@
 
       <!-- 操作 -->
       <template #actions="text, record">
-        <a>查看</a>
+        <a>详情</a>
         <a-divider type="vertical" />
         <a-popconfirm title="确定删除？" @confirm="onDelete(record.id)">
           <a>删除</a>
@@ -63,11 +58,10 @@ const columns = [{
   title: '#',
   dataIndex: 'id'
 }, {
-  title: '描述',
-  dataIndex: 'description',
-  scopedSlots: { customRender: 'tooltip' }
+  title: '昵称',
+  dataIndex: 'name'
 }, {
-  title: '标的额',
+  title: '财富',
   dataIndex: 'money',
   scopedSlots: { customRender: 'money' },
   align: 'right',

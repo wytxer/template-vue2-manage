@@ -3,8 +3,8 @@
     <a-form-model ref="form" layout="vertical" :model="values" :rules="rules" :colon="false">
       <a-row :gutter="24" style="padding-right: 200px">
         <a-col :md="10" :sm="24">
-          <a-form-model-item label="股票代码" prop="code">
-            <a-input v-model="values.code" placeholder="请输入" />
+          <a-form-model-item label="股票代码" prop="stackCode">
+            <a-input v-model="values.stackCode" placeholder="请输入" />
           </a-form-model-item>
         </a-col>
 
@@ -27,8 +27,8 @@
         </a-col>
 
         <a-col :md="10" :sm="24">
-          <a-form-model-item label="中国证监会处罚决定书编号" prop="punishNumber">
-            <a-input v-model="values.punishNumber" placeholder="请输入" />
+          <a-form-model-item label="证监会处罚决定书编号" prop="number">
+            <a-input v-model="values.number" placeholder="请输入" />
           </a-form-model-item>
         </a-col>
 
@@ -47,8 +47,8 @@
         </a-col>
 
         <a-col :md="22" :sm="24">
-          <a-form-model-item label="违法信息披露事实" prop="message">
-            <a-textarea v-model="values.message" placeholder="请输入" />
+          <a-form-model-item label="违法信息披露事实" prop="fact">
+            <a-textarea v-model="values.fact" placeholder="请输入" />
           </a-form-model-item>
         </a-col>
 
@@ -99,13 +99,13 @@
 import { onSubmit } from '@/api/mock'
 
 const rules = {
-  code: [{ required: true, message: '不允许为空' }],
+  stackCode: [{ required: true, message: '不允许为空' }],
   name: [{ required: true, message: '不允许为空' }],
   money: [{ required: true, message: '不允许为空' }],
   tradeCode: [{ required: true, message: '不允许为空' }],
-  punishNumber: [{ required: true, message: '不允许为空' }],
+  number: [{ required: true, message: '不允许为空' }],
   date: [{ required: true, message: '不允许为空' }],
-  message: [{ required: true, message: '不允许为空' }],
+  fact: [{ required: true, message: '不允许为空' }],
   date2: [{ required: true, message: '不允许为空' }],
   date3: [{ required: true, message: '不允许为空' }]
 }
@@ -114,13 +114,13 @@ export default {
   data () {
     return {
       values: {
-        code: '',
+        stackCode: '',
         name: '',
         money: '',
         tradeCode: '',
-        punishNumber: '',
+        number: '',
         date: '',
-        message: '',
+        fact: '',
         date2: '2022-01-01',
         date3: ''
       },

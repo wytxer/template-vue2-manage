@@ -22,11 +22,13 @@ const fileNames = [{
 }, {
   fileName: 'drawer-empty',
   prefix: 'ak-drawer-empty',
+  folder: 'modal',
   title: '空抽屉',
   description: '里面的内容完全自定义，只是提供了一个抽屉的结构'
 }, {
   fileName: 'drawer-form',
   prefix: 'ak-drawer-form',
+  folder: 'modal',
   title: '抽屉加表单布局',
   description: '抽屉里面套了 form 表单，提供了输入框、字段注解、长标签示例'
 }, {

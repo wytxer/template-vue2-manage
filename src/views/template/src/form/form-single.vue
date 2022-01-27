@@ -8,28 +8,28 @@
       :rules="rules"
       :colon="false"
     >
-      <a-form-model-item label="股票代码" prop="code">
+      <a-form-model-item label="发起人" prop="code">
         <a-input v-model="values.code" placeholder="请输入" />
       </a-form-model-item>
 
-      <a-form-model-item label="涉及证券名称" prop="name">
+      <a-form-model-item label="被通缉人昵称" prop="name">
         <a-input v-model="values.name" placeholder="请输入" />
       </a-form-model-item>
 
-      <a-form-model-item label="标的金额" prop="money">
+      <a-form-model-item label="悬赏金额" prop="money">
         <a-input v-model="values.money" placeholder="请输入" />
       </a-form-model-item>
 
-      <a-form-model-item label="涉及投资者交易编码" prop="tradeCode">
-        <a-input v-model="values.tradeCode" placeholder="请输入" />
+      <a-form-model-item label="被通缉人身份码" prop="idCode">
+        <a-input v-model="values.idCode" placeholder="请输入" />
       </a-form-model-item>
 
-      <a-form-model-item label="中国证监会处罚决定书编号" prop="punishNumber">
-        <a-input v-model="values.punishNumber" placeholder="请输入" />
+      <a-form-model-item label="被通缉人犯罪事实" prop="fact">
+        <a-textarea v-model="values.fact" placeholder="请输入" />
       </a-form-model-item>
 
-      <a-form-model-item label="违法信息披露事实" prop="message">
-        <a-textarea v-model="values.message" placeholder="请输入" />
+      <a-form-model-item label="备注" prop="remarks">
+        <a-textarea v-model="values.remarks" placeholder="请输入" />
       </a-form-model-item>
 
       <a-form-model-item>
@@ -51,9 +51,9 @@ const rules = {
   code: [{ required: true, message: '不允许为空' }],
   name: [{ required: true, message: '不允许为空' }],
   money: [{ required: true, message: '不允许为空' }],
-  tradeCode: [{ required: true, message: '不允许为空' }],
-  punishNumber: [{ required: true, message: '不允许为空' }],
-  message: [{ required: true, message: '不允许为空' }]
+  idCode: [{ required: true, message: '不允许为空' }],
+  fact: [{ required: true, message: '不允许为空' }],
+  remarks: [{ required: true, message: '不允许为空' }]
 }
 
 export default {
@@ -63,9 +63,9 @@ export default {
         code: '',
         name: '',
         money: '',
-        tradeCode: '',
-        punishNumber: '',
-        message: ''
+        idCode: '',
+        fact: '',
+        remarks: ''
       },
       rules,
       loading: false

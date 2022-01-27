@@ -4,7 +4,7 @@
     :width="width"
     :visible="visible"
     :title="title"
-    :confirmLoading="confirmLoading"
+    :confirmLoading="loading"
     :afterClose="onClosed"
     destroyOnClose
     @cancel="onHideModal"
@@ -26,21 +26,21 @@
           type="date"
           placeholder="请选择"
           class="W100"
-          format="YYYY-MM-DD"
-          valueFormat="YYYY-MM-DD"
+          format="YYYY-MM-DD HH:mm:ss"
+          valueFormat="YYYY-MM-DD HH:mm:ss"
           :getCalendarContainer="trigger => trigger.parentNode"
         />
       </a-form-model-item>
 
-      <a-form-model-item label="有效期" prop="date">
+      <a-form-model-item label="新手考核期" prop="date">
         <a-range-picker v-model="values.date" class="W100" format="YYYY-MM-DD" valueFormat="YYYY-MM-DD" />
       </a-form-model-item>
 
-      <a-form-model-item label="角色" prop="role">
-        <ak-select v-model="values.role" placeholder="请选择" :loadData="queryRoles" />
+      <a-form-model-item label="段位" prop="rank">
+        <ak-select v-model="values.rank" placeholder="请选择" :loadData="queryRanks" />
       </a-form-model-item>
 
-      <a-form-model-item label="所属部门" prop="tenant">
+      <a-form-model-item label="所属宗门" prop="tenant">
         <a-checkbox-group v-model="values.tenant">
           <a-checkbox v-for="item in tenants" :key="item.id" :value="item.id">
             {{ item.name }}
@@ -48,7 +48,7 @@
         </a-checkbox-group>
       </a-form-model-item>
 
-      <a-form-model-item label="照片" prop="picture">
+      <a-form-model-item label="等级证明" prop="picture">
         <ak-upload v-model="values.picture" style="min-width: 300px" :action="$api.mockUpload" />
       </a-form-model-item>
 
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { onSubmit, queryRoles } from '@/api/mock'
+import { onSubmit, queryRanks } from '@/api/mock'
 
 const rules = {
   name: [{
@@ -73,16 +73,16 @@ const rules = {
     required: true, message: '加入时间不允许为空'
   }],
   date: [{
-    required: true, message: '有效期不允许为空'
+    required: true, message: '新手考核期不允许为空'
   }],
-  role: [{
-    required: true, message: '角色不允许为空'
+  rank: [{
+    required: true, message: '段位不允许为空'
   }],
   picture: [{
-    required: true, message: '照片不允许为空'
+    required: true, message: '等级证明不允许为空'
   }],
   tenant: [{
-    required: true, type: 'array', message: '所属部门不允许为空'
+    required: true, type: 'array', message: '所属宗门不允许为空'
   }],
   remarks: [{
     required: true, message: '备注不允许为空'
@@ -90,11 +90,11 @@ const rules = {
 }
 
 const tenants = [{
-  id: 1, name: '技术部'
+  id: 1, name: '玄武国'
 }, {
-  id: 2, name: '运营部'
+  id: 2, name: '七宝琉璃宗'
 }, {
-  id: 3, name: '法务部'
+  id: 3, name: '鬼灵门'
 }]
 
 export default {
@@ -102,15 +102,15 @@ export default {
     return {
       width: 560,
       visible: false,
-      confirmLoading: false,
-      title: '新增用户',
+      loading: false,
+      title: '新增道友',
       values: {},
       rules,
       tenants
     }
   },
   methods: {
-    queryRoles,
+    queryRanks,
     showModal () {
       this.visible = true
     },
@@ -133,14 +133,14 @@ export default {
           if (values.picture && values.picture.length) {
             values.picture = values.picture.map(item => item.response.data).filter(Boolean)
           }
-          this.confirmLoading = true
+          this.loading = true
           onSubmit(values)
             .then(() => {
               this.$message.success('提交成功')
               this.onHideModal()
             })
             .finally(() => {
-              this.confirmLoading = false
+              this.loading = false
             })
         } else {
           return false

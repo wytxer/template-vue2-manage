@@ -21,7 +21,7 @@
 
       <div v-show="advanced">
         <a-col v-bind="$wrapperCol">
-          <a-form-model-item label="标的额" prop="money">
+          <a-form-model-item label="财富" prop="money">
             <a-input-number v-model="queryFilters.money" class="W100" placeholder="请输入" />
           </a-form-model-item>
         </a-col>

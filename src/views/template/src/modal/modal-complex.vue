@@ -4,7 +4,7 @@
     :width="width"
     :visible="visible"
     :title="title"
-    :confirmLoading="confirmLoading"
+    :confirmLoading="loading"
     :afterClose="onClosed"
     destroyOnClose
     @cancel="onHideModal"
@@ -32,26 +32,26 @@
               type="date"
               placeholder="请选择"
               class="W100"
-              format="YYYY-MM-DD"
-              valueFormat="YYYY-MM-DD"
+              format="YYYY-MM-DD HH:mm:ss"
+              valueFormat="YYYY-MM-DD HH:mm:ss"
             />
           </a-form-model-item>
         </a-col>
 
         <a-col :span="12">
-          <a-form-model-item label="有效期" prop="date">
+          <a-form-model-item label="新手考核期" prop="date">
             <a-range-picker v-model="values.date" class="W100" format="YYYY-MM-DD" valueFormat="YYYY-MM-DD" />
           </a-form-model-item>
         </a-col>
 
         <a-col :span="12">
-          <a-form-model-item label="角色" prop="role">
-            <ak-select v-model="values.role" placeholder="请选择" :load-data="roles" />
+          <a-form-model-item label="段位" prop="rank">
+            <ak-select v-model="values.rank" placeholder="请选择" :loadData="ranks" />
           </a-form-model-item>
         </a-col>
 
         <a-col :span="12">
-          <a-form-model-item label="照片" prop="picture">
+          <a-form-model-item label="等级证明" prop="picture">
             <ak-upload v-model="values.picture" style="min-width: 300px" :action="$api.mockUpload" />
           </a-form-model-item>
         </a-col>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { onSubmit, queryRoles } from '@/api/mock'
+import { onSubmit, queryRanks } from '@/api/mock'
 
 const rules = {
   name: [{
@@ -80,13 +80,13 @@ const rules = {
     required: true, message: '加入时间不允许为空'
   }],
   date: [{
-    required: true, message: '有效期不允许为空'
+    required: true, message: '新手考核期不允许为空'
   }],
-  role: [{
-    required: true, message: '角色不允许为空'
+  rank: [{
+    required: true, message: '段位不允许为空'
   }],
   picture: [{
-    required: true, message: '照片不允许为空'
+    required: true, message: '等级证明不允许为空'
   }],
   tenant: [{
     required: true, type: 'array', message: '所属部门不允许为空'
@@ -101,18 +101,18 @@ export default {
     return {
       width: 720,
       visible: false,
-      confirmLoading: false,
+      loading: false,
       title: '弹框标题',
       values: {},
       rules,
-      roles: []
+      ranks: []
     }
   },
   methods: {
     showModal (record = {}) {
       this.values = record
       // 每次打开弹框都获取一下最新数据，可根据实际需要修改
-      this.queryRoles()
+      this.queryRanks()
       this.visible = true
     },
     onHideModal () {
@@ -134,25 +134,25 @@ export default {
           if (values.picture && values.picture.length) {
             values.picture = values.picture.map(item => item.response.data).filter(Boolean)
           }
-          this.confirmLoading = true
+          this.loading = true
           onSubmit(values)
             .then(() => {
               this.$message.success('提交成功')
               this.onHideModal()
             })
             .finally(() => {
-              this.confirmLoading = false
+              this.loading = false
             })
         } else {
           return false
         }
       })
     },
-    // 获取角色列表
-    queryRoles () {
-      queryRoles()
+    // 获取段位列表
+    queryRanks () {
+      queryRanks()
         .then(res => {
-          this.roles = res.data || []
+          this.ranks = res.data || []
         })
     }
   }

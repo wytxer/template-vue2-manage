@@ -1,117 +1,117 @@
 <template>
   <div class="common-detail-view W100">
-    <ak-container type="white">
-      <a-spin :spinning="loading" class="header-info-main">
-        <a-row :gutter="gutter" class="MB16">
-          <a-col :span="24" class="FB FBJC-SB FBAI-C">
-            <div class="F18" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
-            <div>
-              <a-button-group>
-                <a-button>操作</a-button>
-                <a-button>操作</a-button>
-                <a-button>操作</a-button>
-              </a-button-group>
-              <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
-                主操作
-              </a-button>
-            </div>
-          </a-col>
-        </a-row>
+    <ak-container type="white" class="header-info-main" card :bodyStyle="{padding: 0}" :loading="loading">
+      <a-row :gutter="gutter" class="MB16">
+        <a-col :span="24" class="FB FBJC-SB FBAI-C">
+          <div class="F18" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
+          <div>
+            <a-button-group>
+              <a-button>操作</a-button>
+              <a-button>操作</a-button>
+              <a-button>操作</a-button>
+            </a-button-group>
+            <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
+              主操作
+            </a-button>
+          </div>
+        </a-col>
+      </a-row>
 
-        <a-row :gutter="gutter" class="PB16">
-          <a-col :span="6">
-            <span class="C-666">审判法官：</span>
-            {{ baseInfo.judgeName }}
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">立案时间：</span>
-            <ak-text-fill :text="baseInfo.startTime" />
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">开庭时间：</span>
-            {{ baseInfo.courtTime }}
-          </a-col>
-        </a-row>
+      <a-row :gutter="gutter" class="PB16">
+        <a-col :span="6">
+          <span class="C-666">审判法官：</span>
+          {{ baseInfo.judgeName }}
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">立案时间：</span>
+          <ak-text-fill :text="baseInfo.startTime" />
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">开庭时间：</span>
+          {{ baseInfo.courtTime }}
+        </a-col>
+      </a-row>
 
-        <a-row :gutter="gutter" class="PB16">
-          <a-col :span="6">
-            <span class="C-666">原告：</span>
-            {{ baseInfo.accuser }}
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">被告：</span>
-            {{ baseInfo.accused }}
-          </a-col>
-          <a-col :span="6">
-            <span class="C-666">案件状态：</span>
-            <a-tag color="blue" class="status">
-              {{ baseInfo.status }}
-            </a-tag>
-          </a-col>
-        </a-row>
-      </a-spin>
+      <a-row :gutter="gutter" class="PB16">
+        <a-col :span="6">
+          <span class="C-666">原告：</span>
+          {{ baseInfo.accuser }}
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">被告：</span>
+          {{ baseInfo.accused }}
+        </a-col>
+        <a-col :span="6">
+          <span class="C-666">案件状态：</span>
+          <a-tag color="blue" class="status">
+            {{ baseInfo.status }}
+          </a-tag>
+        </a-col>
+      </a-row>
     </ak-container>
 
     <ak-container :style="{paddingRight: isSideMenu ? '154px' : null}">
-      <a-card class="MB16" title="流程进度" id="detail-card1" :bordered="false">
-        <a-spin :spinning="loading">
-          <a-steps progress-dot :current="currentStep" class="ak-step-overflow-x">
-            <a-step v-for="item in processInfo" :key="item.id" :title="item.name">
-              <span slot="description" v-if="item.value">{{ item.value }}</span>
-            </a-step>
-          </a-steps>
-        </a-spin>
+      <a-card class="MB16" title="流程进度" id="detail-card1" :bordered="false" :loading="loading">
+        <a-steps progress-dot :current="currentStep" class="ak-step-overflow-x">
+          <a-step v-for="item in processInfo" :key="item.id" :title="item.name">
+            <span slot="description" v-if="item.value">{{ item.value }}</span>
+          </a-step>
+        </a-steps>
       </a-card>
 
-      <a-card class="MB16" title="用户信息" id="detail-card2" :bordered="false">
-        <a-spin :spinning="loading">
-          <a-row :gutter="gutter" class="PB24">
-            <a-col :span="6">
-              <div class="PB6 C-666">姓名</div>
-              <div>{{ userInfo.name }}</div>
-            </a-col>
-            <a-col :span="6">
-              <div class="PB6 C-666">民族</div>
-              <div>{{ userInfo.nation }}</div>
-            </a-col>
-            <a-col :span="6">
-              <div class="PB6 C-666">联系电话</div>
-              <div>{{ userInfo.mobile }}</div>
-            </a-col>
-            <a-col :span="6">
-              <div class="PB6 C-666">邮箱</div>
-              <div>{{ userInfo.email }}</div>
-            </a-col>
-          </a-row>
+      <a-card class="MB16" title="用户信息" id="detail-card2" :bordered="false" :loading="loading">
+        <a-row :gutter="gutter" class="PB24">
+          <a-col :span="6">
+            <div class="PB6 C-666">姓名</div>
+            <div>{{ userInfo.name }}</div>
+          </a-col>
+          <a-col :span="6">
+            <div class="PB6 C-666">民族</div>
+            <div>{{ userInfo.nation }}</div>
+          </a-col>
+          <a-col :span="6">
+            <div class="PB6 C-666">联系电话</div>
+            <div>{{ userInfo.mobile }}</div>
+          </a-col>
+          <a-col :span="6">
+            <div class="PB6 C-666">邮箱</div>
+            <div>{{ userInfo.email }}</div>
+          </a-col>
+        </a-row>
 
-          <a-row :gutter="gutter">
-            <a-col :span="6">
-              <div class="PB6 C-666">证件类型</div>
-              <div>{{ userInfo.idCardType }}</div>
-            </a-col>
-            <a-col :span="6">
-              <div class="PB6 C-666">证件号码</div>
-              <div>{{ userInfo.idCardCode }}</div>
-            </a-col>
-            <a-col :span="12">
-              <div class="PB6 C-666">地址</div>
-              <div>{{ userInfo.address }}</div>
-            </a-col>
-          </a-row>
-        </a-spin>
+        <a-row :gutter="gutter">
+          <a-col :span="6">
+            <div class="PB6 C-666">证件类型</div>
+            <div>{{ userInfo.idCardType }}</div>
+          </a-col>
+          <a-col :span="6">
+            <div class="PB6 C-666">证件号码</div>
+            <div>{{ userInfo.idCardCode }}</div>
+          </a-col>
+          <a-col :span="12">
+            <div class="PB6 C-666">地址</div>
+            <div>{{ userInfo.address }}</div>
+          </a-col>
+        </a-row>
       </a-card>
 
-      <a-card class="ak-card-table MB16" title="来电记录" id="detail-card3" :bordered="false">
-        <ak-table rowKey="id" :columns="callColumns" :load-data="queryCallRecords">
-          <template slot="duration" slot-scope="text">
+      <a-card class="ak-card-table MB16" title="来电记录" id="detail-card3" :bordered="false" :loading="loading">
+        <ak-table rowKey="id" :columns="callColumns" :loadData="queryCallRecords">
+          <template #duration="text">
             {{ text | filterTime }}
+          </template>
+
+          <template #actions>
+            <a>偷听</a>
+            <a-divider type="vertical" />
+            <a>销毁</a>
           </template>
         </ak-table>
       </a-card>
 
-      <a-card class="ak-card-table" title="操作日志" id="detail-card4" :bordered="false">
-        <ak-table rowKey="id" :columns="logColumns" :load-data="queryActionLogs">
-          <template slot="result" slot-scope="text">
+      <a-card class="ak-card-table" title="操作日志" id="detail-card4" :bordered="false" :loading="loading">
+        <ak-table rowKey="id" :columns="logColumns" :loadData="queryActionLogs">
+          <template #result="text">
             <a-tag v-if="text" color="blue" key="success">
               成功
             </a-tag>
@@ -155,9 +155,11 @@ const callColumns = [{
 }, {
   title: '通话时长',
   dataIndex: 'duration',
-  scopedSlots: {
-    customRender: 'duration'
-  }
+  scopedSlots: { customRender: 'duration' }
+}, {
+  title: '操作',
+  dataIndex: 'actions',
+  scopedSlots: { customRender: 'actions' }
 }]
 
 // 操作日志的表头信息
@@ -246,9 +248,8 @@ export default {
           this.userInfo = data.userInfo || {}
           this.callInfo = data.callInfo || []
           this.currentStep = this.processInfo.findIndex(item => item.value)
-          this.loading = false
         })
-        .catch(() => {
+        .finally(() => {
           this.loading = false
         })
     },

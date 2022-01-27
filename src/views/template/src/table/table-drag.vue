@@ -2,8 +2,8 @@
   <ak-container class="ak-card-table" card :bodyStyle="{padding: 0}">
     <div class="ak-table-actions FB FBJC-SB FBAI-C">
       <div>
-        <a-button class="MR16">批量接收</a-button>
-        <a-button>新增督案</a-button>
+        <a-button class="MR16">批量重开</a-button>
+        <a-button>新增角色</a-button>
       </div>
       <column-filter :columns="columns" :onChange="value => columns = value"></column-filter>
     </div>
@@ -22,7 +22,7 @@
         <ak-auto-tooltip :text="text" />
       </template>
 
-      <!-- 标的额 -->
+      <!-- 财富 -->
       <template #money="text">
         <span>{{ $utils.formatCurrency(text) }}</span>
       </template>
@@ -35,7 +35,7 @@
 
       <!-- 操作 -->
       <template #actions="text, record">
-        <a>查看</a>
+        <a>详情</a>
         <a-divider type="vertical" />
         <a-popconfirm title="确定删除该条记录吗？" @confirm="onDelete(record)">
           <a>删除</a>
@@ -62,7 +62,7 @@ const columns = [{
   scopedSlots: { customRender: 'tooltip' },
   width: 180
 }, {
-  title: '标的额',
+  title: '财富',
   dataIndex: 'money',
   scopedSlots: { customRender: 'money' },
   align: 'right',

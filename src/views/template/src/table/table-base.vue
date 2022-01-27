@@ -1,12 +1,7 @@
 <template>
   <ak-container class="ak-card-table" card :bodyStyle="{padding: 0}">
     <ak-table ref="table" rowKey="id" :columns="columns" :loadData="queryTableData">
-      <!-- tooltip -->
-      <template #tooltip="text">
-        <ak-auto-tooltip :text="text" />
-      </template>
-
-      <!-- 标的额 -->
+      <!-- 财富 -->
       <template #money="text">
         <span>{{ $utils.formatCurrency(text) }}</span>
       </template>
@@ -19,7 +14,7 @@
 
       <!-- 操作 -->
       <template #actions>
-        <a>查看</a>
+        <a>详情</a>
         <a-divider type="vertical" />
         <a>删除</a>
       </template>
@@ -34,11 +29,10 @@ const columns = [{
   title: '#',
   dataIndex: 'id'
 }, {
-  title: '描述',
-  dataIndex: 'description',
-  scopedSlots: { customRender: 'tooltip' }
+  title: '昵称',
+  dataIndex: 'name'
 }, {
-  title: '标的额',
+  title: '财富',
   dataIndex: 'money',
   scopedSlots: { customRender: 'money' },
   align: 'right',

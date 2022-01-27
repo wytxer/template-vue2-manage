@@ -5,9 +5,16 @@
     <a-button @click="$refs.modalComplex.showModal()" class="ML16">两列表单弹框</a-button>
     <a-button @click="onOpenDriver" class="ML16">打开新手引导</a-button>
 
+    <a-divider></a-divider>
+
+    <a-button @click="$refs.drawerEmpty.showModal()">空抽屉</a-button>
+    <a-button @click="$refs.drawerForm.showModal()" class="ML16">表单抽屉</a-button>
+
     <modal-empty ref="modalEmpty" />
     <modal-normal ref="modalNormal" />
     <modal-complex ref="modalComplex" />
+    <drawer-empty ref="drawerEmpty" />
+    <drawer-form ref="drawerForm" />
   </ak-container>
 </template>
 
@@ -15,12 +22,16 @@
 import ModalEmpty from './modal-empty'
 import ModalNormal from './modal-normal'
 import ModalComplex from './modal-complex'
+import DrawerEmpty from './drawer-empty'
+import DrawerForm from './drawer-form'
 
 export default {
   components: {
     ModalEmpty,
     ModalNormal,
-    ModalComplex
+    ModalComplex,
+    DrawerEmpty,
+    DrawerForm
   },
   methods: {
     onOpenDriver () {
