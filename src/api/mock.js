@@ -31,10 +31,10 @@ export function querySelectData (params) {
   })
 }
 
-// 获取角色信息
-export function queryRoles (params) {
+// 获取段位信息
+export function queryRanks (params) {
   return request({
-    mockUrl: '/mock/roles',
+    mockUrl: '/mock/ranks',
     method: 'get',
     params
   })
@@ -62,6 +62,15 @@ export function queryCallRecords (params) {
 export function queryActionLogs (params) {
   return request({
     mockUrl: '/mock/detail/action/logs',
+    method: 'get',
+    params
+  })
+}
+
+// 概览数据
+export function queryDataOverview (params) {
+  return request({
+    mockUrl: '/mock/data/overview',
     method: 'get',
     params
   })
