@@ -18,9 +18,8 @@ module.exports = {
       '//cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js',
       '//cdn.jsdelivr.net/npm/moment@2.29.1/locale/zh-cn.js',
       '//cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
-      '//cdn.jsdelivr.net/npm/ant-design-vue@1.7.8/dist/antd.min.js'
-      // '//cdn.jsdelivr.net/npm/@antv/g2@3.5.8/dist/g2.min.js',
-      // '//cdn.jsdelivr.net/npm/@antv/data-set@0.10.2/dist/data-set.min.js'
+      '//cdn.jsdelivr.net/npm/ant-design-vue@1.7.8/dist/antd.min.js',
+      '//cdn.jsdelivr.net/npm/@antv/g2@4.1.41/dist/g2.min.js'
     ]
   },
   // webpack 的别名扩展，配合 cdn 字段来使用
@@ -30,9 +29,8 @@ module.exports = {
     vuex: 'Vuex',
     moment: 'moment',
     axios: 'axios',
-    'ant-design-vue': 'antd'
-    // '@antv/g2': 'G2',
-    // '@antv/data-set': 'DataSet'
+    'ant-design-vue': 'antd',
+    '@antv/g2': 'G2'
   },
 
   // webpack 的打包优化配置
