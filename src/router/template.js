@@ -2,24 +2,11 @@ import LayoutBlock from '@/layouts/block'
 
 export default [{
   path: 'modal',
-  component: LayoutBlock,
+  component: () => import('@/views/template/src/modal/modal.vue'),
   meta: {
     title: '弹框',
     icon: 'alert'
-  },
-  children: [{
-    path: 'modal-common',
-    component: () => import('@/views/template/src/modal/modal.vue'),
-    meta: {
-      title: '弹框'
-    }
-  }, {
-    path: 'modal-drawer',
-    component: () => import('@/views/template/src/drawer/drawer.vue'),
-    meta: {
-      title: '抽屉'
-    }
-  }]
+  }
 }, {
   path: 'table',
   component: LayoutBlock,
