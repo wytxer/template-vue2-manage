@@ -1,7 +1,7 @@
 <template>
   <div :class="['ak-container-wrap', `ak-${type}-container-wrap`]">
     <div class="container">
-      <a-card v-if="card" :bordered="false" :headStyle="headStyle" :bodyStyle="bodyStyle">
+      <a-card v-if="card" v-bind="$attrs" v-on="$listeners" :bordered="bordered">
         <slot></slot>
       </a-card>
       <slot v-else></slot>
@@ -15,6 +15,7 @@
  */
 export default {
   name: 'ak-container',
+  inheritAttrs: false,
   props: {
     type: {
       type: String,
@@ -26,15 +27,10 @@ export default {
       type: Boolean,
       default: false
     },
-    // 同 a-card 的 bodyStyle
-    bodyStyle: {
-      type: Object,
-      default: () => ({})
-    },
-    // 同 a-card 的 headStyle
-    headStyle: {
-      type: Object,
-      default: () => ({})
+    // 同 a-card 的 bordered
+    bordered: {
+      type: Boolean,
+      default: false
     }
   }
 }
