@@ -16,14 +16,14 @@ yarn dev
 yarn build
 
 # 测试环境打包
-yarn build:dev
+yarn build:test
 ```
 
 
 ### 使用文档
 
 - [项目配置](https://cli.vuejs.org/zh/config/)
-- [脚手架使用文档](http://v2.docs.bszhct.com/docs/template-vue2-manage.html)
+- [脚手架使用文档](http://docs.wi.bszhct.com/docs/template-vue2-manage.html)
 
 
 ## License
