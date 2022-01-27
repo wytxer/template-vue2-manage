@@ -8,70 +8,58 @@ const common = {
   error: builder(null, 500, '服务器异常'),
   // 提交
   submit: builder(),
-  // 角色列表
-  roles: builder([{
-    value: 1, label: '上单'
+  // 段位列表
+  ranks: builder([{
+    value: 1, label: '筑基期'
   }, {
-    value: 2, label: '中单'
+    value: 2, label: '斗皇'
   }, {
-    value: 3, label: '打野'
+    value: 3, label: '魂斗罗'
   }, {
-    value: 4, label: '下单'
+    value: 4, label: '巅峰战神'
   }, {
-    value: 5, label: '辅助'
+    value: 5, label: '金丹期'
   }, {
-    value: 6, label: '射手'
+    value: 6, label: '地元境'
   }, {
-    value: 7, label: '全能'
+    value: 7, label: '元丹大圆满'
   }]),
   // 下拉列表
   selectList: builder([
     { value: '1', label: '正常' },
-    { value: '2', label: '禁用' }
-  ])
+    { value: '2', label: '异常' }
+  ]),
+  names: ['韩老魔', '唐三', '武庚', '秦羽', '罗峰', '子羽', '霍雨浩', '纣王', '妲己', '虚无', '逆天而行', '随风起舞', '死亡眼神', '穷凶极恶', '铁血无双', '乱舞狂刀', '星星有泪', '鬼魅森林', '纵横天下', '寒风凛凛', '大吃四方', '木无表情', '不闻不问', '苍白的脸', '蓝月圣王', '玄风圣王', '天武圣王', '白莲圣王', '真禅圣王', '黑龙', '白龙', '赤龙', '黄龙', '十刑', '心月魁', '刑天', '神眼', '兵主神蚩尤', '共工', '侯费', '黑羽', '天明', '项羽', '荆轲', '卫庄', '盖聂', '萧炎', '比比东', '美杜莎', '冰皇海波东', '火灵儿', '石昊', '宝儿姐', '紫川秀', '张楚岚', '白小纯']
 }
 
 // 通用的表格数据
 const tableList = Array(28).fill(0).map((item, i) => {
   return {
-    id: mock.Random.integer(100, 1000),
+    id: mock.Random.integer(100, 10000),
     description: mock.Random.cparagraph(1, 3),
     money: mock.Random.integer(10000, 10000000),
     status: Math.random() > 0.5 ? 1 : 2,
     updateTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
-    name: mock.Random.cname()
+    name: common.names[Math.floor(Math.random() * common.names.length)]
   }
 })
 
 // 详情数据
 const detailInfo = builder({
   baseInfo: {
-    // 案号
-    caseCode: '粤0304民初888号',
-    // 类型
+    caseCode: '武0301民初888号',
     type: '打野纠纷',
-    // 审判法官
-    judgeName: mock.Random.cname(),
-    // 原告
-    accuser: mock.Random.cname(),
-    // 被告
-    accused: mock.Random.cname(),
-    // 开庭时间
+    judgeName: common.names[Math.floor(Math.random() * common.names.length)],
+    accuser: common.names[Math.floor(Math.random() * common.names.length)],
+    accused: common.names[Math.floor(Math.random() * common.names.length)],
     courtTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
-    // 案件状态
     status: '待分案',
-    // 上报时间
     reportTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
-    // 上报电话
     reportMobile: 13722221112,
-    // 地址
     address: '史莱克学院 F5 幢 99 楼 9908',
-    // 中间人
-    intermediator: Math.random() > 0.5 ? mock.Random.cname() : '',
-    // 归属镇街
+    intermediator: Math.random() > 0.5 ? common.names[Math.floor(Math.random() * common.names.length)] : '',
     streetName: '叶陵城',
-    // 指派人
-    dispatchName: mock.Random.cname()
+    dispatchName: common.names[Math.floor(Math.random() * common.names.length)]
   },
   // 案件流程
   processInfo: [{
@@ -90,36 +78,25 @@ const detailInfo = builder({
     id: 7, name: '归档'
   }],
   bondInfo: {
-    // 股票代码
-    stockCode: '310300.SH',
-    // 证券名称
+    stackCode: '300301.TM',
     bondName: '武魂殿证券',
-    // 标的金额
     amount: mock.Random.integer(10010000, 100000000000),
-    // 处罚决定书编号
     number: 'SASDSL233SH',
-    // 股票市场
     stockMarket: '潜力股',
-    // 涉及证券账户
     account: '魂殿的破产申请',
-    // 涉及投资者交易编码
-    transactionCode: 'XY30293820302',
-    // 披露事实
-    fact: '第十条 发行人申请公开发行股票、可转换为股票的公司债券，依法采取承销方式的，或者公开发行法律、行政法规规定实行保荐制度的其他证券的，应当聘请证券公司担任保荐人。',
-    // 实施日
+    idCode: 'XY30293820302',
+    fact: '魂殿原是中州最大势力，乃是远古种族魂族的附属势力。由于与主角萧炎有恩怨，遭到疯狂报复，现已覆灭。',
+    tradeCode: 'XY230030000',
     startTime: Math.random() > 0.3 ? mock.Random.datetime('yyyy-MM-dd HH:mm:ss') : '',
-    // 更正日
     updateTime: Math.random() < 0.5 ? mock.Random.datetime('yyyy-MM-dd HH:mm:ss') : '',
-    // 基准日
     benchmarkTime: Math.random() < 0.5 ? mock.Random.datetime('yyyy-MM-dd HH:mm:ss') : '',
-    // 基准价
     benchmarkPrice: Math.random() < 0.5 ? 32323 : null
   },
   userInfo: {
     id: mock.Random.guid(),
-    name: mock.Random.cname(),
+    name: common.names[Math.floor(Math.random() * common.names.length)],
     nation: '龙族',
-    mobile: 13911112222,
+    mobile: 13900000000,
     email: mock.Random.email(),
     idCardType: '身份证',
     idCardCode: mock.Random.id(),
@@ -130,30 +107,30 @@ const detailInfo = builder({
 
 // 电话记录
 const callRecords = builder({
-  rows: Math.random() > 0.1 ? Array(8).fill(0).map((item, i) => ({
+  rows: Array(28).fill(0).map((item, i) => ({
     id: i + 1,
-    callName: mock.Random.cname(),
-    mobile: Math.random() > 0.5 ? 0 : 1,
+    callName: common.names[Math.floor(Math.random() * common.names.length)],
+    mobile: 13611111111 + i,
     callTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
     duration: mock.Random.integer(1000, 100000)
-  })) : [],
+  })),
   currentPage: 1,
-  totalSize: 8
+  totalSize: 28
 })
 
 // 操作记录
 const actionLogs = builder({
-  rows: Array(29).fill(0).map((item, i) => ({
+  rows: Array(6).fill(0).map((item, i) => ({
     id: i + 1,
     type: `操作类型 - ${i + 1}`,
-    department: '技术部',
-    actionName: mock.Random.cname(),
+    department: '补天阁',
+    actionName: common.names[Math.floor(Math.random() * common.names.length)],
     result: Math.random() > 0.5 ? 0 : 1,
     actionTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
-    remarks: mock.Random.cparagraph()
+    remarks: mock.Random.cparagraph(2)
   })),
   currentPage: 1,
-  totalSize: 29
+  totalSize: 6
 })
 
 // 表盒数据支持简单的分页查询
@@ -163,13 +140,36 @@ const queryTableData = (req, res) => {
   return res.json(result)
 }
 
+// 统计数据
+const dataOverview = builder({
+  overview: {
+    popularityNumber: 2022000000,
+    playNumber: 30191990,
+    newPlayNumber: 1282800,
+    fundsNumber: 7802200000,
+    score: '98.00'
+  },
+  chartData: Array(30).fill(0).map((item, i) => ({
+    time: `2022-01-${i + 1}`,
+    popularityNumber: i * Math.floor(Math.random() * 180000 + 80000),
+    playNumber: i * Math.floor(Math.random() * 90000 + 10000)
+  })),
+  paymentRecords: Array(30).fill(0).map((item, i) => ({
+    id: mock.Random.integer(1000, 100000),
+    nickName: common.names[Math.floor(Math.random() * common.names.length)],
+    powerNumber: mock.Random.integer(1000000, 10000000000),
+    evaluateAt: mock.Random.datetime('yyyy-MM-dd HH:mm:ss')
+  })).sort((a, b) => b.powerNumber - a.powerNumber)
+})
+
 // 接口列表
 module.exports = {
   'POST /submit': common.submit,
-  'GET /roles': common.roles,
+  'GET /ranks': common.ranks,
   'GET /select/list': common.selectList,
   'POST /table/list': queryTableData,
   'GET /detail/info': detailInfo,
   'GET /detail/call/records': callRecords,
-  'GET /detail/action/logs': actionLogs
+  'GET /detail/action/logs': actionLogs,
+  'GET /data/overview': dataOverview
 }
