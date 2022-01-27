@@ -111,7 +111,7 @@ export function download (url, params = {}) {
   document.body.removeChild(form)
 }
 
-// 格式化标的额保留两位小数，每三位数用逗号分隔
+// 格式化数字保留两位小数，每三位数用逗号分隔
 export function formatCurrency (value) {
   if (isNaN(value) || !value) value = 0
   value = Math.floor(value * 100 + 0.50000000001)
