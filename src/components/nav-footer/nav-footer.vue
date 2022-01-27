@@ -23,7 +23,6 @@ export default {
   padding: 32px 16px;
   .case-number {
     color: rgba(0, 0, 0, 0.45);
-    margin-left: 8px;
   }
 }
 </style>
