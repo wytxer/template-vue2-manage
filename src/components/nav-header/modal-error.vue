@@ -8,10 +8,10 @@
       </div>
       <template v-if="logs.length">
         <div v-for="(item, index) in logs" :key="index" class="error-list-item">
-          <ak-text-tag color="warning" tagText="报错信息" :text="item.error.message" />
-          <ak-text-tag color="warning" tagText="报错组件" class="MT10" :text="`${item.tag}（${item.info}）`" />
-          <ak-text-tag color="success" tagText="报错页面" class="MT10" :text="item.url" />
-          <div class="FB MT10">
+          <div><a-tag color="orange">报错信息</a-tag>{{ item.error.message }}</div>
+          <div class="MT16"><a-tag color="orange">报错组件</a-tag>{{ item.tag }}（{{ item.info }}）</div>
+          <div class="MT16"><a-tag color="cyan">报错页面</a-tag>{{ item.url }}）</div>
+          <div class="FB MT16">
             <a-tag style="height: 22px">堆栈信息</a-tag>
             <div class="FB1">{{ item.error.stack }}</div>
           </div>
