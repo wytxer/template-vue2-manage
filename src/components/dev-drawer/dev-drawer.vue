@@ -1,15 +1,15 @@
 <template>
   <a-drawer
+    class="dev-drawer-view"
+    placement="right"
+    title="定制"
     :width="300"
     :closable="false"
     :visible="visible"
     :drawer-style="drawerStyle"
-    class="dev-drawer-view"
-    placement="right"
     @close="onClose"
   >
     <div class="dev-drawer-content-main">
-      <div class="title">项目配置</div>
       <a-form-model :model="values" layout="vertical">
         <a-form-model-item label="菜单风格">
           <a-select
@@ -209,12 +209,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.dev-drawer-content-main {
-  .title {
-    padding-bottom: 16px;
-    font-size: 16px;
-  }
-}
 .dev-drawer-action-main {
   position: fixed;
   top: 45%;
