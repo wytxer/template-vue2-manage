@@ -1,3 +1,6 @@
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
 import Vue from 'vue'
 import moment from 'moment'
 import * as utils from '@/utils/utils'
