@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@antv/g2": "^4.1.41",
-    "@wytxer/antdv-kit": "^1.1.0",
+    "@wytxer/antdv-kit": "^1.1.1",
     "@wytxer/shepherd-vue": "^1.0.0",
     "@wytxer/style-utils": "^1.0.5",
     "ant-design-vue": "^1.7.8",
