@@ -11,7 +11,7 @@ const initState = {
   /**
    * logo 旁边的 slogan
    */
-  slogan: '中后台脚手架',
+  slogan: '中后台前端脚手架',
   /**
    * 菜单主题，默认为深色主题
    * dark：深色主题
