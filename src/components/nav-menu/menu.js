@@ -225,7 +225,7 @@ export default {
       newProps.props.inlineCollapsed = this.collapsed
     }
 
-    const menuTree = this.menus.map(item => {
+    const menuTree = this.navMenus.map(item => {
       if (item.hidden) {
         return null
       }
