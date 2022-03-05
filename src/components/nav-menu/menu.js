@@ -102,7 +102,7 @@ export default {
         }
         this.collapsed ? (this.cachedOpenKeys = openKeys) : (this.openKeys = openKeys)
       } else { // 否则如果是标签页导航，菜单的选中从菜单列表里面读取
-        const keys = this.findRoutePaths(this.navMenus)
+        const keys = this.findRoutePaths(this.$utils.clone(this.menus))
         this.selectedKeys = keys.slice(-1)
         let openKeys = []
         if (this.mode === 'inline') {
