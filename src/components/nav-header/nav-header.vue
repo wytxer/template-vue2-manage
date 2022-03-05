@@ -80,7 +80,7 @@ export default {
       this.logout()
         .then(() => {
           this.$message.success('登出成功')
-          location.href = `${process.env.BASE_URL}user/login`
+          location.href = `${process.env.VUE_APP_ROUTER_BASE_URL}user/login`
         })
         .catch(() => {})
     }

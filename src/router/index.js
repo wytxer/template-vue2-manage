@@ -41,7 +41,7 @@ const routerConfig = {
    * hash：hash 路由模式
    */
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: process.env.VUE_APP_ROUTER_BASE_URL,
   routes
 }
 

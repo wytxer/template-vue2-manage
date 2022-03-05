@@ -19,7 +19,7 @@ function useCdn () {
 
 const vueConfig = {
   runtimeCompiler: true,
-  // publicPath 配置同 process.env.BASE_URL，若要修改 publicPath，建议到 .env 中修改 BASE_URL
+  // 同 process.env.BASE_URL，若要修改 publicPath，建议到 .env 中修改 BASE_URL
   publicPath: process.env.BASE_URL,
   devServer: {
     port: 9901,
