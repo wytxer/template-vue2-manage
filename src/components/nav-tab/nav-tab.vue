@@ -175,6 +175,8 @@ export default {
         delete currentRoute.query.reload
       }
       this.currentRoute = currentRoute
+      // 初始化状态下将当前标签页也设置到要刷新的路由里面去，确保在只打开一个标签时候外部可以正常的调用 $reload，强刷页面场景时会遇到
+      this.currentReloadRoute = { ...currentRoute }
       // 添加一个新的标签页
       if (!this.panes.find(item => item.fullPath === fullPath)) {
         this.panes.push({ ...this.currentRoute })
