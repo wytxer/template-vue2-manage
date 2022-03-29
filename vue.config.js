@@ -50,7 +50,8 @@ const vueConfig = {
       // 过滤 moment 对语言包的打包
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
-    externals: useCdn() ? custom.externals : {}
+    externals: useCdn() ? custom.externals : {},
+    devtool: 'source-map'
   },
   css: {
     loaderOptions: {

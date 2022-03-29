@@ -6,13 +6,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Extension",
+      "name": "debug - 模板库",
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}/src/views/template/snippets"
       ]
+    },
+    {
+      "name": "debug - Vue.js",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:9901",
+      "webRoot": "${workspaceFolder}/src",
+      "breakOnLoad": true,
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
     }
   ]
 }
