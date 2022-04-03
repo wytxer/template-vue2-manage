@@ -1,5 +1,6 @@
 <template>
   <div :class="['nav-menu-wrap', `nav-menu-${theme}-wrap`, `collapsed-${menuCollapsed}`]">
+    <nav-logo v-if="logoFollowMenu" :logo="logo" :slogan="slogan" />
     <div class="menu-main">
       <side-menu :collapsed="menuCollapsed" :menus="menus" :theme="theme" :mode="mode" @select="onSelect"></side-menu>
     </div>
@@ -16,6 +17,7 @@
  */
 import { mapState } from 'vuex'
 import SideMenu from './menu'
+import NavLogo from '../nav-logo'
 
 export default {
   name: 'nav-menu',
@@ -27,7 +29,8 @@ export default {
     }
   },
   components: {
-    SideMenu
+    SideMenu,
+    NavLogo
   },
   data () {
     return {
@@ -39,6 +42,9 @@ export default {
     ...mapState({
       theme: state => state.app.menuTheme,
       mode: state => state.app.menuMode,
+      logo: state => state.app.logo,
+      slogan: state => state.app.slogan,
+      logoFollowMenu: state => state.app.logoMode === 'followMenu',
       menuCollapsed: state => state.app.menuCollapsed,
       menus: state => state.menu.routes.find(item => item.path === '/').children
     })
@@ -63,9 +69,19 @@ export default {
   flex-direction: column;
   transition: background-color 0.25s;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  position: fixed;
+  top: @top-header-height;
+  left: 0;
+  width: auto;
+  z-index: 500;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
   &.collapsed-true {
     width: @side-menu-fold-width;
+    /deep/ .nav-logo-wrap {
+      .logo-slogan {
+        display: none;
+      }
+    }
   }
   &.collapsed-false {
     width: @side-menu-unfold-width;
@@ -78,6 +94,11 @@ export default {
   /deep/ .ant-menu {
     border-right-color: transparent;
   }
+  .nav-logo-wrap {
+    padding: 0 10px;
+    justify-content: center;
+  }
+
   .menu-action-main {
     padding: 8px 8px 16px 8px;
     text-align: center;
@@ -85,7 +106,8 @@ export default {
   }
   &.nav-menu-dark-wrap {
     background-color: @layout-header-background;
-    .menu-action-main {
+    .menu-action-main,
+    /deep/ .nav-logo-wrap {
       color: #ffffff;
     }
   }

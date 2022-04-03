@@ -55,7 +55,13 @@ const initState = {
   /**
    * 是否需要捕获错误日志，具体实现代码请移步 src/core/extends.js 里面查看
    */
-  catchError: Vue.ls.get(types.CATCH_ERROR, false)
+  catchError: Vue.ls.get(types.CATCH_ERROR, false),
+  /**
+   * logo 显示模式
+   * followMenu：跟随导航
+   * followHeader：跟随顶部
+   */
+  logoMode: Vue.ls.get(types.LOGO_MODE, 'followHeader')
 }
 
 const app = {
@@ -80,6 +86,10 @@ const app = {
     SET_NAV_MODE: (state, data) => {
       state.navMode = data
       Vue.ls.set(types.NAV_MODE, data)
+    },
+    SET_LOGO_MODE: (state, data) => {
+      state.logoMode = data
+      Vue.ls.set(types.LOGO_MODE, data)
     },
     SET_THEME_COLOR: (state, data) => {
       state.themeColor = data

@@ -2,12 +2,7 @@
   <div :class="['nav-header-wrap', {[`nav-header-${theme}-wrap`]: !isSideMenu}]">
     <div :class="contentClassName">
       <div class="left-main">
-        <router-link to="/" class="logo-box">
-          <img v-if="logo" class="logo-img" :src="logo" />
-          <span v-if="slogan" class="logo-slogan">
-            {{ slogan }}
-          </span>
-        </router-link>
+       <nav-logo v-if="logoFollowHeader || !isSideMenu" :logo="logo" :slogan="slogan" />
         <div class="menu-box" v-if="!isSideMenu">
           <top-menu :menus="menus" :theme="theme" mode="horizontal" class="nav-menu-wrap" />
         </div>
@@ -48,19 +43,22 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import TopMenu from '../nav-menu/menu'
 import ModalError from './modal-error'
 import ModalModifyPassword from './modal-modify-password'
+import NavLogo from '../nav-logo'
 
 export default {
   name: 'nav-header',
   components: {
     TopMenu,
     ModalError,
-    ModalModifyPassword
+    ModalModifyPassword,
+    NavLogo
   },
   computed: {
     ...mapGetters(['isSideMenu']),
     ...mapState({
       mode: state => state.app.menuMode,
       theme: state => state.app.menuTheme,
+      logoFollowHeader: state => state.app.logoMode === 'followHeader',
       menus: state => state.menu.routes.find(item => item.path === '/').children,
       user: state => state.user,
       logo: state => state.app.logo,
@@ -97,12 +95,12 @@ export default {
   left: 0;
   width: 100%;
   background-color: #ffffff;
-  z-index: 999;
+  z-index: 600;
 
   .header-container {
     display: flex;
     justify-content: space-between;
-    padding: 0 24px;
+    padding: 0 @common-spacing;
     &.container {
       max-width: @container-max-width;
       min-width: auto;
@@ -115,19 +113,6 @@ export default {
   .left-main {
     flex: 1;
     display: flex;
-    .logo-box {
-      display: flex;
-      align-items: center;
-      color: @main-color;
-      .logo-img {
-        width: 32px;
-        height: 32px;
-        margin-right: 10px;
-      }
-      .logo-slogan {
-        font-size: 18px;
-      }
-    }
     .menu-box {
       padding-left: 10px;
       /deep/ .ant-menu-horizontal {
@@ -140,13 +125,13 @@ export default {
   &.nav-header-dark-wrap {
     background-color: @layout-header-background;
     color: #ffffff;
-    .logo-box {
+    /deep/ .nav-logo-wrap {
       color: #ffffff;
     }
   }
   &.nav-header-light-wrap {
     background-color: #ffffff;
-    .logo-box {
+    /deep/ .nav-logo-wrap {
       color: @main-color;
     }
   }

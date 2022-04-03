@@ -28,6 +28,9 @@ body {
 .H100 {
   height: 100%;
 }
+.container-max-width {
+  width: @container-max-width;
+}
 
 // 在这里添加跟视觉规范不太一致的样式改动
 // ! 但请勿随便在这里改动全局样式
@@ -186,13 +189,13 @@ body {
 // 卡片列表上方导航
 .ak-tabs-nav {
   background: #fff;
-  margin: -24px -24px 16px;
-  padding: 0 24px;
+  margin: -@common-spacing -@common-spacing @common-spacing;
+  padding: 0 @common-spacing;
   .ant-tabs-bar {
     margin: 0;
     border-color: transparent;
     .ant-tabs-tab {
-      padding: 10px 0 16px;
+      padding: 12px 0;
     }
   }
 }

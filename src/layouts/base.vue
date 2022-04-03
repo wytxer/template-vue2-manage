@@ -1,9 +1,7 @@
 <template>
   <div :class="['layout-base-view', layoutClassName]">
     <nav-header />
-    <div v-if="isSideNav" class="nav-side-menu-main">
-      <nav-menu />
-    </div>
+    <nav-menu v-if="isSideNav" />
     <!-- 如果是面包屑导航 -->
     <div v-if="showBreadcrumb" key="body-main" class="body-main">
       <div class="breadcrumb-container">
@@ -47,11 +45,13 @@ export default {
       layout: state => state.app.layout,
       isSideNav: state => state.app.layout === 'side',
       menuCollapsed: state => state.app.menuCollapsed,
-      showBreadcrumb: state => state.app.navMode === 'breadcrumb'
+      showBreadcrumb: state => state.app.navMode === 'breadcrumb',
+      logoFollowMenu: state => state.app.logoMode === 'followMenu'
     }),
     layoutClassName () {
       const foldName = this.menuCollapsed ? 'fold' : 'unfold'
-      return `layout-base-${this.layout}-menu-view layout-base-${foldName}-menu-view`
+      const logoName = this.logoFollowMenu ? 'menu' : 'header'
+      return `layout-base-${this.layout}-menu-view layout-base-${foldName}-menu-view layout-base-follow-${logoName}-view`
     }
   }
 }
@@ -62,6 +62,7 @@ export default {
   width: 100%;
   min-width: @container-min-width;
   padding-top: @top-header-height;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
 
   &.layout-base-fold-menu-view {
     padding-left: @side-menu-fold-width;
@@ -69,12 +70,25 @@ export default {
   &.layout-base-unfold-menu-view {
     padding-left: @side-menu-unfold-width;
   }
-  .nav-side-menu-main {
-    position: fixed;
-    top: @top-header-height;
-    left: 0;
-    width: auto;
-    z-index: 66;
+  &.layout-base-follow-menu-view {
+    &.layout-base-fold-menu-view.layout-base-side-menu-view {
+      .nav-header-wrap {
+        padding-left: @side-menu-fold-width;
+      }
+    }
+    &.layout-base-unfold-menu-view.layout-base-side-menu-view {
+      .nav-header-wrap {
+        padding-left: @side-menu-unfold-width;
+      }
+    }
+    .nav-header-wrap {
+      z-index: 500;
+    }
+    .nav-menu-wrap {
+      z-index: 600;
+      top: 0;
+      height: 100vh;
+    }
   }
   .body-main {
     display: flex;
@@ -82,7 +96,7 @@ export default {
     min-height: calc(100vh - @top-header-height);
     background-color: @gray-border-background;
     .content-main {
-      // 兼容 IE11，勿删
+      // 兼容 IE11
       min-height: 1px;
     }
     // 标签页导航单独调整一部分样式
@@ -104,6 +118,12 @@ export default {
       padding-left: 0;
       padding-right: 0;
     }
+    .nav-header-wrap {
+      padding-left: 0;
+    }
+    .nav-menu-wrap {
+      height: auto;
+    }
     .ak-container-wrap > .container {
       max-width: @container-max-width;
       min-width: @container-min-width;
@@ -118,7 +138,7 @@ export default {
       }
     }
     .ak-tabs-nav {
-      margin: -8px 0 16px;
+      margin: 0 0 16px;
     }
   }
 }

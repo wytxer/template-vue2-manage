@@ -50,7 +50,7 @@
       </a-row>
     </ak-container>
 
-    <ak-container :style="{paddingRight: isSideMenu ? '154px' : null}">
+    <ak-container v-paddingRight="130" :key="isSideMenu">
       <a-card class="MB16" title="流程进度" id="detail-card1" :bordered="false" :loading="loading">
         <a-steps progress-dot :current="currentStep" class="ak-step-overflow-x">
           <a-step v-for="item in processInfo" :key="item.id" :title="item.name">
@@ -123,11 +123,7 @@
       </a-card>
 
       <!-- 快捷菜单 -->
-      <a-anchor
-        class="case-detail-anchor-main"
-        :offset-top="48"
-        :style="{right: isSideMenu ? '24px' : 'calc((100vw - 1200px) / 2 - 154px)'}"
-      >
+      <a-anchor class="case-detail-anchor-main" v-right="130" :offset-top="48">
         <a-anchor-link href="#detail-card1" title="流程进度" />
         <a-anchor-link href="#detail-card2" title="用户信息" />
         <a-anchor-link href="#detail-card3" title="来电记录" />

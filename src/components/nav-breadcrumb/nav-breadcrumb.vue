@@ -1,5 +1,5 @@
 <template>
-  <a-breadcrumb class="nav-breadcrumb-wrap PT14 PR24 PB12 PL24">
+  <a-breadcrumb class="nav-breadcrumb-wrap">
     <a-breadcrumb-item v-for="(item, index) in breadList" :key="item.path">
       <router-link v-if="item.path !== path && index >= 1" :to="item.path === '' ? '/' : {path: item.path, query: item.query}">
         {{ item.meta.title }}
@@ -67,3 +67,9 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.nav-breadcrumb-wrap {
+  padding: 14px @common-spacing 12px @common-spacing;
+}
+</style>

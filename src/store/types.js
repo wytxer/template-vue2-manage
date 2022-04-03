@@ -8,5 +8,7 @@ export const THEME_COLOR = 'THEME_COLOR'
 export const MENU_COLLAPSED = 'MENU_COLLAPSED'
 // 导航模式
 export const NAV_MODE = 'NAV_MODE'
+// logo 显示模式
+export const LOGO_MODE = 'LOGO_MODE'
 // 错误捕获
 export const CATCH_ERROR = 'CATCH_ERROR'

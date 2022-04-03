@@ -10,11 +10,11 @@
     @close="onClose"
   >
     <div class="dev-drawer-content-main">
-      <a-form-model :model="values" layout="vertical">
+      <a-form-model :model="app" layout="vertical">
         <a-form-model-item label="菜单风格">
           <a-select
             placeholder="请选择"
-            v-model="values.theme"
+            v-model="app.menuTheme"
             @change="onThemeChange"
             :getPopupContainer="trigger => trigger.parentNode"
           >
@@ -27,7 +27,7 @@
         <a-form-model-item label="布局模式">
           <a-select
             placeholder="请选择"
-            v-model="values.layout"
+            v-model="app.layout"
             @change="onLayoutChange"
             :getPopupContainer="trigger => trigger.parentNode"
           >
@@ -39,7 +39,7 @@
 
         <a-form-model-item label="导航模式">
           <a-select
-            v-model="values.navMode"
+            v-model="app.navMode"
             placeholder="请选择"
             @change="onNavModeChange"
             :getPopupContainer="trigger => trigger.parentNode"
@@ -50,10 +50,23 @@
           </a-select>
         </a-form-model-item>
 
+        <a-form-model-item label="LOGO 显示模式">
+          <a-select
+            v-model="app.logoMode"
+            placeholder="请选择"
+            @change="onLogoModeChange"
+            :getPopupContainer="trigger => trigger.parentNode"
+          >
+            <a-select-option v-for="nav in logoMode" :key="nav.id" :value="nav.id">
+              {{ nav.name }}
+            </a-select-option>
+          </a-select>
+        </a-form-model-item>
+
         <a-form-model-item label="主题色">
           <sketch-picker
             class="dev-drawer-color-pricker-wrap"
-            :value="color"
+            :value="app.themeColor"
             :preset-colors="colors.map(item => item.id)"
             @input="onColorChange"
           />
@@ -63,14 +76,14 @@
           <a-switch
             checked-children="启用"
             un-checked-children="禁用"
-            v-model="values.catchError"
+            v-model="app.catchError"
             @change="onCatchErrorChange"
           />
         </a-form-model-item>
       </a-form-model>
     </div>
 
-    <!-- 展开、收起的按钮 -->
+    <!-- 展开 || 收起 -->
     <div class="dev-drawer-action-main" slot="handle" @click="onToggle">
       <a-icon type="close" class="item-icon" v-if="visible" />
       <a-icon type="setting" class="item-icon" v-else />
@@ -109,7 +122,13 @@ export default {
       }, {
         id: 'top', name: '顶部栏导航'
       }],
-      // 布局模式
+      // logo 模式
+      logoMode: [{
+        id: 'followHeader', name: '跟随头部'
+      }, {
+        id: 'followMenu', name: '跟随菜单'
+      }],
+      // 导航模式
       navMode: [{
         id: 'breadcrumb', name: '面包屑导航'
       }, {
@@ -131,14 +150,7 @@ export default {
         id: '#2f54eb', name: '极客蓝'
       }, {
         id: '#722ed1', name: '酱紫'
-      }],
-      values: {
-        theme: '',
-        layout: '',
-        navMode: '',
-        catchError: true
-      },
-      color: ''
+      }]
     }
   },
   components: {
@@ -148,17 +160,6 @@ export default {
     ...mapState({
       app: state => state.app
     })
-  },
-  created () {
-    const { menuTheme: theme, layout, navMode, themeColor, catchError } = this.app
-
-    this.values = {
-      theme,
-      layout,
-      navMode,
-      catchError
-    }
-    this.color = themeColor
   },
   methods: {
     // 关闭抽屉
@@ -184,9 +185,16 @@ export default {
         window.location.reload()
       })
     },
+    // 设置 logo 显示模式
+    onLogoModeChange (value) {
+      this.$store.commit('SET_LOGO_MODE', value)
+    },
     // 设置错误捕获状态
     onCatchErrorChange (value) {
       this.$store.commit('SET_CATCH_ERROR', value)
+      this.$nextTick(() => {
+        window.location.reload()
+      })
     },
     // 设置主题色
     onColorChange ({ hex: color }) {
@@ -212,7 +220,7 @@ export default {
 .dev-drawer-action-main {
   position: fixed;
   top: 45%;
-  z-index: 1001;
+  z-index: 1299;
   width: 48px;
   height: 48px;
   right: 300px;
@@ -242,7 +250,7 @@ export default {
 </style>
 
 <style lang="less">
-// 兼容 IE11，不然会出现工具条在中间的情况
+// 兼容 IE11 工具条出现在中间的情况
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .dev-drawer-view.ant-drawer.ant-drawer-right .dev-drawer-action-main {
     right: 0;

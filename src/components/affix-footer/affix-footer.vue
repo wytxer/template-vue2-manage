@@ -31,8 +31,8 @@ export default {
   right: 0;
   z-index: 1;
   .toolbar-container {
-    width: 1200px;
-    padding: 0 24px;
+    width: @container-max-width;
+    padding: 0 @common-spacing;
     margin: 0 auto;
     height: 56px;
     line-height: 56px;

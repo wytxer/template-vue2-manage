@@ -402,8 +402,8 @@ export default {
       > .ant-tabs-bar {
         left: 0;
         > .ant-tabs-nav-container {
-          max-width: 1200px;
-          min-width: 992px;
+          max-width: @container-max-width;
+          min-width: @container-min-width;
           width: 100%;
           margin: 0 auto;
         }
