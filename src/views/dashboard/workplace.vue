@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { Chart } from '@antv/g2'
 import moment from 'moment'
 import { NavFooter } from '@/components'
@@ -126,9 +127,24 @@ export default {
       // 全局数据概览
       overview: {},
       paymentRecords: [],
+      chartData: [],
       chartId: `chart-${this.$utils.createId()}`,
       // 加载状态
       loading: false
+    }
+  },
+  computed: {
+    ...mapState({
+      isSideMenu: state => state.app.layout === 'side',
+      menuCollapsed: state => state.app.menuCollapsed
+    })
+  },
+  watch: {
+    isSideMenu () {
+      this.drawUserLineChart()
+    },
+    menuCollapsed () {
+      this.drawUserLineChart()
     }
   },
   created () {
@@ -144,8 +160,9 @@ export default {
           const data = res.data || {}
           this.overview = data.overview
           this.paymentRecords = data.paymentRecords
+          this.chartData = data.chartData
           this.$nextTick(() => {
-            this.drawUserLineChart(data.chartData)
+            this.drawUserLineChart()
           })
         })
         .catch(() => {
@@ -168,9 +185,9 @@ export default {
       this.filterKey = ''
     },
     // 绘制用户折线图
-    drawUserLineChart (res) {
+    drawUserLineChart () {
       const data = []
-      res.forEach(item => {
+      this.chartData.forEach(item => {
         data.push({
           time: item.time,
           value: item.popularityNumber,
@@ -182,11 +199,7 @@ export default {
         })
       })
       if (this.chart) {
-        const max = Math.max(...data.map(item => item.value))
-        this.chart.scale({
-          value: { nice: true, min: 0, max }
-        })
-        this.chart.changeData(data)
+        this.chart.forceFit()
       } else {
         const chart = new Chart({
           container: this.chartId,

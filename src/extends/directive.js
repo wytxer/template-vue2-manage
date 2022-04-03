@@ -34,3 +34,38 @@ Vue.directive('focus', {
     el.focus()
   }
 })
+
+let containerMaxBox
+if (!containerMaxBox) {
+  containerMaxBox = document.createElement('div')
+  containerMaxBox.classList.add('container-max-width')
+  document.body.appendChild(containerMaxBox)
+}
+
+// 根据布局宽度自动计算固定导航距离右边的距离
+Vue.directive('right', {
+  inserted (el, binding, vnode) {
+    const anchorWidth = binding.value || 130
+    if (!store.getters.isSideMenu) {
+      if (window.innerWidth - containerMaxBox.clientWidth < anchorWidth) {
+        el.style.right = 0
+      } else {
+        el.style.right = `${(window.innerWidth - containerMaxBox.clientWidth) / 2 - anchorWidth}px`
+      }
+    }
+  }
+})
+
+// 根据布局宽度自动计算详情容器右边的内间距
+Vue.directive('paddingRight', {
+  inserted (el, binding, vnode) {
+    const anchorWidth = binding.value || 130
+    if (store.getters.isSideMenu) {
+      el.style.paddingRight = `${anchorWidth + 24}px`
+    } else if (window.innerWidth - containerMaxBox.clientWidth < anchorWidth) {
+      el.style.paddingRight = `${anchorWidth}px`
+    } else {
+      el.style.paddingRight = 0
+    }
+  }
+})
