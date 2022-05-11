@@ -67,18 +67,17 @@
     "mockjs2": "^1.0.8"
   },
   "engines": {
-    "node": "16"
+    "node": ">=10.0.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/wytxer/template-vue2-manage/#readme",
   "keywords": [
-    "vue template",
-    "template",
-    "vue scaffold",
-    "manage scaffold",
-    "antd admin",
-    "antdv admin",
-    "antdv manage"
+    "vue",
+    "admin",
+    "dashboard",
+    "vue-template",
+    "admin-scaffold",
+    "antd-admin"
   ],
   "author": {
     "name": "wytxer",
