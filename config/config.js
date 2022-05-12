@@ -97,13 +97,15 @@ module.exports = {
     [apiPrefix]: {
       target: 'http://127.0.0.1:7001',
       ws: false,
-      changeOrigin: true
+      changeOrigin: true,
+      logLevel: 'debug'
     },
     // 用户中心接口前缀配置
     '^/account': {
       target: 'http://account.example.com',
       ws: false,
-      changeOrigin: true
+      changeOrigin: true,
+      logLevel: 'debug'
     }
   }
 }

@@ -22,7 +22,7 @@ export function logout (data) {
 }
 
 // 获取用户信息
-export function getUser (data) {
+export function queryUser (data) {
   return request({
     method: 'post',
     url: '',
@@ -35,7 +35,7 @@ export function getUser (data) {
 }
 
 // 获取菜单树
-export function getMenus (data) {
+export function queryMenus (data) {
   return request({
     method: 'post',
     url: '',

@@ -1,4 +1,4 @@
-import { getMenus } from '@/api/user'
+import { queryMenus } from '@/api/user'
 import { message } from 'ant-design-vue'
 import { LayoutBlock, LayoutUser, LayoutBase } from '@/layouts'
 import { generator } from './handler'
@@ -18,7 +18,7 @@ export const routeComponents = {
 
 // 动态生成菜单
 export const generatorDynamicRoutes = () => {
-  return getMenus().then(res => {
+  return queryMenus().then(res => {
     let data = res.data
     const invalidMenu = !res.data || !res.data.length || res.data[0].path !== '/'
     // 兼容后端接口数据返回不规范的情况

@@ -93,7 +93,7 @@ export const go = async (from, to, next, routes, replace = true) => {
 }
 
 // 获取菜单
-const getMenus = async (from, to, next) => {
+const queryMenus = async (from, to, next) => {
   if (store.getters.isStaticRoute) {
     // 将静态路由添加到 menus
     const rootRoute = routeStatic.filter(item => item.path === '/') || []
@@ -101,7 +101,7 @@ const getMenus = async (from, to, next) => {
     store.commit('SET_ROUTES', staticRoutes)
     await go(from, to, next, staticRoutes)
   } else {
-    await store.dispatch('getMenus')
+    await store.dispatch('queryMenus')
       .then(async data => {
         let routeData = []
         // 动态添加路由
@@ -143,7 +143,7 @@ router.beforeEach(async (to, from, next) => {
   if (store.getters.logged) {
     // 第一次登录没有菜单的话就去获取一次
     if (store.getters.routes.length <= 0) {
-      await getMenus(from, to, next)
+      await queryMenus(from, to, next)
     } else {
       await go(from, to, next, store.getters.routes, false)
     }
@@ -153,9 +153,9 @@ router.beforeEach(async (to, from, next) => {
       next()
     } else {
       // 否则查询一次用户信息，如果是未登录状态或者登录状态已失效，则直接跳转到登录页面
-      await store.dispatch('getUser')
+      await store.dispatch('queryUser')
         .then(async () => {
-          await getMenus(from, to, next)
+          await queryMenus(from, to, next)
         })
     }
   }

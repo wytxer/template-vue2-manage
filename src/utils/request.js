@@ -5,27 +5,16 @@ import { stringify } from 'qs'
 
 // 全局的 http code 配置，可根据实际情况删改
 const codes = {
-  // 成功
-  success: {
-    // 如果是设置 -1，code 等于 0 和 200 都当做是成功，如果成其他值就取 code 值
-    code: -1, message: ''
-  },
+  // 成功，如果是设置 -1，code 等于 0 和 200 都当做是成功，如果成其他值就取 code 值
+  success: { code: -1, message: '' },
   // 未登录
-  unLogin: {
-    code: 601, message: '请先登录后再操作'
-  },
+  logout: { code: 601, message: '请先登录后再操作' },
   // 服务器异常
-  error: {
-    code: 500, message: '服务器异常'
-  },
+  error: { code: 500, message: '服务器异常' },
   // 无权限访问
-  noPermission: {
-    code: 403, message: '无权限访问'
-  },
+  noPermission: { code: 403, message: '无权限访问' },
   // 接口不存在
-  notFound: {
-    code: 404, message: '接口不存在'
-  }
+  notFound: { code: 404, message: '接口不存在' }
 }
 // 默认的请求类型
 const headerType = 'json'
@@ -145,7 +134,7 @@ instance.interceptors.response.use(res => {
   } else {
     const code = +res.data.code
     // 如果是未登录重定向到登录页面
-    if (code === codes.unLogin.code) {
+    if (code === codes.logout.code) {
       Modal.info({
         title: '提示',
         content: '登录状态已失效，请重新登录',
@@ -183,10 +172,7 @@ instance.interceptors.response.use(res => {
   } else {
     const tips = '请求超时，请刷新重试'
     // 封装成统一的错误格式抛出
-    const newError = {
-      code: 500,
-      message: tips
-    }
+    const newError = { code: 500, message: tips }
     message.error(tips)
     return Promise.reject(newError)
   }

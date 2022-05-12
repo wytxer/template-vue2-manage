@@ -1,4 +1,4 @@
-import { login, logout, getUser } from '@/api/user'
+import { login, logout, queryUser } from '@/api/user'
 
 const initState = {
   // 用来做是否已登录的标识，前端自己维护这个状态，登录成功后设置为 true，登出之后设置为 false
@@ -46,8 +46,8 @@ const user = {
         .then(res => {})
     },
     // 获取用户信息
-    getUser ({ commit }, data) {
-      return getUser(data)
+    queryUser ({ commit }, data) {
+      return queryUser(data)
         .then(res => {
           const data = res.data || {}
           commit('SET_USER', data)

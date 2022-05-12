@@ -53,7 +53,7 @@ const initState = {
    */
   navMode: Vue.ls.get(types.NAV_MODE, 'breadcrumb'),
   /**
-   * 是否需要捕获错误日志，具体实现代码请移步 src/core/extends.js 里面查看
+   * 是否需要捕获错误日志，具体实现代码请移步 src/extends/prototype.js 里面查看
    */
   catchError: Vue.ls.get(types.CATCH_ERROR, false),
   /**

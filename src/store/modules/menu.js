@@ -25,7 +25,7 @@ const menu = {
 
   actions: {
     // 获取菜单
-    getMenus ({ commit }, data) {
+    queryMenus ({ commit }, data) {
       return generatorDynamicRoutes(data)
         .then(data => {
           commit('SET_ROUTES', data)
