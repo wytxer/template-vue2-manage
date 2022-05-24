@@ -46,7 +46,7 @@ const download = res => {
 }
 
 const instance = axios.create({
-  timeout: 20000,
+  timeout: 60000,
   baseURL: ''
 })
 
