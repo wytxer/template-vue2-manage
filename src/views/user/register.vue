@@ -12,14 +12,14 @@
         <div v-show="currentStep === 0">
           <a-form-model-item prop="user">
             <a-input :size="size" v-model="values.user" placeholder="手机号">
-              <a-icon slot="prefix" type="user" class="C-999" />
+              <a-icon slot="prefix" type="user" class="C999" />
             </a-input>
           </a-form-model-item>
 
           <a-form-model-item prop="imageCode" ref="imageCode">
             <div class="FB FBJC-SB">
               <a-input :size="size" v-model="values.imageCode" @change="$refs.imageCode.onFieldChange()" placeholder="图形验证码" class="FB1">
-                <a-icon slot="prefix" type="safety-certificate" class="C-999" />
+                <a-icon slot="prefix" type="safety-certificate" class="C999" />
               </a-input>
               <a-tooltip title="看不清？换一张">
                 <div class="img-code" @click="onUpdateImageCode">
@@ -32,7 +32,7 @@
           <a-form-model-item prop="smsCode" ref="smsCode">
             <div class="FB FBJC-SB">
               <a-input :size="size" v-model="values.smsCode" @change="$refs.smsCode.onFieldChange()" placeholder="短信验证码" class="FB1">
-                <a-icon slot="prefix" type="mail" class="C-999" />
+                <a-icon slot="prefix" type="mail" class="C999" />
               </a-input>
               <a-button :size="size" :disabled="!!countdown" class="sms-code" @click="onGetSmsCode">
                 {{ countdown ? `${countdown}s` : '获取验证码' }}
@@ -62,14 +62,14 @@
             </template>
             <a-form-model-item prop="password">
               <a-input :size="size" v-model="values.password" @click="onPasswordClick" type="password" placeholder="新密码">
-                <a-icon slot="prefix" type="lock" class="C-999" />
+                <a-icon slot="prefix" type="lock" class="C999" />
               </a-input>
             </a-form-model-item>
           </a-popover>
 
           <a-form-model-item prop="confirmPassword">
             <a-input :size="size" v-model="values.confirmPassword" type="password" placeholder="确认密码">
-              <a-icon slot="prefix" type="lock" class="C-999" />
+              <a-icon slot="prefix" type="lock" class="C999" />
             </a-input>
           </a-form-model-item>
 

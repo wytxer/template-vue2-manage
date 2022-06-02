@@ -96,13 +96,17 @@ body {
 }
 // 为保证 card、modal 里面的表单上下间距保持 24px，在外层 a-card、a-modal 上增加类名 ak-pb0
 .ak-pb0 {
+  &.ak-scroll-y {
+    .ant-modal-body {
+      overflow-y: auto;
+      max-height: 500px;
+    }
+  }
   > .ant-card-body {
     padding-bottom: 0;
   }
   .ant-modal-body {
     padding-bottom: 0;
-    max-height: 500px;
-    overflow-y: auto;
   }
   .ant-modal-body::-webkit-scrollbar {
     width: 10px;

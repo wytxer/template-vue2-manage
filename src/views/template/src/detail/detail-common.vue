@@ -19,30 +19,30 @@
 
       <a-row :gutter="gutter" class="PB16">
         <a-col :span="6">
-          <span class="C-666">审判法官：</span>
+          <span class="C666">审判法官：</span>
           {{ baseInfo.judgeName }}
         </a-col>
         <a-col :span="6">
-          <span class="C-666">立案时间：</span>
+          <span class="C666">立案时间：</span>
           <ak-text-fill :text="baseInfo.startTime" />
         </a-col>
         <a-col :span="6">
-          <span class="C-666">开庭时间：</span>
+          <span class="C666">开庭时间：</span>
           {{ baseInfo.courtTime }}
         </a-col>
       </a-row>
 
       <a-row :gutter="gutter" class="PB16">
         <a-col :span="6">
-          <span class="C-666">原告：</span>
+          <span class="C666">原告：</span>
           {{ baseInfo.accuser }}
         </a-col>
         <a-col :span="6">
-          <span class="C-666">被告：</span>
+          <span class="C666">被告：</span>
           {{ baseInfo.accused }}
         </a-col>
         <a-col :span="6">
-          <span class="C-666">案件状态：</span>
+          <span class="C666">案件状态：</span>
           <a-tag color="blue" class="status">
             {{ baseInfo.status }}
           </a-tag>
@@ -62,34 +62,34 @@
       <a-card class="MB16" title="用户信息" id="detail-card2" :bordered="false" :loading="loading">
         <a-row :gutter="gutter" class="PB24">
           <a-col :span="6">
-            <div class="PB6 C-666">姓名</div>
+            <div class="PB6 C666">姓名</div>
             <div>{{ userInfo.name }}</div>
           </a-col>
           <a-col :span="6">
-            <div class="PB6 C-666">民族</div>
+            <div class="PB6 C666">民族</div>
             <div>{{ userInfo.nation }}</div>
           </a-col>
           <a-col :span="6">
-            <div class="PB6 C-666">联系电话</div>
+            <div class="PB6 C666">联系电话</div>
             <div>{{ userInfo.mobile }}</div>
           </a-col>
           <a-col :span="6">
-            <div class="PB6 C-666">邮箱</div>
+            <div class="PB6 C666">邮箱</div>
             <div>{{ userInfo.email }}</div>
           </a-col>
         </a-row>
 
         <a-row :gutter="gutter">
           <a-col :span="6">
-            <div class="PB6 C-666">证件类型</div>
+            <div class="PB6 C666">证件类型</div>
             <div>{{ userInfo.idCardType }}</div>
           </a-col>
           <a-col :span="6">
-            <div class="PB6 C-666">证件号码</div>
+            <div class="PB6 C666">证件号码</div>
             <div>{{ userInfo.idCardCode }}</div>
           </a-col>
           <a-col :span="12">
-            <div class="PB6 C-666">地址</div>
+            <div class="PB6 C666">地址</div>
             <div>{{ userInfo.address }}</div>
           </a-col>
         </a-row>
@@ -259,7 +259,7 @@ export default {
 <style lang="less" scoped>
 .common-detail-view {
   .header-info-main {
-    .C-666 {
+    .C666 {
       display: inline-block;
       width: 90px;
       text-align: right;

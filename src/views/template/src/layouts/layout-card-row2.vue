@@ -18,30 +18,30 @@
 
     <a-row :gutter="gutter" class="PB16">
       <a-col :span="6">
-        <span class="C-666">审判法官：</span>
+        <span class="C666">审判法官：</span>
         比比东
       </a-col>
       <a-col :span="6">
-        <span class="C-666">立案时间：</span>
+        <span class="C666">立案时间：</span>
         <ak-text-fill text="2022-01-01" />
       </a-col>
       <a-col :span="6">
-        <span class="C-666">开庭时间：</span>
+        <span class="C666">开庭时间：</span>
         2022-01-02
       </a-col>
     </a-row>
 
     <a-row :gutter="gutter" class="PB16">
       <a-col :span="6">
-        <span class="C-666">原告：</span>
+        <span class="C666">原告：</span>
         萧炎
       </a-col>
       <a-col :span="6">
-        <span class="C-666">被告：</span>
+        <span class="C666">被告：</span>
         秦羽
       </a-col>
       <a-col :span="6">
-        <span class="C-666">案件状态：</span>
+        <span class="C666">案件状态：</span>
         <a-tag color="blue" class="status">
           已结案
         </a-tag>
@@ -67,7 +67,7 @@ export default {
 
 <style lang="less" scoped>
 .header-info-main {
-  .C-666 {
+  .C666 {
     display: inline-block;
     width: 90px;
     text-align: right;

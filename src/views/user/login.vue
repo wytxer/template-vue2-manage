@@ -7,13 +7,13 @@
     <a-form-model :model="values" :rules="rules" ref="form">
       <a-form-model-item prop="user">
         <a-input :size="size" v-model="values.user" placeholder="手机号">
-          <a-icon slot="prefix" type="user" class="C-999" />
+          <a-icon slot="prefix" type="user" class="C999" />
         </a-input>
 
       </a-form-model-item>
       <a-form-model-item prop="password">
         <a-input :size="size" v-model="values.password" type="password" placeholder="密码">
-          <a-icon slot="prefix" type="lock" class="C-999" />
+          <a-icon slot="prefix" type="lock" class="C999" />
         </a-input>
       </a-form-model-item>
 

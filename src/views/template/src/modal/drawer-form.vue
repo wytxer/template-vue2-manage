@@ -28,7 +28,7 @@
             <span slot="label">
               被通缉人身份码
               <a-tooltip title="被通缉人身份码的注解信息被通缉人身份码的注解信息被通缉人身份码的注解信息" :get-popup-container="() => $refs.form.$el">
-                <a-icon type="question-circle" class="C-666" />
+                <a-icon type="question-circle" class="C666" />
               </a-tooltip>
             </span>
             <a-input v-model="values.idCode" placeholder="请输入" />

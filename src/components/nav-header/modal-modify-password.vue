@@ -14,19 +14,19 @@
     <a-form-model :model="values" :rules="rules" ref="form" layout="vertical" class="ak-form" :colon="false">
       <a-form-model-item prop="oldPassword" label="原密码">
         <a-input v-model="values.oldPassword" type="password" placeholder="原密码">
-          <a-icon slot="prefix" type="user" class="C-999" />
+          <a-icon slot="prefix" type="user" class="C999" />
         </a-input>
       </a-form-model-item>
 
       <a-form-model-item prop="newPassword" label="新密码">
         <a-input v-model="values.newPassword" type="password" placeholder="新密码">
-          <a-icon slot="prefix" type="lock" class="C-999" />
+          <a-icon slot="prefix" type="lock" class="C999" />
         </a-input>
       </a-form-model-item>
 
       <a-form-model-item prop="confirmPassword" label="确认密码">
         <a-input v-model="values.confirmPassword" type="password" placeholder="确认密码">
-          <a-icon slot="prefix" type="lock" class="C-999" />
+          <a-icon slot="prefix" type="lock" class="C999" />
         </a-input>
       </a-form-model-item>
     </a-form-model>
