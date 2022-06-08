@@ -32,7 +32,7 @@
         <template #powerNumber="text">
           {{ $utils.formatCurrency(text) }}
         </template>
-        <template #actions="text, record">
+        <template #action="text, record">
           <router-link :to="`/detail/base?id=${record.id}`">详情</router-link>
         </template>
       </ak-table>
@@ -67,8 +67,8 @@ const columns = [{
   width: '35%'
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' },
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' },
   width: '25%'
 }]
 

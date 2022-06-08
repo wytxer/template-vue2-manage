@@ -101,7 +101,7 @@
             {{ text | filterTime }}
           </template>
 
-          <template #actions>
+          <template #action>
             <a>偷听</a>
             <a-divider type="vertical" />
             <a>销毁</a>
@@ -154,8 +154,8 @@ const callColumns = [{
   scopedSlots: { customRender: 'duration' }
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' }
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' }
 }]
 
 // 操作日志的表头信息

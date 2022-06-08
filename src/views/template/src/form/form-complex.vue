@@ -115,7 +115,7 @@
           <a-button icon="plus-circle">新增成员</a-button>
         </div>
         <ak-table :columns="logColumns" :loadData="queryActionLogs" rowKey="id">
-          <template #actions>
+          <template #action>
             <a>查看</a>
             <a-divider type="vertical" />
             <a>删除</a>
@@ -160,8 +160,8 @@ const logColumns = [{
   dataIndex: 'department'
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' }
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' }
 }]
 
 export default {

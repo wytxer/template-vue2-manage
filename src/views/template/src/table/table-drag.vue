@@ -34,7 +34,7 @@
       </template>
 
       <!-- 操作 -->
-      <template #actions="text, record">
+      <template #action="text, record">
         <a>详情</a>
         <a-divider type="vertical" />
         <a-popconfirm title="确定删除该条记录吗？" @confirm="onDelete(record)">
@@ -78,8 +78,8 @@ const columns = [{
   dataIndex: 'updateTime'
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' },
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' },
   width: 200,
   fixed: 'right'
 }]

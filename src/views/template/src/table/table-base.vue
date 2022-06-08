@@ -13,7 +13,7 @@
       </template>
 
       <!-- 操作 -->
-      <template #actions>
+      <template #action>
         <a>详情</a>
         <a-divider type="vertical" />
         <a>删除</a>
@@ -47,8 +47,8 @@ const columns = [{
   dataIndex: 'updateTime'
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' }
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' }
 }]
 
 export default {

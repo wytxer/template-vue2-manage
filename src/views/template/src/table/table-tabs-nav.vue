@@ -38,7 +38,7 @@
         </template>
 
         <!-- 操作 -->
-        <template #actions>
+        <template #action>
           <a>详情</a>
         </template>
       </ak-table>
@@ -68,8 +68,8 @@ const columns = [{
   dataIndex: 'updateTime'
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' },
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' },
   width: '200px',
   fixed: 'right'
 }]

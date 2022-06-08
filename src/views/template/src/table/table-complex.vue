@@ -113,7 +113,7 @@
       </template>
 
       <!-- 操作 -->
-      <template #actions="text, record">
+      <template #action="text, record">
         <!-- 编辑模式 -->
         <span v-if="record.editable" key="edit">
           <a @click="onSave(record.id)">保存</a>
@@ -170,8 +170,8 @@ const columns = [{
   sorter: true
 }, {
   title: '操作',
-  dataIndex: 'actions',
-  scopedSlots: { customRender: 'actions' },
+  dataIndex: 'action',
+  scopedSlots: { customRender: 'action' },
   width: '200px',
   fixed: 'right'
 }]
