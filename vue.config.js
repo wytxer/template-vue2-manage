@@ -22,7 +22,7 @@ const vueConfig = {
   // 同 process.env.BASE_URL，若要修改 publicPath，建议到 .env 中修改 BASE_URL
   publicPath: process.env.BASE_URL,
   devServer: {
-    port: 9901,
+    port: process.env.VUE_APP_PORT,
     before (app) {
       // 如果是使用 mocker-api
       if (process.env.VUE_APP_USE_MOCKER === 'true') {
