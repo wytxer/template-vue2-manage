@@ -34,7 +34,7 @@ export default {
       width: 368px;
     }
   }
-  /deep/ .user-view {
+  :deep(.user-view) {
     width: 368px;
   }
 }

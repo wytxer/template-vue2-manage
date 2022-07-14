@@ -77,7 +77,7 @@ export default {
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
   &.collapsed-true {
     width: @side-menu-fold-width;
-    /deep/ .nav-logo-wrap {
+    :deep(.nav-logo-wrap) {
       .logo-slogan {
         display: none;
       }
@@ -91,7 +91,7 @@ export default {
     flex: 1;
     overflow: auto;
   }
-  /deep/ .ant-menu {
+  :deep(.ant-menu) {
     border-right-color: transparent;
   }
   .nav-logo-wrap {
@@ -107,7 +107,7 @@ export default {
   &.nav-menu-dark-wrap {
     background-color: @layout-header-background;
     .menu-action-main,
-    /deep/ .nav-logo-wrap {
+    :deep(.nav-logo-wrap) {
       color: #ffffff;
     }
   }

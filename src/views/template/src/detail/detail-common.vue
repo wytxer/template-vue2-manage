@@ -274,7 +274,7 @@ export default {
     width: 130px;
     right: 24px;
     top: 256px;
-    /deep/ .ant-anchor-wrapper {
+    :deep(.ant-anchor-wrapper) {
       background-color: transparent;
     }
   }

@@ -44,7 +44,7 @@ export default {
 
 <style lang="less" scoped>
 .template-layout-view {
-  /deep/ .ak-query-filter::after {
+  :deep(.ak-query-filter::after) {
     margin: 0 -48px 0;
   }
 }

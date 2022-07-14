@@ -241,7 +241,7 @@ export default {
 .dev-drawer-color-pricker-wrap {
   width: 220px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  /deep/ .vc-input__input {
+  :deep(.vc-input__input) {
     border: 1px solid #d9d9d9;
     box-shadow: none;
     border-radius: 4px;

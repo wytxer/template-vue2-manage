@@ -115,7 +115,7 @@ export default {
     display: flex;
     .menu-box {
       padding-left: 10px;
-      /deep/ .ant-menu-horizontal {
+      :deep(.ant-menu-horizontal) {
         line-height: @top-header-height;
         margin: 0;
       }
@@ -125,13 +125,13 @@ export default {
   &.nav-header-dark-wrap {
     background-color: @layout-header-background;
     color: #ffffff;
-    /deep/ .nav-logo-wrap {
+    :deep(.nav-logo-wrap) {
       color: #ffffff;
     }
   }
   &.nav-header-light-wrap {
     background-color: #ffffff;
-    /deep/ .nav-logo-wrap {
+    :deep(.nav-logo-wrap) {
       color: @main-color;
     }
   }

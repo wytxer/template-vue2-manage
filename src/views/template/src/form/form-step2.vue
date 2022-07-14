@@ -81,12 +81,12 @@ export default {
   max-width: 500px;
   margin: 32px auto 0;
   .ak-form-horizontal {
-    /deep/ .ant-col.ant-form-item-label {
+    :deep(.ant-col.ant-form-item-label) {
       width: 100px;
     }
   }
   .account-form-item {
-    /deep/ .ant-input-group {
+    :deep(.ant-input-group) {
       display: flex;
       padding: 4px 0;
     }
