@@ -4,7 +4,7 @@
   "description": "基于 Vue.js 2.x 和 ant-design-vue 组件库且风格统一的用于快速构建中后台系统的脚手架。",
   "private": true,
   "scripts": {
-    "dev": "npm run serve",
+    "dev": "yarn run serve",
     "serve": "cross-env VUE_APP_BUILD_ENV=local vue-cli-service serve",
     "build": "cross-env VUE_APP_BUILD_ENV=online vue-cli-service build",
     "build:test": "cross-env VUE_APP_BUILD_ENV=test vue-cli-service build --mode test",
@@ -13,7 +13,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "app": "wy app",
-    "start": "pm2 start --name \"template-vu2-manage\" npm -- run app",
+    "start": "pm2 start --name \"template-vu2-manage\" yarn -- run app",
     "stop": "pm2 stop \"template-vu2-manage\""
   },
   "dependencies": {
@@ -30,19 +30,21 @@
     "moment": "^2.25.3",
     "nprogress": "^0.2.0",
     "qs": "^6.10.2",
-    "vue": "^2.6.14",
+    "vue": "^2.7.8",
     "vue-color": "2.7.0",
     "vue-ls": "^3.2.1",
     "vue-router": "^3.5.3",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-unit-jest": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@ant-design/colors": "^6.0.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/cli-plugin-babel": "~4.5.19",
+    "@vue/cli-plugin-eslint": "~4.5.19",
+    "@vue/cli-plugin-router": "~4.5.19",
+    "@vue/cli-plugin-unit-jest": "~4.5.19",
+    "@vue/cli-plugin-vuex": "~4.5.19",
+    "@vue/cli-service": "~4.5.19",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "^1.3.0",
     "babel-eslint": "^10.1.0",
@@ -56,9 +58,10 @@
     "less": "^3.13.1",
     "less-loader": "^4.1.0",
     "lint-staged": "^9.5.0",
+    "regenerator-runtime": "^0.13.9",
     "style-resources-loader": "^1.3.3",
     "vue-cli-plugin-style-resources-loader": "^0.1.4",
-    "vue-template-compiler": "^2.6.14",
+    "vue-template-compiler": "^2.7.8",
     "webpack-theme-color-replacer": "^1.3.11"
   },
   "serverDependencies": {
@@ -74,10 +77,12 @@
   "keywords": [
     "vue",
     "admin",
+    "manage",
     "dashboard",
-    "vue-template",
-    "admin-scaffold",
-    "antd-admin"
+    "template",
+    "scaffold",
+    "antdv",
+    "kit"
   ],
   "author": {
     "name": "wytxer",

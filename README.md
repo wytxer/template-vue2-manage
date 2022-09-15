@@ -10,13 +10,13 @@
 yarn install
 
 # 启动开发服务
-yarn dev
+yarn run dev
 
 # 生产环境打包
-yarn build
+yarn run build
 
 # 测试环境打包
-yarn build:test
+yarn run build:test
 ```
 
 
