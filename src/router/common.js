@@ -38,21 +38,6 @@ if (process.env.NODE_ENV === 'development' || process.env.VUE_APP_BUILD_ENV === 
     }
   })
 }
-// <test>
-// 脚手架开发时的自测页面，仅在开发环境生效
-if (process.env.NODE_ENV === 'development') {
-  routes.push({
-    path: 'test',
-    component: () => import('@/views/test/index.vue'),
-    meta: {
-      title: '自测页面',
-      icon: 'bank',
-      // 如果要在菜单里面显示出来测试页面，可以将 hidden 设置为 false
-      hidden: false
-    }
-  })
-}
-// </test>
 // 这个页面必须放到最后
 routes.push({
   path: '*',

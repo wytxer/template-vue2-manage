@@ -5,7 +5,7 @@ import { stringify } from 'qs'
 
 // 全局的 http code 配置，可根据实际情况删改
 const codes = {
-  // 成功，如果是设置 -1，code 等于 0 和 200 都当做是成功，如果成其他值就取 code 值
+  // 成功，如果是设置 -1，code 等于 0 和 200 都当做是成功，如果是其他值就取 code 值
   success: { code: -1, message: '' },
   // 未登录
   logout: { code: 601, message: '请先登录后再操作' },

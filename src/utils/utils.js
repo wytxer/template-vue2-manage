@@ -48,7 +48,7 @@ export function isEmptyObject (value) {
 
 // 判断一个值是否是数组
 export function isArray (value) {
-  return Object.prototype.toString.call(value) === '[object Array]'
+  return Array.isArray(value)
 }
 
 // 判断一个值是否是 Boolean 类型

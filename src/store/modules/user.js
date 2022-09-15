@@ -4,7 +4,6 @@ const initState = {
   // 用来做是否已登录的标识，前端自己维护这个状态，登录成功后设置为 true，登出之后设置为 false
   logged: false,
   // 这里返回具体的权限点信息，然后通过 v-action 或者 $auth 进行权限判断
-  // ['add', 'delete', 'edit']
   permissions: [],
   // 用户名称
   nickname: ''
