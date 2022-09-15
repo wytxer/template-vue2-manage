@@ -2,7 +2,7 @@
   "name": "ak-snippets",
   "displayName": "ak-snippets",
   "description": "给 template-vue2-manage 脚手架提供的模板库。",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "publisher": "wytxer",
   "repository": {
     "type": "git",

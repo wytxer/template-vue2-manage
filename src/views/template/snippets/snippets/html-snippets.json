@@ -95,7 +95,7 @@
   "卡片和两行栅格标签": {
     "prefix": "ak-layout-card-row1",
     "body": [
-      "<ak-container title=\"证券信息\" card :bordered=\"false\" :loading=\"false\">",
+      "<layout-wrapper title=\"证券信息\" card :bordered=\"false\" :loading=\"false\">",
       "\t<a-row :gutter=\"24\" class=\"PB24\">",
       "\t\t<a-col :span=\"8\">",
       "\t\t\t<div class=\"PB6 C666\">股票代码</div>",
@@ -125,24 +125,24 @@
       "\t\t\t<div>魂殿的破产申请</div>",
       "\t\t</a-col>",
       "\t</a-row>",
-      "</ak-container>"
+      "</layout-wrapper>"
     ],
     "description": "卡片和两行栅格标签，字段一行三列展示"
   },
   "多行栅格标签和操作": {
     "prefix": "ak-layout-card-row2",
     "body": [
-      "<ak-container type=\"white\" class=\"header-info-main\" :loading=\"false\">",
+      "<layout-wrapper type=\"white\" class=\"header-info\" :loading=\"false\">",
       "\t<a-row :gutter=\"gutter\" class=\"MB16\">",
       "\t\t<a-col :span=\"24\" class=\"FB FBJC-SB FBAI-C\">",
-      "\t\t\t<div class=\"F18\" style=\"font-weight: bold\">天0302道清888号</div>",
+      "\t\t\t<div class=\"header-info__code\">天0302道清888号</div>",
       "\t\t\t<div>",
       "\t\t\t\t<a-button-group>",
       "\t\t\t\t\t<a-button>操作</a-button>",
       "\t\t\t\t\t<a-button>操作</a-button>",
       "\t\t\t\t\t<a-button>操作</a-button>",
       "\t\t\t\t</a-button-group>",
-      "\t\t\t\t<a-button type=\"primary\" @click=\"onMainClick\" style=\"margin-left: 16px\">",
+      "\t\t\t\t<a-button type=\"primary\" @click=\"onMainClick\" class=\"header-info__main-btn\">",
       "\t\t\t\t\t主操作",
       "\t\t\t\t</a-button>",
       "\t\t\t</div>",
@@ -180,7 +180,7 @@
       "\t\t\t</a-tag>",
       "\t\t</a-col>",
       "\t</a-row>",
-      "</ak-container>"
+      "</layout-wrapper>"
     ],
     "description": "多行货栅格标签和操作，最常见的案件详情顶部布局"
   },
