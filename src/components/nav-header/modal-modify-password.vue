@@ -1,16 +1,5 @@
 <template>
-  <a-modal
-    okText="确认修改"
-    class="ak-pb0"
-    destroyOnClose
-    :width="width"
-    :visible="visible"
-    :title="title"
-    :confirmLoading="loading"
-    :after-close="onClosed"
-    @cancel="onHideModal"
-    @ok="onReset"
-  >
+  <a-modal okText="确认修改" class="ak-pb0" destroyOnClose :width="width" :visible="visible" :title="title" :confirmLoading="loading" :after-close="onClosed" @cancel="onHideModal" @ok="onReset">
     <a-form-model :model="values" :rules="rules" ref="form" layout="vertical" class="ak-form" :colon="false">
       <a-form-model-item prop="oldPassword" label="原密码">
         <a-input v-model="values.oldPassword" type="password" placeholder="原密码">

@@ -1,5 +1,5 @@
 <template>
-  <div class="user-login-view">
+  <div class="page-register">
     <user-header title="注册" />
     <a-steps :current="currentStep" style="width: 592px">
       <a-step title="手机号验证" />
@@ -7,7 +7,7 @@
       <a-step title="完成" />
     </a-steps>
 
-    <div class="user-view">
+    <div class="user-form">
       <a-form-model v-show="currentStep < 2" :model="values" :rules="rules" ref="form">
         <div v-show="currentStep === 0">
           <a-form-model-item prop="user">
@@ -23,7 +23,7 @@
               </a-input>
               <a-tooltip title="看不清？换一张">
                 <div class="img-code" @click="onUpdateImageCode">
-                  <img :src="imageCodeUrl" />
+                  <img class="img-code__url" :src="imageCodeUrl" />
                 </div>
               </a-tooltip>
             </div>
@@ -50,8 +50,8 @@
         <div v-show="currentStep === 1">
           <a-popover :trigger="['focus']" :getPopupContainer="trigger => trigger.parentElement" v-model="passwordLevelChecked" placement="rightTop">
             <template slot="content">
-              <div class="password-tips-main">
-                <div :class="passwordLevelClassName">
+              <div class="password-tips">
+                <div :class="`password-tips__${passwordLevelClassName}`">
                   强度：{{ passwordLevelName }}
                 </div>
                 <a-progress :percent="passwordPercent" :showInfo="false" :strokeColor="passwordLevelColor" />
@@ -92,11 +92,11 @@
         </a-form-model-item>
       </a-form-model>
 
-      <div v-show="currentStep === 2" class="ok-main">
-        <span class="icon-ok">
+      <div v-show="currentStep === 2" class="register-success">
+        <span class="register-success__icon">
           <a-icon type="check" />
         </span>
-        <div class="tips">注册成功</div>
+        <div class="register-success__tips">注册成功</div>
         <router-link to="/user/login">
           <a-button type="primary" :size="size">
             马上登录
@@ -352,11 +352,12 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.user-login-view {
-  .user-header-wrap {
+.page-register {
+  :deep(.user-header) {
     padding-bottom: 80px;
   }
-  .user-view {
+  .user-form {
+    width: 410px;
     margin: 0 auto;
     padding: 48px 0 100px;
   }
@@ -367,7 +368,7 @@ export default {
     border: 1px solid #d9d9d9;
     margin-left: 10px;
     border-radius: 4px;
-    img {
+    &__url {
       width: 100%;
       height: 100%;
       vertical-align: top;
@@ -377,9 +378,9 @@ export default {
     margin-left: 10px;
     width: 112px;
   }
-  .ok-main {
+  .register-success {
     text-align: center;
-    .icon-ok {
+    &__icon {
       display: inline-block;
       width: 66px;
       height: 64px;
@@ -391,21 +392,21 @@ export default {
       color: #fff;
       font-size: 48px;
     }
-    .tips {
+    &__tips {
       padding: 32px 0;
       font-size: 20px;
       font-weight: bold;
     }
   }
-  .password-tips-main {
+  .password-tips {
     width: 260px;
-    .error {
+    &__error {
       color: #ff0000;
     }
-    .warning {
+    &__warning {
       color: #ff7e05;
     }
-    .success {
+    &__success {
       color: #52c41a;
     }
   }

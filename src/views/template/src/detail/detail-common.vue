@@ -1,16 +1,16 @@
 <template>
-  <div class="common-detail-view W100">
-    <ak-container type="white" class="header-info-main" card :bodyStyle="{padding: 0}" :loading="loading">
+  <div class="page-detail">
+    <layout-wrapper type="white" class="header-info" card :bodyStyle="{padding: 0}" :loading="loading">
       <a-row :gutter="gutter" class="MB16">
         <a-col :span="24" class="FB FBJC-SB FBAI-C">
-          <div class="F18" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
+          <div class="header-info__code">{{ baseInfo.caseCode }}</div>
           <div>
             <a-button-group>
               <a-button>操作</a-button>
               <a-button>操作</a-button>
               <a-button>操作</a-button>
             </a-button-group>
-            <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
+            <a-button type="primary" @click="onMainClick" class="header-info__main-btn">
               主操作
             </a-button>
           </div>
@@ -43,14 +43,14 @@
         </a-col>
         <a-col :span="6">
           <span class="C666">案件状态：</span>
-          <a-tag color="blue" class="status">
+          <a-tag color="blue" class="header-info__status">
             {{ baseInfo.status }}
           </a-tag>
         </a-col>
       </a-row>
-    </ak-container>
+    </layout-wrapper>
 
-    <ak-container v-paddingRight="130" :key="isSideMenu">
+    <layout-wrapper v-paddingRight="130" :key="isSideMenu">
       <a-card class="MB16" title="流程进度" id="detail-card1" :bordered="false" :loading="loading">
         <a-steps progress-dot :current="currentStep" class="ak-step-overflow-x">
           <a-step v-for="item in processInfo" :key="item.id" :title="item.name">
@@ -123,13 +123,13 @@
       </a-card>
 
       <!-- 快捷菜单 -->
-      <a-anchor class="case-detail-anchor-main" v-right="130" :offset-top="48">
+      <a-anchor class="shortcut-menu" v-right="130" :offset-top="48">
         <a-anchor-link href="#detail-card1" title="流程进度" />
         <a-anchor-link href="#detail-card2" title="用户信息" />
         <a-anchor-link href="#detail-card3" title="来电记录" />
         <a-anchor-link href="#detail-card4" title="操作日志" />
       </a-anchor>
-    </ak-container>
+    </layout-wrapper>
   </div>
 </template>
 
@@ -257,19 +257,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.common-detail-view {
-  .header-info-main {
+.page-detail {
+  .header-info {
     .C666 {
       display: inline-block;
       width: 90px;
       text-align: right;
     }
+    &__code {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    &__main-btn {
+      margin-left: 16px;
+    }
+    &__status {
+      position: relative;
+      top: -2px;
+    }
   }
-  .status {
-    position: relative;
-    top: -2px;
-  }
-  .case-detail-anchor-main {
+  .shortcut-menu {
     position: fixed;
     width: 130px;
     right: 24px;

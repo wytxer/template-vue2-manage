@@ -1,31 +1,30 @@
 <template>
-  <div :class="['nav-header-wrap', {[`nav-header-${theme}-wrap`]: !isSideMenu}]">
+  <div :class="['nav-header', {[`nav-header--${theme}`]: !isSideMenu}]">
     <div :class="contentClassName">
-      <div class="left-main">
-       <nav-logo v-if="logoFollowHeader || !isSideMenu" :logo="logo" :slogan="slogan" />
-        <div class="menu-box" v-if="!isSideMenu">
-          <top-menu :menus="menus" :theme="theme" mode="horizontal" class="nav-menu-wrap" />
+      <div class="FB FB1">
+        <nav-logo v-if="logoFollowHeader || !isSideMenu" />
+        <div class="nav-header__top-menu" v-if="!isSideMenu">
+          <top-menu :menus="menus" :theme="theme" mode="horizontal" class="nav-menu" />
         </div>
       </div>
-
-      <div class="action-main FB FBAI-C">
+      <div class="nav-header__user">
         <modal-error v-if="catchError" />
-        <a-dropdown v-if="user.logged" key="logged-action" placement="bottomRight">
+        <a-dropdown v-if="user.logged" placement="bottomRight">
           <span>
             <span>{{ user.nickname }}</span>
             <a-icon type="down" class="ML6" />
           </span>
           <a-menu slot="overlay">
             <a-menu-item>
-              <a @click="$refs.modalModifyPassword.showModal()" class="item-link ML10">修改密码</a>
+              <a @click="$refs.modalModifyPassword.showModal()" class="ML10">修改密码</a>
             </a-menu-item>
             <a-menu-item>
-              <a @click="onLogout" class="item-link ML10">退出登录</a>
+              <a @click="onLogout" class="ML10">退出登录</a>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
-        <div v-else key="login-action">
-          <router-link to="/user/login" class="item-link">
+        <div v-else>
+          <router-link to="/user/login">
             登录
           </router-link>
         </div>
@@ -56,20 +55,18 @@ export default {
   computed: {
     ...mapGetters(['isSideMenu']),
     ...mapState({
-      mode: state => state.app.menuMode,
       theme: state => state.app.menuTheme,
       logoFollowHeader: state => state.app.logoMode === 'followHeader',
       menus: state => state.menu.routes.find(item => item.path === '/').children,
       user: state => state.user,
-      logo: state => state.app.logo,
-      slogan: state => state.app.slogan,
       catchError: state => state.app.catchError
     }),
     contentClassName () {
-      if (this.isSideMenu) {
-        return 'header-container'
+      let className = 'nav-header__wrapper'
+      if (!this.isSideMenu) {
+        className += ' container'
       }
-      return 'header-container container'
+      return className
     }
   },
   methods: {
@@ -86,7 +83,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.nav-header-wrap {
+.nav-header {
   height: @top-header-height;
   line-height: @top-header-height;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
@@ -97,7 +94,7 @@ export default {
   background-color: #ffffff;
   z-index: 600;
 
-  .header-container {
+  &__wrapper {
     display: flex;
     justify-content: space-between;
     padding: 0 @common-spacing;
@@ -109,29 +106,27 @@ export default {
       margin: 0 auto;
     }
   }
-
-  .left-main {
-    flex: 1;
-    display: flex;
-    .menu-box {
-      padding-left: 10px;
-      :deep(.ant-menu-horizontal) {
-        line-height: @top-header-height;
-        margin: 0;
-      }
+  &__top-menu {
+    padding-left: 10px;
+    :deep(.ant-menu-horizontal) {
+      line-height: @top-header-height;
+      margin: 0;
     }
   }
-
-  &.nav-header-dark-wrap {
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+  &--dark {
     background-color: @layout-header-background;
     color: #ffffff;
-    :deep(.nav-logo-wrap) {
+    :deep(.nav-logo) {
       color: #ffffff;
     }
   }
-  &.nav-header-light-wrap {
+  &--light {
     background-color: #ffffff;
-    :deep(.nav-logo-wrap) {
+    :deep(.nav-logo) {
       color: @main-color;
     }
   }

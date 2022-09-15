@@ -1,25 +1,17 @@
 <template>
   <div :class="tabWrapClassName">
-    <a-tabs
-      type="editable-card"
-      size="small"
-      hide-add
-      v-model="currentRoute.fullPath"
-      :class="tabClassName"
-      @change="onTabChange"
-      @edit="key => onCloseTab(key)"
-    >
+    <a-tabs type="editable-card" size="small" hideAdd v-model="currentRoute.fullPath" :class="tabClassName" @change="onTabChange" @edit="key => onCloseTab(key)">
       <a-tab-pane v-for="(item) in panes" :key="item.fullPath" :closable="panes.length > 1">
-        <a slot="tab" class="tab-item" @contextmenu.prevent="onOpenMenu($event, item)">
+        <a slot="tab" class="nav-tab__tag" @contextmenu.prevent="onOpenMenu($event, item)">
           {{ item.meta.title }}
         </a>
         <component :is="routeComponents[item.path] || viewNotFound" v-if="!item.reload"></component>
       </a-tab-pane>
     </a-tabs>
-    <ul v-show="visible" :style="{left: `${left}px`, top: `${top}px`}" class="nav-tab-action-main">
-      <li class="action-btn" @click="onReload">刷新</li>
-      <li class="action-btn" v-if="panes.length > 1" @click="onCloseOthers">关闭其他</li>
-      <li class="action-btn" v-if="panes.length > 1" @click="onCloseAll">关闭所有</li>
+    <ul v-show="visible" :style="{left: `${left}px`, top: `${top}px`}" class="nav-tab__action">
+      <li class="nav-tab__btn" @click="onReload">刷新</li>
+      <li class="nav-tab__btn" v-if="panes.length > 1" @click="onCloseOthers">关闭其他</li>
+      <li class="nav-tab__btn" v-if="panes.length > 1" @click="onCloseAll">关闭所有</li>
     </ul>
   </div>
 </template>
@@ -88,17 +80,17 @@ export default {
       if (this.isSideNav) {
         // 如果是展开菜单
         if (this.menuCollapsed) {
-          className += ' left-fold'
+          className += ' is-fold'
         } else {
-          className += ' left-unfold'
+          className += ' is-unfold'
         }
       }
       return className
     },
     tabWrapClassName () {
-      let className = 'nav-tab-wrap'
+      let className = 'nav-tab'
       if (!this.isSideNav) {
-        className += ' nav-tab-top-wrap'
+        className += ' nav-tab--top'
       }
       return className
     },
@@ -323,10 +315,17 @@ export default {
 }
 </script>
 
-<style lang="less">
-.nav-tab-wrap {
+<style lang="less" scoped>
+.nav-tab {
   position: relative;
-  > .ant-tabs {
+  &__tag {
+    display: inline-block;
+    width: 100%;
+    line-height: 28px;
+    padding: 0 16px;
+    color: @primary-color;
+  }
+  >:deep(.ant-tabs) {
     position: relative;
     > .ant-tabs-bar {
       margin: 0;
@@ -351,13 +350,6 @@ export default {
           border-radius: 2px;
           margin-right: 8px;
           padding: 0;
-          .tab-item {
-            display: inline-block;
-            width: 100%;
-            line-height: 28px;
-            padding: 0 16px;
-            color: @primary-color;
-          }
           .anticon-close {
             position: relative;
             right: 32px;
@@ -365,7 +357,7 @@ export default {
           &.ant-tabs-tab-active {
             background-color: @primary-color;
             border-color: @primary-color;
-            .tab-item,
+            .nav-tab__tag,
             .anticon-close {
               color: #fff;
             }
@@ -390,15 +382,15 @@ export default {
       padding-top: 47px;
     }
     // 展开收起的样式
-    &.left-fold > .ant-tabs-bar {
+    &.is-fold > .ant-tabs-bar {
       left: @side-menu-fold-width;
     }
-    &.left-unfold > .ant-tabs-bar {
+    &.is-unfold > .ant-tabs-bar {
       left: @side-menu-unfold-width;
     }
   }
-  &.nav-tab-top-wrap {
-    > .ant-tabs {
+  &--top {
+    >:deep(.ant-tabs) {
       > .ant-tabs-bar {
         left: 0;
         > .ant-tabs-nav-container {
@@ -410,7 +402,7 @@ export default {
       }
     }
   }
-  .nav-tab-action-main {
+  &__action {
     margin: 0;
     background: #fff;
     z-index: 3000;
@@ -420,18 +412,18 @@ export default {
     padding: 5px 0;
     border-radius: 4px;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
-    .action-btn {
-      margin: 0;
-      line-height: 32px;
-      padding: 0 8px;
-      text-align: center;
-      color: #333;
-      cursor: pointer;
-      transition: all 0.25s;
-      &:hover {
-        background-color: @primary-color;
-        color: #fff;
-      }
+  }
+  &__btn {
+    margin: 0;
+    line-height: 32px;
+    padding: 0 8px;
+    text-align: center;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.25s;
+    &:hover {
+      background-color: @primary-color;
+      color: #fff;
     }
   }
 }

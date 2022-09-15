@@ -1,18 +1,22 @@
 <template>
-  <div class="form-step-view">
-    <div>
-      <a-alert :closable="true" message="确认转账后，资金将直接打入对方账户，无法退回。" class="MB24" />
-      <div class="MB16">
-        <span>付款账户：{{ values.paymentUser }}</span>
+  <div class="page-form-step">
+    <a-alert :closable="true" message="确认转账后，资金将直接打入对方账户，无法退回。" class="MB24" />
+    <div class="order-info">
+      <div class="MB24">
+        <span class="order-info__label">付款账户</span>
+        <span>{{ values.paymentUser }}</span>
       </div>
-      <div class="MB16">
-        <span>收款账户：{{ values.chargeAccount }}</span>
+      <div class="MB24">
+        <span class="order-info__label">收款账户</span>
+        <span>{{ values.chargeAccount }}</span>
       </div>
-      <div class="MB16">
-        <span>收款人姓名：{{ values.chargeName }}</span>
+      <div class="MB24">
+        <span class="order-info__label">收款人姓名</span>
+        <span>{{ values.chargeName }}</span>
       </div>
-      <div class="MB16">
-        <span>转账金额：{{ values.money }}</span>
+      <div class="MB24">
+        <span class="order-info__label">转账金额</span>
+        <span>{{ values.money }} 元</span>
       </div>
     </div>
     <a-form-model ref="form" class="ak-form-horizontal" :model="values" :rules="rules" :colon="false">
@@ -77,7 +81,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.form-step-view {
+.page-form-step {
   max-width: 500px;
   margin: 32px auto 0;
   .ak-form-horizontal {
@@ -85,10 +89,15 @@ export default {
       width: 100px;
     }
   }
-  .account-form-item {
-    :deep(.ant-input-group) {
-      display: flex;
-      padding: 4px 0;
+  .order-info {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    &__label {
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+      margin-right: 8px;
     }
   }
 }

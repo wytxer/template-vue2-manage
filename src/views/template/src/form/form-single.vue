@@ -1,13 +1,6 @@
 <template>
-  <ak-container class="ak-pb0" card>
-    <a-form-model
-      ref="form"
-      layout="vertical"
-      style="width: 800px; margin: 0 auto"
-      :model="values"
-      :rules="rules"
-      :colon="false"
-    >
+  <layout-wrapper class="ak-pb0" card>
+    <a-form-model ref="form" layout="vertical" style="width: 800px; margin: 0 auto" :model="values" :rules="rules" :colon="false">
       <a-form-model-item label="发起人" prop="code">
         <a-input v-model="values.code" placeholder="请输入" />
       </a-form-model-item>
@@ -41,7 +34,7 @@
         </a-button>
       </a-form-model-item>
     </a-form-model>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

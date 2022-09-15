@@ -1,5 +1,5 @@
 <template>
-  <ak-container class="ak-pb0" card>
+  <layout-wrapper class="ak-pb0" card>
     <a-form-model ref="form" layout="vertical" :model="values" :rules="rules" :colon="false">
       <a-row :gutter="24" style="padding-right: 200px">
         <a-col :md="10" :sm="24">
@@ -34,15 +34,7 @@
 
         <a-col :md="{span: 10, offset: 2}" :sm="24">
           <a-form-model-item label="更正日" prop="date">
-            <a-date-picker
-              v-model="values.date"
-              show-time
-              type="date"
-              placeholder="请选择日期"
-              class="W100"
-              format="YYYY-MM-DD HH:mm:ss"
-              valueFormat="YYYY-MM-DD HH:mm:ss"
-            />
+            <a-date-picker v-model="values.date" show-time type="date" placeholder="请选择日期" class="W100" format="YYYY-MM-DD HH:mm:ss" valueFormat="YYYY-MM-DD HH:mm:ss" />
           </a-form-model-item>
         </a-col>
 
@@ -54,29 +46,13 @@
 
         <a-col :md="10" :sm="24">
           <a-form-model-item label="实施日" prop="date2">
-            <a-date-picker
-              v-model="values.date2"
-              show-time
-              type="date"
-              placeholder="请选择日期"
-              class="W100"
-              format="YYYY-MM-DD HH:mm:ss"
-              valueFormat="YYYY-MM-DD HH:mm:ss"
-            />
+            <a-date-picker v-model="values.date2" show-time type="date" placeholder="请选择日期" class="W100" format="YYYY-MM-DD HH:mm:ss" valueFormat="YYYY-MM-DD HH:mm:ss" />
           </a-form-model-item>
         </a-col>
 
         <a-col :md="{span: 10, offset: 2}" :sm="24">
           <a-form-model-item label="更正日" prop="date3">
-            <a-date-picker
-              v-model="values.date3"
-              show-time
-              type="date"
-              placeholder="请选择日期"
-              class="W100"
-              format="YYYY-MM-DD HH:mm:ss"
-              valueFormat="YYYY-MM-DD HH:mm:ss"
-            />
+            <a-date-picker v-model="values.date3" show-time type="date" placeholder="请选择日期" class="W100" format="YYYY-MM-DD HH:mm:ss" valueFormat="YYYY-MM-DD HH:mm:ss" />
           </a-form-model-item>
         </a-col>
 
@@ -92,7 +68,7 @@
         </a-col>
       </a-row>
     </a-form-model>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

@@ -1,16 +1,16 @@
 <template>
-  <div class="common-detail-view W100">
-    <ak-container type="white" class="header-info-main" card :bodyStyle="{padding: 0}" :loading="loading">
+  <div class="page-detail">
+    <layout-wrapper type="white" class="header-info" card :bodyStyle="{padding: 0}" :loading="loading">
       <a-row :gutter="gutter" class="MB16">
         <a-col :span="24" class="FB FBJC-SB FBAI-C">
-          <div class="F18 F-BOLD" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
-          <div class="action-main">
+          <div class="header-info__code">{{ baseInfo.caseCode }}</div>
+          <div>
             <a-button-group>
               <a-button>操作</a-button>
               <a-button>操作</a-button>
               <a-button>操作</a-button>
             </a-button-group>
-            <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
+            <a-button type="primary" @click="onMainClick" class="header-info__main-btn">
               主操作
             </a-button>
           </div>
@@ -53,9 +53,9 @@
           {{ baseInfo.dispatchName }}
         </a-col>
       </a-row>
-    </ak-container>
+    </layout-wrapper>
 
-    <ak-container title="证券信息" card :loading="loading">
+    <layout-wrapper title="证券信息" card :loading="loading">
       <a-row :gutter="gutter" class="PB24">
         <a-col :span="8">
           <div class="PB6 C666">股票代码</div>
@@ -118,7 +118,7 @@
           <ak-text-fill :text="bondInfo.benchmarkPrice" />
         </a-col>
       </a-row>
-    </ak-container>
+    </layout-wrapper>
   </div>
 </template>
 
@@ -158,8 +158,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.common-detail-view {
-  .header-info-main {
+.page-detail {
+  .header-info {
+    &__code {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    &__main-btn {
+      margin-left: 16px;
+    }
     .C666 {
       display: inline-block;
       width: 90px;

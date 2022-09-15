@@ -1,5 +1,5 @@
 <template>
-  <ak-container>
+  <layout-wrapper>
     <a-tabs class="ak-tabs-nav" v-model="tabKey" @change="onTabChange" size="small">
       <a-tab-pane v-for="item in tabs" :key="item.key" :tab="item.tab"></a-tab-pane>
     </a-tabs>
@@ -43,7 +43,7 @@
         </template>
       </ak-table>
     </a-card>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

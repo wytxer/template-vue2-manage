@@ -1,29 +1,29 @@
 <template>
-  <ak-container class="workplace-view">
-    <a-card class="query-filter-main" :bordered="false">
-      <div class="date-filter-box">
+  <layout-wrapper class="page-workplace">
+    <a-card class="MB16" :bordered="false">
+      <div class="date-filter">
         <div>
-          <span v-for="item in dateFilters" :key="item.key" :class="['date-item', {active: filterKey === item.key}]" @click="onDateFilter(item.key)">
+          <span v-for="item in dateFilters" :key="item.key" :class="['date-filter__item', {'is-active': filterKey === item.key}]" @click="onDateFilter(item.key)">
             {{ item.name }}
           </span>
         </div>
-        <a-range-picker style="width: 300px" v-model="dateFilter" @change="onDateChange" :allowClear="false" />
+        <a-range-picker class="date-filter__picker" v-model="dateFilter" @change="onDateChange" :allowClear="false" />
       </div>
     </a-card>
 
-    <div class="index-card-main">
-      <a-card class="index-card-item" v-for="item in titles" :key="item.key" :bordered="false" :loading="loading">
-        <div class="label">
+    <div class="indicator-card">
+      <a-card class="indicator-card__item" v-for="item in titles" :key="item.key" :bordered="false" :loading="loading">
+        <div class="indicator-card__label">
           <span>{{ item.cardName }}</span>
           <a-tooltip :placement="item.key === 'score' ? 'left' : 'top'" :title="item.tips">
-            <a-icon class="icon-info" type="info-circle" />
+            <a-icon class="indicator-card__icon-info" type="info-circle" />
           </a-tooltip>
         </div>
-        <div class="value">{{ overview[item.key] }}</div>
+        <div class="indicator-card__value">{{ overview[item.key] }}</div>
       </a-card>
     </div>
 
-    <a-card class="MT16" style="min-height: 240px" :bordered="false" :loading="loading">
+    <a-card class="chart-card" :bordered="false" :loading="loading">
       <div :id="chartId"></div>
     </a-card>
 
@@ -39,7 +39,7 @@
     </a-card>
 
     <nav-footer style="padding-bottom: 0" />
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>
@@ -71,6 +71,43 @@ const columns = [{
   scopedSlots: { customRender: 'action' },
   width: '25%'
 }]
+// 概览要展示的数据列表
+const titles = [{
+  key: 'popularityNumber',
+  type: 1,
+  cardName: '人气值',
+  tips: '人气值人气值人气值人气值人气值'
+}, {
+  key: 'playNumber',
+  type: 2,
+  cardName: '播放量',
+  tips: '播放量播放量播放量播放量播放量播放量播放量'
+}, {
+  key: 'newPlayNumber',
+  type: 3,
+  cardName: '新增播放量',
+  tips: '新增播放量新增播放量新增播放量新增播放量新增播放量'
+}, {
+  key: 'fundsNumber',
+  type: 4,
+  cardName: '经费',
+  tips: '经费计算方式说明经费计算方式说明经费计算方式说明经费计算方式说明'
+}, {
+  key: 'score',
+  type: 5,
+  cardName: '评分',
+  tips: '评分计算方式评分计算方式评分计算方式评分计算方式评分计算方式评分计算方式评分计算方式'
+}]
+// 时间筛选列表
+const dateFilters = [{
+  key: 0, name: '今日'
+}, {
+  key: 1, name: '昨日'
+}, {
+  key: 7, name: '最近7日'
+}, {
+  key: 30, name: '最近30日'
+}]
 
 export default {
   components: {
@@ -78,46 +115,12 @@ export default {
   },
   data () {
     const yesterday = moment().clone().subtract(30, 'd')
-
     return {
       columns,
       // 概览要展示的数据列表
-      titles: [{
-        key: 'popularityNumber',
-        type: 1,
-        cardName: '人气值',
-        tips: '人气值人气值人气值人气值人气值'
-      }, {
-        key: 'playNumber',
-        type: 2,
-        cardName: '播放量',
-        tips: '播放量播放量播放量播放量播放量播放量播放量'
-      }, {
-        key: 'newPlayNumber',
-        type: 3,
-        cardName: '新增播放量',
-        tips: '新增播放量新增播放量新增播放量新增播放量新增播放量'
-      }, {
-        key: 'fundsNumber',
-        type: 4,
-        cardName: '经费',
-        tips: '经费计算方式说明经费计算方式说明经费计算方式说明经费计算方式说明'
-      }, {
-        key: 'score',
-        type: 5,
-        cardName: '评分',
-        tips: '评分计算方式评分计算方式评分计算方式评分计算方式评分计算方式评分计算方式评分计算方式'
-      }],
+      titles,
       // 时间筛选列表
-      dateFilters: [{
-        key: 0, name: '今日'
-      }, {
-        key: 1, name: '昨日'
-      }, {
-        key: 7, name: '最近7日'
-      }, {
-        key: 30, name: '最近30日'
-      }],
+      dateFilters,
       filterKey: 30,
       dateFilter: [yesterday, yesterday],
       queryFilters: {
@@ -231,11 +234,27 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.workplace-view {
+.page-workplace {
   min-height: calc(100vh - 201px);
-  .index-card-main {
+  .date-filter {
     display: flex;
-    .index-card-item {
+    justify-content: space-between;
+    &__item {
+      line-height: 40px;
+      margin-right: 24px;
+      cursor: pointer;
+      transition: all 0.15s;
+      &.is-active {
+        color: @primary-color;
+      }
+    }
+    &__picker {
+      width: 300px;
+    }
+  }
+  .indicator-card {
+    display: flex;
+    &__item {
       flex: 1;
       height: 160px;
       position: relative;
@@ -243,7 +262,7 @@ export default {
         margin-right: 24px;
       }
     }
-    .label {
+    &__label {
       width: 100%;
       height: 24px;
       line-height: 24px;
@@ -251,34 +270,22 @@ export default {
       justify-content: space-between;
       align-items: center;
       color: rgba(0, 0, 0, 0.45) !important;
-      .icon-info {
-        margin-left: 16px;
-        width: 14px;
-        height: 14px;
-        color: rgba(0, 0, 0, 0.45) !important;
-      }
     }
-    .value {
+    &__icon-info {
+      margin-left: 16px;
+      width: 14px;
+      height: 14px;
+      color: rgba(0, 0, 0, 0.45) !important;
+    }
+    &__value {
       font-size: 30px;
       line-height: 88px;
       text-align: center;
     }
   }
-  .query-filter-main {
-    margin-bottom: 16px;
-    .date-filter-box {
-      display: flex;
-      justify-content: space-between;
-    }
-    .date-item {
-      line-height: 40px;
-      margin-right: 24px;
-      cursor: pointer;
-      transition: all 0.15s;
-      &.active {
-        color: @primary-color;
-      }
-    }
+  .chart-card {
+    margin-top: 16px;
+    min-height: 240px;
   }
 }
 </style>

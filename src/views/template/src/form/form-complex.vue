@@ -1,10 +1,10 @@
 <template>
-  <div class="form-complex-view W100" style="padding-bottom: 56px">
-    <ak-container type="white" class="header-info-main" card :bodyStyle="{padding: 0}" :loading="loading">
+  <div class="page-form">
+    <layout-wrapper type="white" class="header-info" card :bodyStyle="{padding: 0}" :loading="loading">
       <a-row :gutter="gutter" class="MB16">
         <a-col :span="24" class="FB FBJC-SB FBAI-C">
           <div class="F18" style="font-weight: bold">{{ baseInfo.caseCode }}</div>
-          <div class="action-main">
+          <div>
             <a-button-group>
               <a-button @click="$router.back()">返回</a-button>
               <a-button>删除</a-button>
@@ -47,9 +47,9 @@
           </a-tag>
         </a-col>
       </a-row>
-    </ak-container>
+    </layout-wrapper>
 
-    <ak-container>
+    <layout-wrapper>
       <a-card title="流程进度" class="ak-card-line MB16" :bordered="false" :loading="loading">
         <a-steps progress-dot :current="currentStep" class="ak-step-overflow-x">
           <a-step v-for="item in processInfo" :key="item.id" :title="item.name">
@@ -122,7 +122,7 @@
           </template>
         </ak-table>
       </a-card>
-    </ak-container>
+    </layout-wrapper>
 
     <affix-footer>
       <a-button @click="$router.back()">
@@ -233,8 +233,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.form-complex-view {
-  .header-info-main {
+.page-form {
+  padding-bottom: 56px;
+  .header-info {
     .C666 {
       display: inline-block;
       width: 90px;

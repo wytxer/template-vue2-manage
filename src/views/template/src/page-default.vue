@@ -1,31 +1,23 @@
 
 <template>
-  <ak-container class="ak-view" card>
+  <layout-wrapper class="page-default" card>
     页面
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>
 export default {
   data () {
-    return {
-
-    }
+    return {}
   },
-  created () {
-
-  },
-  mounted () {
-
-  },
-  methods: {
-
-  }
+  created () {},
+  mounted () {},
+  methods: {}
 }
 </script>
 
 <style lang="less" scoped>
-.ak-view {
+.page-default {
   position: relative;
 }
 </style>

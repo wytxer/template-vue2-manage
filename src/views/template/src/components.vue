@@ -1,5 +1,5 @@
 <template>
-  <ak-container card class="template-layout-view">
+  <layout-wrapper card class="page-components">
     <a-tag :color="themeColor" class="MB8">筛选项单行布局</a-tag>
     <layout-query-filter1 />
 
@@ -14,7 +14,7 @@
 
     <a-tag :color="themeColor" class="MB16 MT64">多行栅格标签和操作</a-tag>
     <layout-card-row2 />
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.template-layout-view {
+.page-components {
   :deep(.ak-query-filter::after) {
     margin: 0 -48px 0;
   }

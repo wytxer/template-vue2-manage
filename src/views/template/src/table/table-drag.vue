@@ -1,5 +1,5 @@
 <template>
-  <ak-container class="ak-card-table" card :bodyStyle="{padding: 0}">
+  <layout-wrapper class="ak-card-table" card :bodyStyle="{padding: 0}">
     <div class="ak-table-actions FB FBJC-SB FBAI-C">
       <div>
         <a-button class="MR16">批量重开</a-button>
@@ -42,7 +42,7 @@
         </a-popconfirm>
       </template>
     </ak-table>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

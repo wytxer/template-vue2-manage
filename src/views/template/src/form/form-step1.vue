@@ -1,5 +1,5 @@
 <template>
-  <div class="form-step-view">
+  <div class="page-form-step">
     <a-form-model ref="form" class="ak-form-horizontal" :model="values" :rules="rules" :colon="false">
       <a-form-model-item label="付款账户" prop="paymentUser">
         <a-select v-model="values.paymentUser" placeholder="请选择">
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.form-step-view {
+.page-form-step {
   :deep(.ant-form) {
     max-width: 500px;
     margin: 32px auto 0;

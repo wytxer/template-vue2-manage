@@ -1,5 +1,5 @@
 <template>
-  <ak-container class="ak-card-table" card :bodyStyle="{padding: 0}">
+  <layout-wrapper class="ak-card-table" card :bodyStyle="{padding: 0}">
     <a-form-model ref="form" class="ak-query-filter" :model="queryFilters" :colon="false">
       <a-row :gutter="24">
         <a-col v-bind="$wrapperCol">
@@ -99,7 +99,7 @@
         <a-popover :title="text">
           <a-card slot="content" :hoverable="false" :body-style="{padding: 0}" :bordered="false">
             <a-card-meta title="负责人" description="这里是描述这里是描述这里是描述">
-              <a-avatar #avatar src="https://img1.baidu.com/it/u=2476943548,3374522247&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400" />
+              <a-avatar slot="avatar" src="https://img1.baidu.com/it/u=2476943548,3374522247&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400" />
             </a-card-meta>
           </a-card>
           <a>{{ text }}</a>
@@ -130,7 +130,7 @@
         </span>
       </template>
     </ak-table>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

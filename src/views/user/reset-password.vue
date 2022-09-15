@@ -1,7 +1,7 @@
 <template>
-  <div class="user-login-view user-view">
+  <div class="page-reset-password user-view">
     <user-header title="重置密码" />
-    <a-form-model :model="values" :rules="rules" ref="form">
+    <a-form-model ref="form" class="user-form" :model="values" :rules="rules">
       <a-form-model-item prop="user">
         <a-input :size="size" v-model="values.user" placeholder="手机号">
           <a-icon slot="prefix" type="user" class="C999" />
@@ -15,7 +15,7 @@
           </a-input>
           <a-tooltip title="看不清？换一张">
             <div class="img-code" @click="onUpdateImageCode">
-              <img :src="imageCodeUrl" />
+              <img class="img-code__url" :src="imageCodeUrl" />
             </div>
           </a-tooltip>
         </div>
@@ -223,9 +223,14 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.user-login-view {
-  .user-header-wrap {
+.page-reset-password {
+  :deep(.user-header) {
     padding-bottom: 80px;
+  }
+  .user-form {
+    width: 410px;
+    margin: 0 auto;
+    padding: 48px 0 100px;
   }
   .img-code {
     cursor: pointer;
@@ -234,7 +239,7 @@ export default {
     border: 1px solid #d9d9d9;
     margin-left: 10px;
     border-radius: 4px;
-    img {
+    &__url {
       width: 100%;
       height: 100%;
       vertical-align: top;

@@ -1,11 +1,9 @@
-import Demo from './demo'
-import Container from './container'
+import LayoutWrapper from './layout-wrapper'
 import AffixFooter from './affix-footer'
 import ColumnFilter from './column-filter'
 
 const components = [
-  Demo,
-  Container,
+  LayoutWrapper,
   AffixFooter,
   ColumnFilter
 ]
@@ -21,8 +19,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
-  Demo,
-  Container,
+  LayoutWrapper,
   AffixFooter,
   ColumnFilter
 }

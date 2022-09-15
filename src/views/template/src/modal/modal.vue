@@ -1,5 +1,5 @@
 <template>
-  <ak-container card class="common-modal-view">
+  <layout-wrapper card class="common-modal-view">
     <a-button @click="$refs.modalEmpty.showModal()">空弹框</a-button>
     <a-button @click="$refs.modalNormal.showModal()" class="ML16">单列表单弹框</a-button>
     <a-button @click="$refs.modalComplex.showModal()" class="ML16">两列表单弹框</a-button>
@@ -15,7 +15,7 @@
     <modal-complex ref="modalComplex" />
     <drawer-empty ref="drawerEmpty" />
     <drawer-form ref="drawerForm" />
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>
@@ -54,7 +54,7 @@ export default {
         }]
       }, {
         attachTo: {
-          element: document.querySelector('.layout-base-view .nav-header-wrap .action-main'),
+          element: document.querySelector('.layout-base-view .nav-header .action-main'),
           on: 'auto'
         },
         title: '顶部用户栏',

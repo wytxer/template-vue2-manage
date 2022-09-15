@@ -1,10 +1,10 @@
 
 <template>
-  <ak-container class="ak-pb0" card>
+  <layout-wrapper class="ak-pb0" card>
     <a-form-model ref="form" layout="vertical" :model="values" :rules="rules" :colon="false">
 
     </a-form-model>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

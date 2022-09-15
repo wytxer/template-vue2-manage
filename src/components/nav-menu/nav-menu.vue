@@ -1,11 +1,11 @@
 <template>
-  <div :class="['nav-menu-wrap', `nav-menu-${theme}-wrap`, `collapsed-${menuCollapsed}`]">
-    <nav-logo v-if="logoFollowMenu" :logo="logo" :slogan="slogan" />
-    <div class="menu-main">
+  <div :class="['nav-menu', `nav-menu--${theme}`, {'is-unfold': menuCollapsed, 'is-fold': !menuCollapsed}]">
+    <nav-logo v-if="logoFollowMenu" />
+    <div class="nav-menu__body">
       <side-menu :collapsed="menuCollapsed" :menus="menus" :theme="theme" :mode="mode" @select="onSelect"></side-menu>
     </div>
 
-    <div v-if="showCollapsedAction" class="menu-action-main">
+    <div v-if="showCollapsedAction" class="nav-menu__action">
       <a-icon :type="menuCollapsed ? 'menu-unfold' : 'menu-fold'" @click="onCollapsed" />
     </div>
   </div>
@@ -42,8 +42,6 @@ export default {
     ...mapState({
       theme: state => state.app.menuTheme,
       mode: state => state.app.menuMode,
-      logo: state => state.app.logo,
-      slogan: state => state.app.slogan,
       logoFollowMenu: state => state.app.logoMode === 'followMenu',
       menuCollapsed: state => state.app.menuCollapsed,
       menus: state => state.menu.routes.find(item => item.path === '/').children
@@ -61,7 +59,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.nav-menu-wrap {
+.nav-menu {
   height: calc(100vh - @top-header-height);
   overflow: hidden;
   position: relative;
@@ -75,43 +73,36 @@ export default {
   width: auto;
   z-index: 500;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
-  &.collapsed-true {
-    width: @side-menu-fold-width;
-    :deep(.nav-logo-wrap) {
-      .logo-slogan {
-        display: none;
-      }
-    }
-  }
-  &.collapsed-false {
-    width: @side-menu-unfold-width;
-  }
-
-  .menu-main {
-    flex: 1;
-    overflow: auto;
-  }
   :deep(.ant-menu) {
     border-right-color: transparent;
   }
-  .nav-logo-wrap {
+  .nav-logo {
     padding: 0 10px;
     justify-content: center;
   }
-
-  .menu-action-main {
+  &.is-unfold {
+    width: @side-menu-fold-width;
+  }
+  &.is-fold {
+    width: @side-menu-unfold-width;
+  }
+  &__body {
+    flex: 1;
+    overflow: auto;
+  }
+  &__action {
     padding: 8px 8px 16px 8px;
     text-align: center;
     font-size: 18px;
   }
-  &.nav-menu-dark-wrap {
+  &--dark {
     background-color: @layout-header-background;
-    .menu-action-main,
-    :deep(.nav-logo-wrap) {
+    .nav-menu__action,
+    :deep(.nav-logo) {
       color: #ffffff;
     }
   }
-  &.nav-menu-light-wrap {
+  &--light {
     background-color: #fff;
   }
 }

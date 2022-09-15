@@ -1,5 +1,5 @@
 <template>
-  <ak-container style="padding-bottom: 56px">
+  <layout-wrapper style="padding-bottom: 56px">
     <a-form-model ref="form" layout="vertical" :model="values" :rules="rules" :colon="false">
       <!-- 证券信息 -->
       <a-card class="ak-card-line ak-pb0 MB16" title="证券信息" :bordered="false">
@@ -30,14 +30,7 @@
 
           <a-col :span="8">
             <a-form-model-item label="更正日" prop="date">
-              <a-date-picker
-                v-model="values.date"
-                type="date"
-                placeholder="请选择日期"
-                class="W100"
-                format="YYYY-MM-DD"
-                valueFormat="YYYY-MM-DD"
-              />
+              <a-date-picker v-model="values.date" type="date" placeholder="请选择日期" class="W100" format="YYYY-MM-DD" valueFormat="YYYY-MM-DD" />
             </a-form-model-item>
           </a-col>
 
@@ -100,7 +93,7 @@
       </a-button>
       <a-button type="primary" class="ML16" @click="onSubmit" :loading="loading">提交</a-button>
     </affix-footer>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

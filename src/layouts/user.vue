@@ -1,6 +1,6 @@
 <template>
-  <div class="layout-user-view">
-    <div class="content-main">
+  <div class="layout-user">
+    <div class="layout-user__body">
       <router-view />
     </div>
     <nav-footer />
@@ -19,23 +19,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.layout-user-view {
+.layout-user {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: rgb(237, 240, 245) url(../assets/bg-user.svg) 0 0 no-repeat;
-  .content-main {
+  background: rgb(237, 240, 245) url("../assets/bg-user.svg") 0 0 no-repeat;
+  &__body {
+    width: 410px;
+    margin: 0 auto;
     min-height: calc(100vh - 85px);
     display: flex;
     align-items: center;
     justify-content: center;
-    .content {
-      width: 368px;
-    }
-  }
-  :deep(.user-view) {
-    width: 368px;
   }
 }
 </style>

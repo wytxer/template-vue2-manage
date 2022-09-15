@@ -1,7 +1,7 @@
 <template>
-  <footer class="nav-footer-wrap">
+  <footer class="nav-footer">
     Copyright @2022 wytxer
-    <a href="https://beian.miit.gov.cn" target="_blank" class="case-number">
+    <a href="https://beian.miit.gov.cn" target="_blank" class="nav-footer__link">
       浙ICP备8888888号-8
     </a>
   </footer>
@@ -17,11 +17,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.nav-footer-wrap {
+.nav-footer {
   text-align: center;
   color: rgba(0, 0, 0, 0.45);
   padding: 32px 16px;
-  .case-number {
+  &__link {
     color: rgba(0, 0, 0, 0.45);
   }
 }

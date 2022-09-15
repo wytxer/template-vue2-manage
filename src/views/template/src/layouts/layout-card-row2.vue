@@ -1,15 +1,15 @@
 <template>
-  <ak-container type="white" class="header-info-main" :loading="false">
+  <layout-wrapper type="white" class="header-info" :loading="false">
     <a-row :gutter="gutter" class="MB16">
       <a-col :span="24" class="FB FBJC-SB FBAI-C">
-        <div class="F18" style="font-weight: bold">天0302道清888号</div>
+        <div class="header-info__code">天0302道清888号</div>
         <div>
           <a-button-group>
             <a-button>操作</a-button>
             <a-button>操作</a-button>
             <a-button>操作</a-button>
           </a-button-group>
-          <a-button type="primary" @click="onMainClick" style="margin-left: 16px">
+          <a-button type="primary" @click="onMainClick" class="header-info__main-btn">
             主操作
           </a-button>
         </div>
@@ -47,7 +47,7 @@
         </a-tag>
       </a-col>
     </a-row>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>
@@ -66,7 +66,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header-info-main {
+.header-info {
+  &__code {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__main-btn {
+    margin-left: 16px;
+  }
   .C666 {
     display: inline-block;
     width: 90px;

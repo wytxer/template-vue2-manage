@@ -1,92 +1,50 @@
 <template>
-  <a-drawer
-    class="dev-drawer-view"
-    placement="right"
-    title="定制"
-    :width="300"
-    :closable="false"
-    :visible="visible"
-    :drawer-style="drawerStyle"
-    @close="onClose"
-  >
-    <div class="dev-drawer-content-main">
-      <a-form-model :model="app" layout="vertical">
-        <a-form-model-item label="菜单风格">
-          <a-select
-            placeholder="请选择"
-            v-model="app.menuTheme"
-            @change="onThemeChange"
-            :getPopupContainer="trigger => trigger.parentNode"
-          >
-            <a-select-option v-for="theme in themes" :key="theme.id" :value="theme.id">
-              {{ theme.name }}
-            </a-select-option>
-          </a-select>
-        </a-form-model-item>
+  <a-drawer class="dev-drawer" placement="right" title="定制" :width="300" :closable="false" :visible="visible" :drawerStyle="drawerStyle" @close="onClose">
+    <a-form-model :model="app" layout="vertical">
+      <a-form-model-item label="菜单风格">
+        <a-select placeholder="请选择" v-model="app.menuTheme" @change="onThemeChange" :getPopupContainer="trigger => trigger.parentNode">
+          <a-select-option v-for="theme in themes" :key="theme.id" :value="theme.id">
+            {{ theme.name }}
+          </a-select-option>
+        </a-select>
+      </a-form-model-item>
 
-        <a-form-model-item label="布局模式">
-          <a-select
-            placeholder="请选择"
-            v-model="app.layout"
-            @change="onLayoutChange"
-            :getPopupContainer="trigger => trigger.parentNode"
-          >
-            <a-select-option v-for="theme in layouts" :key="theme.id" :value="theme.id">
-              {{ theme.name }}
-            </a-select-option>
-          </a-select>
-        </a-form-model-item>
+      <a-form-model-item label="布局模式">
+        <a-select placeholder="请选择" v-model="app.layout" @change="onLayoutChange" :getPopupContainer="trigger => trigger.parentNode">
+          <a-select-option v-for="theme in layouts" :key="theme.id" :value="theme.id">
+            {{ theme.name }}
+          </a-select-option>
+        </a-select>
+      </a-form-model-item>
 
-        <a-form-model-item label="导航模式">
-          <a-select
-            v-model="app.navMode"
-            placeholder="请选择"
-            @change="onNavModeChange"
-            :getPopupContainer="trigger => trigger.parentNode"
-          >
-            <a-select-option v-for="nav in navMode" :key="nav.id" :value="nav.id">
-              {{ nav.name }}
-            </a-select-option>
-          </a-select>
-        </a-form-model-item>
+      <a-form-model-item label="导航模式">
+        <a-select v-model="app.navMode" placeholder="请选择" @change="onNavModeChange" :getPopupContainer="trigger => trigger.parentNode">
+          <a-select-option v-for="nav in navMode" :key="nav.id" :value="nav.id">
+            {{ nav.name }}
+          </a-select-option>
+        </a-select>
+      </a-form-model-item>
 
-        <a-form-model-item label="LOGO 显示模式">
-          <a-select
-            v-model="app.logoMode"
-            placeholder="请选择"
-            @change="onLogoModeChange"
-            :getPopupContainer="trigger => trigger.parentNode"
-          >
-            <a-select-option v-for="nav in logoMode" :key="nav.id" :value="nav.id">
-              {{ nav.name }}
-            </a-select-option>
-          </a-select>
-        </a-form-model-item>
+      <a-form-model-item label="LOGO 显示模式">
+        <a-select v-model="app.logoMode" placeholder="请选择" @change="onLogoModeChange" :getPopupContainer="trigger => trigger.parentNode">
+          <a-select-option v-for="nav in logoMode" :key="nav.id" :value="nav.id">
+            {{ nav.name }}
+          </a-select-option>
+        </a-select>
+      </a-form-model-item>
 
-        <a-form-model-item label="主题色">
-          <sketch-picker
-            class="dev-drawer-color-pricker-wrap"
-            :value="app.themeColor"
-            :preset-colors="colors.map(item => item.id)"
-            @input="onColorChange"
-          />
-        </a-form-model-item>
+      <a-form-model-item label="主题色">
+        <sketch-picker class="dev-drawer__color-picker" :value="app.themeColor" :preset-colors="colors.map(item => item.id)" @input="onColorChange" />
+      </a-form-model-item>
 
-        <a-form-model-item label="全局错误捕获">
-          <a-switch
-            checked-children="启用"
-            un-checked-children="禁用"
-            v-model="app.catchError"
-            @change="onCatchErrorChange"
-          />
-        </a-form-model-item>
-      </a-form-model>
-    </div>
+      <a-form-model-item label="全局错误捕获">
+        <a-switch checked-children="启用" un-checked-children="禁用" v-model="app.catchError" @change="onCatchErrorChange" />
+      </a-form-model-item>
+    </a-form-model>
 
     <!-- 展开 || 收起 -->
-    <div class="dev-drawer-action-main" slot="handle" @click="onToggle">
-      <a-icon type="close" class="item-icon" v-if="visible" />
-      <a-icon type="setting" class="item-icon" v-else />
+    <div slot="handle" class="dev-drawer__action-wrapper" @click="onToggle">
+      <a-icon class="dev-drawer__icon" :type="visible ? 'close' : 'setting'" />
     </div>
   </a-drawer>
 </template>
@@ -217,34 +175,36 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.dev-drawer-action-main {
-  position: fixed;
-  top: 45%;
-  z-index: 1299;
-  width: 48px;
-  height: 48px;
-  right: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: @primary-color;
-  font-size: 16px;
-  border-radius: 4px 0 0 4px;
-  cursor: pointer;
-  transition: right 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
-  .item-icon {
+.dev-drawer {
+  &__color-picker {
+    width: 220px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    :deep(.vc-input__input) {
+      border: 1px solid #d9d9d9;
+      box-shadow: none;
+      border-radius: 4px;
+    }
+  }
+  &__action-wrapper {
+    position: fixed;
+    top: 45%;
+    z-index: 1299;
+    width: 48px;
+    height: 48px;
+    right: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: @primary-color;
+    font-size: 16px;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+    transition: right 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
+  }
+  &__icon {
     color: rgb(255, 255, 255);
     font-size: 20px;
-  }
-}
-.dev-drawer-color-pricker-wrap {
-  width: 220px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  :deep(.vc-input__input) {
-    border: 1px solid #d9d9d9;
-    box-shadow: none;
-    border-radius: 4px;
   }
 }
 </style>
@@ -252,10 +212,11 @@ export default {
 <style lang="less">
 // 兼容 IE11 工具条出现在中间的情况
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .dev-drawer-view.ant-drawer.ant-drawer-right .dev-drawer-action-main {
+  .dev-drawer.ant-drawer.ant-drawer-right .dev-drawer__action-wrapper {
     right: 0;
   }
-  .dev-drawer-view.ant-drawer.ant-drawer-right.ant-drawer-open .dev-drawer-action-main {
+  .dev-drawer.ant-drawer.ant-drawer-right.ant-drawer-open
+    .dev-drawer__action-wrapper {
     right: 300px;
   }
 }

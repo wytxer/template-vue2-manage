@@ -1,12 +1,13 @@
 <template>
-  <div class="columns-filter-wrap TAR FB1">
-    <a-dropdown :trigger="['click']" placement="topRight">
-      <a class="ant-dropdown-link" @click="e => e.preventDefault()"> 列筛选
+  <div class="TAR FB1">
+    <a-dropdown placement="topRight" :trigger="['click']">
+      <a @click="e => e.preventDefault()">
+        列筛选
         <a-icon type="down" />
       </a>
       <a-menu slot="overlay" class="FB FBFD-C">
         <!-- 全选控制 -->
-        <a-checkbox-group style="border-bottom: 1px solid #dfdfdf" class="PL8" v-if="allColumns.length > 5" v-model="checkAll" @change="onCheckAllChange">
+        <a-checkbox-group style="border-bottom: 1px solid #dfdfdf; padding-left: 8px" v-if="allColumns.length > 5" v-model="checkAll" @change="onCheckAllChange">
           <a-checkbox class="PL8 PR8 PT4 PB4" :indeterminate="indeterminate" value="all">
             全选
           </a-checkbox>

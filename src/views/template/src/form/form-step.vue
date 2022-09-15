@@ -1,5 +1,5 @@
 <template>
-  <ak-container class="ak-pb0" card>
+  <layout-wrapper class="ak-pb0" card>
     <a-steps style="max-width: 750px; margin: 16px auto" :current="currentStep">
       <a-step title="填写转账信息" />
       <a-step title="确认转账信息" />
@@ -8,7 +8,7 @@
     <step1 v-if="currentStep === 0" :values="values" @next="currentStep = 1" />
     <step2 v-else-if="currentStep === 1" :values="values" @next="currentStep = 2" @prev="currentStep = 0" />
     <step3 v-else-if="currentStep === 2" :values="values" @finish="currentStep = 0" />
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

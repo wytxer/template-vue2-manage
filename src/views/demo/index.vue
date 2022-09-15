@@ -1,6 +1,6 @@
 <template>
-  <ak-container card class="demo-view">
-    <demo />
+  <layout-wrapper card class="page-demo">
+    <a-alert message="测试页面" type="info" class="MB24" />
 
     <a-button v-action.add.edit>添加或编辑</a-button>
     <template v-if="$auth('delete')">
@@ -26,7 +26,7 @@
         <a-button type="primary">样式库</a-button>
       </a>
     </div>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>
@@ -58,10 +58,9 @@ export default {
       const driver = this.$shepherd({
         confirmCancel: false
       })
-
       driver.addSteps([{
         attachTo: {
-          element: document.querySelector('.layout-base-view .ant-menu'),
+          element: document.querySelector('.layout-base .ant-menu'),
           on: 'auto'
         },
         title: '菜单导航',
@@ -74,14 +73,14 @@ export default {
         }]
       }, {
         attachTo: {
-          element: document.querySelector('.layout-base-view .nav-header-wrap .action-main'),
+          element: document.querySelector('.layout-base .nav-header .nav-header__user'),
           on: 'auto'
         },
         title: '顶部用户栏',
         text: '可以在这里查看当前登录的用户、操作退出登录，如果开启了「全局错误捕获」的话，还可以在这里查看系统的报错日志'
       }, {
         attachTo: {
-          element: document.querySelector('.dev-drawer-view .dev-drawer-action-main'),
+          element: document.querySelector('.dev-drawer .dev-drawer__action-wrapper'),
           on: 'auto'
         },
         title: '项目配置',
@@ -93,15 +92,8 @@ export default {
           text: '完成'
         }]
       }])
-
       driver.start()
     }
   }
 }
 </script>
-
-<style lang="less" scoped>
-.demo-view {
-  position: relative;
-}
-</style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="user-login-view user-view">
+  <div class="page-login">
     <user-header />
-    <div :class="['error-tips', {hide: !message, show: !!message}]">
+    <div :class="['error-tips', {'is-active': !!message}]">
       <a-alert v-if="message" :message="message" banner closable @close="onAlertClose" type="error" />
     </div>
-    <a-form-model :model="values" :rules="rules" ref="form">
+    <a-form-model ref="form" :model="values" :rules="rules">
       <a-form-model-item prop="user">
         <a-input :size="size" v-model="values.user" placeholder="手机号">
           <a-icon slot="prefix" type="user" class="C999" />
@@ -121,15 +121,14 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.user-login-view {
+.page-login {
+  width: 100%;
   .error-tips {
     margin: 33px 0 10px;
     height: 37px;
+    opacity: 0;
     transition: opacity 0.25s ease-in;
-    &.hide {
-      opacity: 0;
-    }
-    &.show {
+    &.is-active {
       opacity: 1;
     }
   }

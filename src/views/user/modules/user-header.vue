@@ -1,7 +1,7 @@
 <template>
-  <div class="user-header-wrap">
-    <div class="title">{{ title }}</div>
-    <div class="description" v-if="description">{{ description }}</div>
+  <div class="user-header">
+    <div class="user-header__title">{{ title }}</div>
+    <div class="user-header__description" v-if="description">{{ description }}</div>
   </div>
 </template>
 
@@ -22,13 +22,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.user-header-wrap {
+.user-header {
   padding-top: 80px;
   text-align: center;
-  .title {
+  &__title {
     font-size: 32px;
   }
-  .description {
+  &__description {
     color: #999;
     padding-top: 10px;
   }

@@ -1,20 +1,20 @@
 <template>
-  <div :class="['layout-base-view', layoutClassName]">
+  <div :class="['layout-base', layoutClassName]">
     <nav-header />
     <nav-menu v-if="isSideNav" />
     <!-- 如果是面包屑导航 -->
-    <div v-if="showBreadcrumb" key="body-main" class="body-main">
-      <div class="breadcrumb-container">
+    <div v-if="showBreadcrumb" key="breadcrumb" class="layout-base__body">
+      <div class="layout-base__breadcrumb-wrapper">
         <div :class="[{container: !isSideNav}]">
           <nav-breadcrumb />
         </div>
       </div>
-      <div class="content-main">
+      <div class="layout-base__content">
         <router-view />
       </div>
     </div>
     <!-- 否则如果是标签页导航 -->
-    <div v-else key="tab-body-main" class="body-main tab-body-main">
+    <div v-else key="tab" class="layout-base__body">
       <nav-tab />
     </div>
     <dev-drawer v-if="showDevDrawer"></dev-drawer>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { NavHeader, NavMenu, NavBreadcrumb, NavTab, DevDrawer } from '@/components'
 
 export default {
@@ -41,104 +41,97 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['showBreadcrumb']),
     ...mapState({
       layout: state => state.app.layout,
+      navMode: state => state.app.navMode,
       isSideNav: state => state.app.layout === 'side',
       menuCollapsed: state => state.app.menuCollapsed,
-      showBreadcrumb: state => state.app.navMode === 'breadcrumb',
       logoFollowMenu: state => state.app.logoMode === 'followMenu'
     }),
     layoutClassName () {
       const foldName = this.menuCollapsed ? 'fold' : 'unfold'
       const logoName = this.logoFollowMenu ? 'menu' : 'header'
-      return `layout-base-${this.layout}-menu-view layout-base-${foldName}-menu-view layout-base-follow-${logoName}-view`
+      return `layout-base--${this.layout} layout-base--${this.navMode} layout-base--${foldName} layout-base--${logoName}`
     }
   }
 }
 </script>
 
-<style lang="less">
-.layout-base-view {
+<style lang="less" scoped>
+.layout-base {
   width: 100%;
   min-width: @container-min-width;
   padding-top: @top-header-height;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
 
-  &.layout-base-fold-menu-view {
+  &--fold {
     padding-left: @side-menu-fold-width;
   }
-  &.layout-base-unfold-menu-view {
+  &--unfold {
     padding-left: @side-menu-unfold-width;
   }
-  &.layout-base-follow-menu-view {
-    &.layout-base-fold-menu-view.layout-base-side-menu-view {
-      .nav-header-wrap {
-        padding-left: @side-menu-fold-width;
-      }
+  &--menu {
+    &.layout-base--fold.layout-base--side :deep(.nav-header) {
+      padding-left: @side-menu-fold-width;
     }
-    &.layout-base-unfold-menu-view.layout-base-side-menu-view {
-      .nav-header-wrap {
-        padding-left: @side-menu-unfold-width;
-      }
+    &.layout-base--unfold.layout-base--side :deep(.nav-header) {
+      padding-left: @side-menu-unfold-width;
     }
-    .nav-header-wrap {
+    :deep(.nav-header) {
       z-index: 500;
     }
-    .nav-menu-wrap {
+    :deep(.nav-menu) {
       z-index: 600;
       top: 0;
       height: 100vh;
     }
   }
-  .body-main {
+  &__body {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - @top-header-height);
     background-color: @gray-border-background;
-    .content-main {
-      // 兼容 IE11
-      min-height: 1px;
-    }
-    // 标签页导航单独调整一部分样式
-    &.tab-body-main {
-      .common-detail-view .ak-white-container-wrap:first-child,
-      .form-complex-view .ak-white-container-wrap:first-child,
-      .common-steps-form-view .ak-white-container-wrap:first-child {
-        padding-top: 16px;
-      }
-    }
-    .breadcrumb-container {
-      background-color: #fff;
-      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-    }
   }
-  &.layout-base-top-menu-view {
+  &__content {
+    // 兼容 IE11
+    min-height: 1px;
+  }
+  &__breadcrumb-wrapper {
+    background-color: #fff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  &--top {
     padding-left: 0;
-    .nav-breadcrumb-wrap {
+    :deep(.nav-breadcrumb) {
       padding-left: 0;
       padding-right: 0;
     }
-    .nav-header-wrap {
+    :deep(.nav-header) {
       padding-left: 0;
     }
-    .nav-menu-wrap {
+    :deep(.nav-menu) {
       height: auto;
     }
-    .ak-container-wrap > .container {
+    :deep(.layout-wrapper > .container) {
       max-width: @container-max-width;
       min-width: @container-min-width;
     }
-    .breadcrumb-container {
-      .container {
-        max-width: @container-max-width;
-        min-width: @container-min-width;
-        width: 100%;
-        padding: 0 @common-spacing;
-        margin: 0 auto;
-      }
+    .layout-base__breadcrumb-wrapper .container {
+      max-width: @container-max-width;
+      min-width: @container-min-width;
+      width: 100%;
+      padding: 0 @common-spacing;
+      margin: 0 auto;
     }
-    .ak-tabs-nav {
+    :deep(.ak-tabs-nav) {
       margin: 0 0 16px;
+    }
+  }
+  &--tab {
+    :deep(.page-detail .layout-wrapper:first-child),
+    :deep(.page-form .layout-wrapper:first-child) {
+      padding-top: 16px;
     }
   }
 }

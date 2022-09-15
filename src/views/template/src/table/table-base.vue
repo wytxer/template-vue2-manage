@@ -1,5 +1,5 @@
 <template>
-  <ak-container class="ak-card-table" card :bodyStyle="{padding: 0}">
+  <layout-wrapper class="ak-card-table" card :bodyStyle="{padding: 0}">
     <ak-table ref="table" rowKey="id" :columns="columns" :loadData="queryTableData">
       <!-- 财富 -->
       <template #money="text">
@@ -19,7 +19,7 @@
         <a>删除</a>
       </template>
     </ak-table>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

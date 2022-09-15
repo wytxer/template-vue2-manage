@@ -5,15 +5,13 @@
 <script>
 import ViewAbnormal from './modules/view-abnormal'
 
-import imageUrl from '@/assets/404.svg'
-
 export default {
   components: {
     ViewAbnormal
   },
   data () {
     return {
-      imageUrl
+      imageUrl: require('@/assets/404.svg')
     }
   }
 }

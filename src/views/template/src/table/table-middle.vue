@@ -1,5 +1,5 @@
 <template>
-  <ak-container card :bodyStyle="{padding: 0}" class="ak-card-table">
+  <layout-wrapper card :bodyStyle="{padding: 0}" class="ak-card-table">
     <a-form-model ref="form" class="ak-query-filter" :model="queryFilters" :colon="false">
       <a-row :gutter="24">
         <a-col v-bind="$wrapperCol">
@@ -48,7 +48,7 @@
         </a-popconfirm>
       </template>
     </ak-table>
-  </ak-container>
+  </layout-wrapper>
 </template>
 
 <script>

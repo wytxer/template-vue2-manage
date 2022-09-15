@@ -1,5 +1,5 @@
 <template>
-  <ak-container title="证券信息" card :bordered="false" :loading="false">
+  <layout-wrapper title="证券信息" card :bordered="false" :loading="false">
     <a-row :gutter="24" class="PB24">
       <a-col :span="8">
         <div class="PB6 C666">股票代码</div>
@@ -29,5 +29,5 @@
         <div>魂殿的破产申请</div>
       </a-col>
     </a-row>
-  </ak-container>
+  </layout-wrapper>
 </template>
