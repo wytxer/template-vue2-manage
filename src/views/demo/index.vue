@@ -10,19 +10,19 @@
     <a-button @click="onOpenDriver" class="ML10">打开新手引导</a-button>
 
     <div class="PT24 PB24">
-      <a target="_blank" class="MR10" href="http://docs.wi.bszhct.com/docs/cli.html">
+      <a target="_blank" class="MR10" href="https://docs.bszhct.com/docs/wy-cli.html">
         <a-button type="primary">小工具</a-button>
       </a>
-      <a target="_blank" class="MR10" href="http://docs.wi.bszhct.com/docs/tv2m-template.html">
+      <a target="_blank" class="MR10" href="https://docs.bszhct.com/docs/tv2m-template.html">
         <a-button type="primary">模板库</a-button>
       </a>
-      <a target="_blank" class="MR10" href="http://docs.wi.bszhct.com/components/quick-start.html">
+      <a target="_blank" class="MR10" href="https://docs.bszhct.com/components/quick-start.html">
         <a-button type="primary">antdv-kit 组件库</a-button>
       </a>
       <a target="_blank" class="MR10" href="https://www.antdv.com/components/button-cn/">
         <a-button type="primary">Antd 组件库</a-button>
       </a>
-      <a target="_blank" class="MR10" href="http://docs.wi.bszhct.com/docs/style-utils.html">
+      <a target="_blank" class="MR10" href="https://docs.bszhct.com/docs/style-utils.html">
         <a-button type="primary">样式库</a-button>
       </a>
     </div>
