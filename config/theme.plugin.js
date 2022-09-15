@@ -3,9 +3,9 @@
  */
 
 const path = require('path')
+const { generate } = require('@ant-design/colors')
 const config = require('./config')
 const ThemeColorReplacer = require('webpack-theme-color-replacer')
-const generate = require('@ant-design/colors/lib/generate').default
 
 // 根据主色生成全套的主题色色值
 const getAntdSerials = (color) => {
