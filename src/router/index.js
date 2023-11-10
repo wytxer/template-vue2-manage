@@ -54,10 +54,10 @@ const router = new Router(routerConfig)
 
 // 免登陆白名单
 const whiteList = [
-  '/user/login',
-  '/user/mock',
-  '/user/reset-password',
-  '/user/register'
+  '/admin/login',
+  '/admin/mock',
+  '/admin/reset-password',
+  '/admin/register'
 ]
 
 // 统一处理跳转

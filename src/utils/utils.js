@@ -4,6 +4,7 @@
  *   组件外部需要自行引入工具库
  */
 import Vue from 'vue'
+import { JSEncrypt } from 'jsencrypt'
 
 // 手机号校验
 export function testMobile (value) {
@@ -19,6 +20,24 @@ export function testPassword (value) {
 // 身份证校验
 export function testIdentity (value) {
   return /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/.test(value)
+}
+
+/**
+ * 加密密码
+ */
+export function encryptPassword (password) {
+  const encrypt = new JSEncrypt()
+  encrypt.setPublicKey(`-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApKINTCZqDHlhYECesFg9
+    ZmFg5tp7iEd2v36sa4rNuTldj9UlDGymHakeh9zkYTrr5LUvj6C1bcsABncSzYOi
+    GLUpgeiL4SAgkYlglgIV3mP8EUxCqCvZcoljAbWb8T7Pg1mhl0ETbfxuu3NhcJov
+    C38PML71NqiOM7O8CfSTBy5kkoB9iyO8f1MrXctu4Npbauqilo0P2gw7HSCF6f/+
+    dz+LQcz3tsEI9RNwYa6sMWtELQi8piXM9+sZEq0f/nomUILShTVQyc+oxC4HpCAn
+    65dIZeD1CR8VAK5KYm6AI9w0qNOQhGTcOmB89L7Ukp4daF9ivxyri9ejTM7KBvlw
+    xQIDAQAB
+    -----END PUBLIC KEY-----
+  `)
+  return encrypt.encrypt(password)
 }
 
 // 生成随机字符串

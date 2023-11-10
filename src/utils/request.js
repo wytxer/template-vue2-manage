@@ -21,7 +21,7 @@ const headerType = 'json'
 
 // 跳转到登录页面
 const onOk = () => {
-  location.href = `${process.env.VUE_APP_ROUTER_BASE_URL}user/login`
+  location.href = `${process.env.VUE_APP_ROUTER_BASE_URL}admin/login`
 }
 // 下载文件
 const download = res => {

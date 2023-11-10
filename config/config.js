@@ -95,7 +95,7 @@ module.exports = {
   proxy: {
     // 系统默认的前缀配置
     [apiPrefix]: {
-      target: 'http://127.0.0.1:7001',
+      target: 'http://127.0.0.1:9302',
       ws: false,
       changeOrigin: true,
       logLevel: 'debug'

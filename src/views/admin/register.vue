@@ -1,13 +1,13 @@
 <template>
   <div class="page-register">
-    <user-header title="注册" />
+    <admin-header title="注册" />
     <a-steps :current="currentStep" style="width: 592px">
       <a-step title="手机号验证" />
       <a-step title="设置密码" />
       <a-step title="完成" />
     </a-steps>
 
-    <div class="user-form">
+    <div class="admin-form">
       <a-form-model v-show="currentStep < 2" :model="values" :rules="rules" ref="form">
         <div v-show="currentStep === 0">
           <a-form-model-item prop="user">
@@ -85,7 +85,7 @@
             <a v-show="currentStep === 1" @click="onGoBackOne" href="javascript:;" class="C-OK" style="float: left">
               上一步
             </a>
-            <router-link to="/user/login" style="float: right">
+            <router-link to="/admin/login" style="float: right">
               使用已有账户登录
             </router-link>
           </div>
@@ -97,7 +97,7 @@
           <a-icon type="check" />
         </span>
         <div class="register-success__tips">注册成功</div>
-        <router-link to="/user/login">
+        <router-link to="/admin/login">
           <a-button type="primary" :size="size">
             马上登录
           </a-button>
@@ -110,7 +110,7 @@
 <script>
 import api from '@/api'
 import { getSmsCode, register } from '@/api/user'
-import UserHeader from './modules/user-header'
+import AdminHeader from './modules/admin-header'
 
 const levelNames = {
   0: '低',
@@ -133,7 +133,7 @@ const levelColors = {
 
 export default {
   components: {
-    UserHeader
+    AdminHeader
   },
   data () {
     return {
@@ -288,7 +288,7 @@ export default {
           this.loading = true
           const { user, smsCode, password } = this.values
           register({
-            user, smsCode, password
+            user, smsCode, password: this.$utils.encryptPassword(password)
           })
             .then(() => {
               this.$message.success('注册成功')
@@ -351,64 +351,65 @@ export default {
   }
 }
 </script>
+
 <style lang="less" scoped>
-.page-register {
-  :deep(.user-header) {
-    padding-bottom: 80px;
-  }
-  .user-form {
-    width: 410px;
-    margin: 0 auto;
-    padding: 48px 0 100px;
-  }
-  .img-code {
-    cursor: pointer;
-    width: 112px;
-    height: 38px;
-    border: 1px solid #d9d9d9;
-    margin-left: 10px;
-    border-radius: 4px;
-    &__url {
-      width: 100%;
-      height: 100%;
-      vertical-align: top;
+  .page-register {
+    :deep(.user-header) {
+      padding-bottom: 80px;
     }
-  }
-  .sms-code {
-    margin-left: 10px;
-    width: 112px;
-  }
-  .register-success {
-    text-align: center;
-    &__icon {
-      display: inline-block;
-      width: 66px;
-      height: 64px;
-      line-height: 48px;
-      padding: 8px;
+    .admin-form {
+      width: 410px;
+      margin: 0 auto;
+      padding: 48px 0 100px;
+    }
+    .img-code {
+      cursor: pointer;
+      width: 112px;
+      height: 38px;
+      border: 1px solid #d9d9d9;
+      margin-left: 10px;
+      border-radius: 4px;
+      &__url {
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+      }
+    }
+    .sms-code {
+      margin-left: 10px;
+      width: 112px;
+    }
+    .register-success {
       text-align: center;
-      background-color: @success-color;
-      border-radius: 50%;
-      color: #fff;
-      font-size: 48px;
+      &__icon {
+        display: inline-block;
+        width: 66px;
+        height: 64px;
+        line-height: 48px;
+        padding: 8px;
+        text-align: center;
+        background-color: @success-color;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 48px;
+      }
+      &__tips {
+        padding: 32px 0;
+        font-size: 20px;
+        font-weight: bold;
+      }
     }
-    &__tips {
-      padding: 32px 0;
-      font-size: 20px;
-      font-weight: bold;
+    .password-tips {
+      width: 260px;
+      &__error {
+        color: #ff0000;
+      }
+      &__warning {
+        color: #ff7e05;
+      }
+      &__success {
+        color: #52c41a;
+      }
     }
   }
-  .password-tips {
-    width: 260px;
-    &__error {
-      color: #ff0000;
-    }
-    &__warning {
-      color: #ff7e05;
-    }
-    &__success {
-      color: #52c41a;
-    }
-  }
-}
 </style>

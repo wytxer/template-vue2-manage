@@ -3,7 +3,7 @@
     <router-view v-if="showBreadcrumb" />
     <template v-else>
       <layout-base v-if="$route.meta.layout === 'layout-base'" />
-      <layout-user v-if="$route.meta.layout === 'layout-user'" />
+      <layout-admin v-if="$route.meta.layout === 'layout-admin'" />
       <router-view v-else />
     </template>
   </a-config-provider>
@@ -11,14 +11,14 @@
 
 <script>
 import { mapState } from 'vuex'
-import { LayoutBase, LayoutUser } from '@/layouts'
+import { LayoutBase, LayoutAdmin } from '@/layouts'
 import themeColor from '@/components/dev-drawer/theme-color'
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 
 export default {
   components: {
     LayoutBase,
-    LayoutUser
+    LayoutAdmin
   },
   data () {
     return {
@@ -41,5 +41,5 @@ export default {
 </script>
 
 <style lang="less">
-@import './app.less';
+  @import './app.less';
 </style>

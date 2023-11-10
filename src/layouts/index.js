@@ -1,9 +1,9 @@
 import LayoutBlock from './block'
-import LayoutUser from './user'
+import LayoutAdmin from './admin'
 import LayoutBase from './base'
 
 export {
   LayoutBlock,
-  LayoutUser,
+  LayoutAdmin,
   LayoutBase
 }

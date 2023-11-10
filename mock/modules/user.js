@@ -28,7 +28,7 @@ const user = {
 }
 
 module.exports = {
-  'POST /user/login': user.info,
+  'POST /admin/login': user.info,
   'POST /user/logout': user.ok,
   'POST /user/info': user.info,
   'POST /menus': user.menus,

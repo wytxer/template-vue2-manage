@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import * as types from '@/store/types'
 
-import logo from '@/assets/logo.svg'
+import logo from '@/assets/logo.png'
 
 const initState = {
   /**
-   * logo 的图片地址，默认是 @/assets/logo.svg
+   * logo 的图片地址，默认是 @/assets/logo.png
    */
   logo,
   /**

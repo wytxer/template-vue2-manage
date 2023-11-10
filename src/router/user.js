@@ -1,23 +1,23 @@
-import LayoutUser from '@/layouts/user.vue'
+import LayoutAdmin from '@/layouts/admin.vue'
 
 const routes = [{
-  path: '/user',
-  component: LayoutUser,
+  path: '/admin',
+  component: LayoutAdmin,
   children: [{
     path: 'login',
-    component: () => import('@/views/user/login.vue'),
+    component: () => import('@/views/admin/login.vue'),
     meta: {
       title: '登录'
     }
   }, {
     path: 'reset-password',
-    component: () => import('@/views/user/reset-password.vue'),
+    component: () => import('@/views/admin/reset-password.vue'),
     meta: {
       title: '重置密码'
     }
   }, {
     path: 'register',
-    component: () => import('@/views/user/register.vue'),
+    component: () => import('@/views/admin/register.vue'),
     meta: {
       title: '注册'
     }

@@ -24,7 +24,7 @@
           </a-menu>
         </a-dropdown>
         <div v-else>
-          <router-link to="/user/login">
+          <router-link to="/admin/login">
             登录
           </router-link>
         </div>
@@ -75,7 +75,7 @@ export default {
       this.logout()
         .then(() => {
           this.$message.success('登出成功')
-          location.href = `${process.env.VUE_APP_ROUTER_BASE_URL}user/login`
+          location.href = `${process.env.VUE_APP_ROUTER_BASE_URL}admin/login`
         })
         .catch(() => {})
     }

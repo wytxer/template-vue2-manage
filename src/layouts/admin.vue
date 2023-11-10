@@ -1,6 +1,6 @@
 <template>
-  <div class="layout-user">
-    <div class="layout-user__body">
+  <div class="layout-admin">
+    <div class="layout-admin__body">
       <router-view />
     </div>
     <nav-footer />
@@ -11,7 +11,7 @@
 import { NavFooter } from '@/components'
 
 export default {
-  name: 'layout-user',
+  name: 'layout-admin',
   components: {
     NavFooter
   }
@@ -19,12 +19,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.layout-user {
+.layout-admin {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: rgb(237, 240, 245) url("../assets/bg-user.svg") 0 0 no-repeat;
+  background: rgb(237, 240, 245) url("../assets/bg-admin.svg") 0 0 no-repeat;
   &__body {
     width: 410px;
     margin: 0 auto;

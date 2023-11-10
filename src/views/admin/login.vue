@@ -1,6 +1,6 @@
 <template>
   <div class="page-login">
-    <user-header />
+    <admin-header />
     <div :class="['error-tips', {'is-active': !!message}]">
       <a-alert v-if="message" :message="message" banner closable @close="onAlertClose" type="error" />
     </div>
@@ -29,10 +29,10 @@
 
       <a-form-model-item>
         <div class="FB FBJC-SB">
-          <router-link to="/user/reset-password">
+          <router-link to="/admin/reset-password">
             忘记密码
           </router-link>
-          <router-link to="/user/register">
+          <router-link to="/admin/register">
             注册账户
           </router-link>
         </div>
@@ -43,11 +43,11 @@
 
 <script>
 import { mapActions } from 'vuex'
-import UserHeader from './modules/user-header'
+import AdminHeader from './modules/admin-header'
 
 export default {
   components: {
-    UserHeader
+    AdminHeader
   },
   data () {
     return {
@@ -97,7 +97,11 @@ export default {
       this.$refs.form.validate(valid => {
         if (valid) {
           this.loading = true
-          this.login(this.values)
+          const { user, password } = this.values
+          this.login({
+            user,
+            password: this.$utils.encryptPassword(password)
+          })
             .then(() => {
               const { query } = this.$route
               this.loading = false
@@ -121,16 +125,16 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.page-login {
-  width: 100%;
-  .error-tips {
-    margin: 33px 0 10px;
-    height: 37px;
-    opacity: 0;
-    transition: opacity 0.25s ease-in;
-    &.is-active {
-      opacity: 1;
+  .page-login {
+    width: 100%;
+    .error-tips {
+      margin: 33px 0 10px;
+      height: 37px;
+      opacity: 0;
+      transition: opacity 0.25s ease-in;
+      &.is-active {
+        opacity: 1;
+      }
     }
   }
-}
 </style>

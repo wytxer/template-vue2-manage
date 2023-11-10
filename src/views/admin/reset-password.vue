@@ -1,7 +1,7 @@
 <template>
-  <div class="page-reset-password user-view">
-    <user-header title="重置密码" />
-    <a-form-model ref="form" class="user-form" :model="values" :rules="rules">
+  <div class="page-reset-password admin-view">
+    <admin-header title="重置密码" />
+    <a-form-model ref="form" class="admin-form" :model="values" :rules="rules">
       <a-form-model-item prop="user">
         <a-input :size="size" v-model="values.user" placeholder="手机号">
           <a-icon slot="prefix" type="user" class="C999" />
@@ -51,10 +51,10 @@
 
       <a-form-model-item>
         <div class="FB FBJC-SB">
-          <router-link to="/user/login">
+          <router-link to="/admin/login">
             去登陆
           </router-link>
-          <router-link to="/user/register">
+          <router-link to="/admin/register">
             注册账户
           </router-link>
         </div>
@@ -66,11 +66,11 @@
 <script>
 import api from '@/api'
 import { getSmsCode, resetPassword } from '@/api/user'
-import UserHeader from './modules/user-header'
+import AdminHeader from './modules/admin-header'
 
 export default {
   components: {
-    UserHeader
+    AdminHeader
   },
   data () {
     return {
@@ -165,11 +165,11 @@ export default {
           this.loading = true
           const { user, smsCode, password } = this.values
           resetPassword({
-            user, smsCode, password
+            user, smsCode, password: this.$utils.encryptPassword(password)
           })
             .then(() => {
               this.$message.success('密码重置成功，请重新登录')
-              this.$router.push('/user/login')
+              this.$router.push('/admin/login')
               this.loading = false
             })
             .catch(e => {
@@ -222,32 +222,33 @@ export default {
   }
 }
 </script>
+
 <style lang="less" scoped>
-.page-reset-password {
-  :deep(.user-header) {
-    padding-bottom: 80px;
-  }
-  .user-form {
-    width: 410px;
-    margin: 0 auto;
-    padding: 48px 0 100px;
-  }
-  .img-code {
-    cursor: pointer;
-    width: 112px;
-    height: 38px;
-    border: 1px solid #d9d9d9;
-    margin-left: 10px;
-    border-radius: 4px;
-    &__url {
-      width: 100%;
-      height: 100%;
-      vertical-align: top;
+  .page-reset-password {
+    :deep(.admin-header) {
+      padding-bottom: 80px;
+    }
+    .admin-form {
+      width: 410px;
+      margin: 0 auto;
+      padding: 48px 0 100px;
+    }
+    .img-code {
+      cursor: pointer;
+      width: 112px;
+      height: 38px;
+      border: 1px solid #d9d9d9;
+      margin-left: 10px;
+      border-radius: 4px;
+      &__url {
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+      }
+    }
+    .sms-code {
+      margin-left: 10px;
+      width: 112px;
     }
   }
-  .sms-code {
-    margin-left: 10px;
-    width: 112px;
-  }
-}
 </style>

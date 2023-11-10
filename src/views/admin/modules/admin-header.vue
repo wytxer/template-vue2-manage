@@ -1,13 +1,13 @@
 <template>
-  <div class="user-header">
-    <div class="user-header__title">{{ title }}</div>
-    <div class="user-header__description" v-if="description">{{ description }}</div>
+  <div class="admin-header">
+    <div class="admin-header__title">{{ title }}</div>
+    <div class="admin-header__description" v-if="description">{{ description }}</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'user-header',
+  name: 'admin-header',
   props: {
     title: {
       type: String,
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.user-header {
+.admin-header {
   padding-top: 80px;
   text-align: center;
   &__title {
