@@ -1,5 +1,5 @@
 <template>
-  <div :class="['layout-wrapper', `layout-wrapper--${type}`]">
+  <div :class="['layout-wrapper-wrap', `layout-wrapper-${type}`]">
     <div class="container">
       <a-card v-if="card" v-bind="$attrs" v-on="$listeners" :class="cardClassName" :bordered="bordered">
         <slot></slot>
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.layout-wrapper {
+.layout-wrapper-wrap {
   flex: 1;
   width: 100%;
   .container {
@@ -49,10 +49,10 @@ export default {
     margin: 0 auto;
     padding: 0 @common-spacing;
   }
-  &--white {
+  &.layout-wrapper-white {
     background-color: #ffffff;
   }
-  &--gray {
+  &.layout-wrapper-gray {
     flex: 1;
     background-color: @gray-border-background;
     .container {
@@ -60,7 +60,7 @@ export default {
       padding-bottom: @common-spacing;
     }
   }
-  &--transparent {
+  &.layout-wrapper-transparent {
     flex: 1;
     background-color: transparent;
     .container {

@@ -1,5 +1,5 @@
 <template>
-  <a-drawer class="dev-drawer" placement="right" title="定制" :width="300" :closable="false" :visible="visible" :drawerStyle="drawerStyle" @close="onClose">
+  <a-drawer class="dev-drawer-view" placement="right" title="定制" :width="300" :closable="false" :visible="visible" :drawerStyle="drawerStyle" @close="onClose">
     <a-form-model :model="app" layout="vertical">
       <a-form-model-item label="菜单风格">
         <a-select placeholder="请选择" v-model="app.menuTheme" @change="onThemeChange" :getPopupContainer="trigger => trigger.parentNode">
@@ -34,7 +34,7 @@
       </a-form-model-item>
 
       <a-form-model-item label="主题色">
-        <sketch-picker class="dev-drawer__color-picker" :value="app.themeColor" :preset-colors="colors.map(item => item.id)" @input="onColorChange" />
+        <sketch-picker class="dev-drawer-color-pricker-wrap" :value="app.themeColor" :preset-colors="colors.map(item => item.id)" @input="onColorChange" />
       </a-form-model-item>
 
       <a-form-model-item label="全局错误捕获">
@@ -43,8 +43,8 @@
     </a-form-model>
 
     <!-- 展开 || 收起 -->
-    <div slot="handle" class="dev-drawer__action-wrapper" @click="onToggle">
-      <a-icon class="dev-drawer__icon" :type="visible ? 'close' : 'setting'" />
+    <div slot="handle" class="dev-drawer-action-main" @click="onToggle">
+      <a-icon class="action-icon" :type="visible ? 'close' : 'setting'" />
     </div>
   </a-drawer>
 </template>
@@ -175,8 +175,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.dev-drawer {
-  &__color-picker {
+.dev-drawer-view {
+  .dev-drawer-color-pricker-wrap {
     width: 220px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     :deep(.vc-input__input) {
@@ -185,7 +185,7 @@ export default {
       border-radius: 4px;
     }
   }
-  &__action-wrapper {
+  .dev-drawer-action-main {
     position: fixed;
     top: 45%;
     z-index: 1299;
@@ -201,10 +201,10 @@ export default {
     border-radius: 4px 0 0 4px;
     cursor: pointer;
     transition: right 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
-  }
-  &__icon {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
+    .action-icon {
+      color: rgb(255, 255, 255);
+      font-size: 20px;
+    }
   }
 }
 </style>
@@ -212,11 +212,11 @@ export default {
 <style lang="less">
 // 兼容 IE11 工具条出现在中间的情况
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .dev-drawer.ant-drawer.ant-drawer-right .dev-drawer__action-wrapper {
+  .dev-drawer-view.ant-drawer.ant-drawer-right .dev-drawer-action-main {
     right: 0;
   }
-  .dev-drawer.ant-drawer.ant-drawer-right.ant-drawer-open
-    .dev-drawer__action-wrapper {
+  .dev-drawer-view.ant-drawer.ant-drawer-right.ant-drawer-open
+    .dev-drawer-action-main {
     right: 300px;
   }
 }

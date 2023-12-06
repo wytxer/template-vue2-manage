@@ -1,13 +1,13 @@
 <template>
-  <div :class="['nav-header', {[`nav-header--${theme}`]: !isSideMenu}]">
+  <div :class="['nav-header-wrap', {[`nav-header-${theme}`]: !isSideMenu}]">
     <div :class="contentClassName">
       <div class="FB FB1">
         <nav-logo v-if="logoFollowHeader || !isSideMenu" />
-        <div class="nav-header__top-menu" v-if="!isSideMenu">
+        <div class="nav-header-top-menu" v-if="!isSideMenu">
           <top-menu :menus="menus" :theme="theme" mode="horizontal" class="nav-menu" />
         </div>
       </div>
-      <div class="nav-header__user">
+      <div class="nav-header-user">
         <modal-error v-if="catchError" />
         <a-dropdown v-if="user.logged" placement="bottomRight">
           <span>
@@ -62,7 +62,7 @@ export default {
       catchError: state => state.app.catchError
     }),
     contentClassName () {
-      let className = 'nav-header__wrapper'
+      let className = 'nav-header-wrapper'
       if (!this.isSideMenu) {
         className += ' container'
       }
@@ -83,7 +83,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.nav-header {
+.nav-header-wrap {
   height: @top-header-height;
   line-height: @top-header-height;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
@@ -93,8 +93,7 @@ export default {
   width: 100%;
   background-color: #ffffff;
   z-index: 600;
-
-  &__wrapper {
+  .nav-header-wrapper {
     display: flex;
     justify-content: space-between;
     padding: 0 @common-spacing;
@@ -106,27 +105,27 @@ export default {
       margin: 0 auto;
     }
   }
-  &__top-menu {
+  .nav-header-top-menu {
     padding-left: 10px;
     :deep(.ant-menu-horizontal) {
       line-height: @top-header-height;
       margin: 0;
     }
   }
-  &__user {
+  .nav-header-user {
     display: flex;
     align-items: center;
   }
-  &--dark {
+  &.nav-header-dark {
     background-color: @layout-header-background;
     color: #ffffff;
-    :deep(.nav-logo) {
+    :deep(.nav-logo-wrap) {
       color: #ffffff;
     }
   }
-  &--light {
+  &.nav-header-light {
     background-color: #ffffff;
-    :deep(.nav-logo) {
+    :deep(.nav-logo-wrap) {
       color: @main-color;
     }
   }

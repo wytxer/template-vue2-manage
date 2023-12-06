@@ -2,16 +2,16 @@
   <div :class="tabWrapClassName">
     <a-tabs type="editable-card" size="small" hideAdd v-model="currentRoute.fullPath" :class="tabClassName" @change="onTabChange" @edit="key => onCloseTab(key)">
       <a-tab-pane v-for="(item) in panes" :key="item.fullPath" :closable="panes.length > 1">
-        <a slot="tab" class="nav-tab__tag" @contextmenu.prevent="onOpenMenu($event, item)">
+        <a slot="tab" class="nav-tab-tag" @contextmenu.prevent="onOpenMenu($event, item)">
           {{ item.meta.title }}
         </a>
         <component :is="routeComponents[item.path] || viewNotFound" v-if="!item.reload"></component>
       </a-tab-pane>
     </a-tabs>
-    <ul v-show="visible" :style="{left: `${left}px`, top: `${top}px`}" class="nav-tab__action">
-      <li class="nav-tab__btn" @click="onReload">刷新</li>
-      <li class="nav-tab__btn" v-if="panes.length > 1" @click="onCloseOthers">关闭其他</li>
-      <li class="nav-tab__btn" v-if="panes.length > 1" @click="onCloseAll">关闭所有</li>
+    <ul v-show="visible" :style="{left: `${left}px`, top: `${top}px`}" class="nav-tab-action">
+      <li class="nav-tab-btn" @click="onReload">刷新</li>
+      <li class="nav-tab-btn" v-if="panes.length > 1" @click="onCloseOthers">关闭其他</li>
+      <li class="nav-tab-btn" v-if="panes.length > 1" @click="onCloseAll">关闭所有</li>
     </ul>
   </div>
 </template>
@@ -88,9 +88,9 @@ export default {
       return className
     },
     tabWrapClassName () {
-      let className = 'nav-tab'
+      let className = 'nav-tab-wrap'
       if (!this.isSideNav) {
-        className += ' nav-tab--top'
+        className += ' nav-tab-top'
       }
       return className
     },
@@ -316,9 +316,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.nav-tab {
+.nav-tab-wrap {
   position: relative;
-  &__tag {
+  .nav-tab-tag {
     display: inline-block;
     width: 100%;
     line-height: 28px;
@@ -357,7 +357,7 @@ export default {
           &.ant-tabs-tab-active {
             background-color: @primary-color;
             border-color: @primary-color;
-            .nav-tab__tag,
+            .nav-tab-tag,
             .anticon-close {
               color: #fff;
             }
@@ -389,7 +389,7 @@ export default {
       left: @side-menu-unfold-width;
     }
   }
-  &--top {
+  &.nav-tab-top {
     >:deep(.ant-tabs) {
       > .ant-tabs-bar {
         left: 0;
@@ -402,7 +402,7 @@ export default {
       }
     }
   }
-  &__action {
+  .nav-tab-action {
     margin: 0;
     background: #fff;
     z-index: 3000;
@@ -413,7 +413,7 @@ export default {
     border-radius: 4px;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
   }
-  &__btn {
+  .nav-tab-btn {
     margin: 0;
     line-height: 32px;
     padding: 0 8px;

@@ -1,6 +1,6 @@
 <template>
-  <div class="affix-footer">
-    <div class="affix-footer__body" :style="toolbarStyle">
+  <div class="affix-footer-wrap">
+    <div class="toolbar-container" :style="toolbarStyle">
       <slot></slot>
     </div>
   </div>
@@ -24,13 +24,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.affix-footer {
+.affix-footer-wrap {
   position: fixed;
   width: 100%;
   bottom: 0;
   right: 0;
   z-index: 1;
-  &__body {
+  .toolbar-container {
     width: @container-max-width;
     padding: 0 @common-spacing;
     margin: 0 auto;

@@ -1,6 +1,6 @@
 <template>
   <div class="layout-admin">
-    <div class="layout-admin__body">
+    <div class="layout-admin-body">
       <router-view />
     </div>
     <nav-footer />
@@ -25,7 +25,7 @@ export default {
   display: flex;
   flex-direction: column;
   background: rgb(237, 240, 245) url("../assets/bg-admin.svg") 0 0 no-repeat;
-  &__body {
+  &-body {
     width: 410px;
     margin: 0 auto;
     min-height: calc(100vh - 85px);

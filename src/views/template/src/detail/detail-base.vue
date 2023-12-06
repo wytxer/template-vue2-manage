@@ -3,14 +3,14 @@
     <layout-wrapper type="white" class="header-info" card :bodyStyle="{padding: 0}" :loading="loading">
       <a-row :gutter="gutter" class="MB16">
         <a-col :span="24" class="FB FBJC-SB FBAI-C">
-          <div class="header-info__code">{{ baseInfo.caseCode }}</div>
+          <div class="case-code">{{ baseInfo.caseCode }}</div>
           <div>
             <a-button-group>
               <a-button>操作</a-button>
               <a-button>操作</a-button>
               <a-button>操作</a-button>
             </a-button-group>
-            <a-button type="primary" @click="onMainClick" class="header-info__main-btn">
+            <a-button type="primary" @click="onMainClick" class="main-btn">
               主操作
             </a-button>
           </div>
@@ -160,11 +160,11 @@ export default {
 <style lang="less" scoped>
 .page-detail {
   .header-info {
-    &__code {
+    .case-code {
       font-size: 18px;
       font-weight: bold;
     }
-    &__main-btn {
+    .main-btn {
       margin-left: 16px;
     }
     .C666 {

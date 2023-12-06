@@ -2,14 +2,14 @@
   <layout-wrapper type="white" class="header-info" :loading="false">
     <a-row :gutter="gutter" class="MB16">
       <a-col :span="24" class="FB FBJC-SB FBAI-C">
-        <div class="header-info__code">天0302道清888号</div>
+        <div class="case-code">天0302道清888号</div>
         <div>
           <a-button-group>
             <a-button>操作</a-button>
             <a-button>操作</a-button>
             <a-button>操作</a-button>
           </a-button-group>
-          <a-button type="primary" @click="onMainClick" class="header-info__main-btn">
+          <a-button type="primary" @click="onMainClick" class="main-btn">
             主操作
           </a-button>
         </div>
@@ -67,11 +67,11 @@ export default {
 
 <style lang="less" scoped>
 .header-info {
-  &__code {
+  .case-code {
     font-size: 18px;
     font-weight: bold;
   }
-  &__main-btn {
+  .main-btn {
     margin-left: 16px;
   }
   .C666 {

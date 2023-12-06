@@ -5,8 +5,8 @@
       <div slot="footer">
         <a-button type="primary" icon="delete" @click="clearAll">全部删除</a-button>
       </div>
-      <div v-if="logs.length" class="error-list">
-        <div v-for="(item, index) in logs" :key="index" class="error-list__item">
+      <div v-if="logs.length" class="nav-header-error-list">
+        <div v-for="(item, index) in logs" :key="index" class="list-item">
           <div>
             <a-tag color="orange">报错信息</a-tag>{{ item.error.message }}
           </div>
@@ -55,8 +55,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.error-list {
-  &__item {
+.nav-header-error-list {
+  .list-item {
     transition: all 0.25s;
     padding: 8px;
     border-radius: 4px;

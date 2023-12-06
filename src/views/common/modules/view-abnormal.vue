@@ -1,10 +1,10 @@
 <template>
   <layout-wrapper type="transparent" card :cardClassName="viewClassName">
     <div class="abnormal-body">
-      <div><img class="abnormal-body__image" :src="imageUrl" /> </div>
+      <div><img class="abnormal-image" :src="imageUrl" /> </div>
       <div style="min-width: 180px">
-        <h2 class="abnormal-body__status">{{ status }}</h2>
-        <div class="abnormal-body__tips">{{ tips }}</div>
+        <h2 class="abnormal-status">{{ status }}</h2>
+        <div class="abnormal-tips">{{ tips }}</div>
         <a-button type="primary" @click="onGotoBack">返回</a-button>
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
     viewClassName () {
       let className = 'page-abnormal'
       if (this.$route.meta.user) {
-        className += ' page-abnormal--transparent'
+        className += ' page-abnormal-transparent'
       }
       return className
     }
@@ -69,7 +69,7 @@ export default {
   align-items: center;
   justify-content: center;
   align-content: center;
-  &--transparent {
+  &-transparent {
     background-color: transparent;
   }
   .abnormal-body {
@@ -77,15 +77,15 @@ export default {
     align-items: center;
     justify-content: center;
     align-content: center;
-    &__image {
+    .abnormal-image {
       width: 410px;
       margin-right: 80px;
     }
-    &__status {
+    .abnormal-status {
       font-size: 50px;
       margin: 0;
     }
-    &__tips {
+    .abnormal-tips {
       color: #999999;
       margin: 10px 0 20px;
     }

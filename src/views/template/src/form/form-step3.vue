@@ -1,7 +1,7 @@
 <template>
   <div class="page-form-step">
     <div class="pay-status">
-      <a-icon :class="['status-icon', `status-icon--${status}`]" :type="status === 'success' ? 'check-circle' : 'close-circle'" />
+      <a-icon :class="['status-icon', `status-icon-${status}`]" :type="status === 'success' ? 'check-circle' : 'close-circle'" />
     </div>
     <template v-if="status === 'success'">
       <div class="pay-title">操作成功</div>
@@ -13,19 +13,19 @@
 
     <div class="order-info">
       <div class="MB24">
-        <span class="order-info__label">付款账户</span>
+        <span class="order-label">付款账户</span>
         <span>{{ values.paymentUser }}</span>
       </div>
       <div class="MB24">
-        <span class="order-info__label">收款账户</span>
+        <span class="order-label">收款账户</span>
         <span>{{ values.chargeAccount }}</span>
       </div>
       <div class="MB24">
-        <span class="order-info__label">收款人姓名</span>
+        <span class="order-label">收款人姓名</span>
         <span>{{ values.chargeName }}</span>
       </div>
       <div class="MB24">
-        <span class="order-info__label">转账金额</span>
+        <span class="order-label">转账金额</span>
         <span>{{ values.money }} 元</span>
       </div>
     </div>
@@ -66,10 +66,10 @@ export default {
       font-size: 72px;
       line-height: 72px;
       margin-bottom: 24px;
-      &--success {
+      &-success {
         color: @primary-color;
       }
-      &--error {
+      &-error {
         color: @error-color;
       }
     }
@@ -92,7 +92,7 @@ export default {
     text-align: left;
     max-width: 600px;
     margin: 0 auto;
-    &__label {
+    .order-label {
       display: inline-block;
       width: 100px;
       text-align: right;

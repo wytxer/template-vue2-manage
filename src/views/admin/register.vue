@@ -23,7 +23,7 @@
               </a-input>
               <a-tooltip title="看不清？换一张">
                 <div class="img-code" @click="onUpdateImageCode">
-                  <img class="img-code__url" :src="imageCodeUrl" />
+                  <img class="img-code-url" :src="imageCodeUrl" />
                 </div>
               </a-tooltip>
             </div>
@@ -51,7 +51,7 @@
           <a-popover :trigger="['focus']" :getPopupContainer="trigger => trigger.parentElement" v-model="passwordLevelChecked" placement="rightTop">
             <template slot="content">
               <div class="password-tips">
-                <div :class="`password-tips__${passwordLevelClassName}`">
+                <div :class="`password-tips-${passwordLevelClassName}`">
                   强度：{{ passwordLevelName }}
                 </div>
                 <a-progress :percent="passwordPercent" :showInfo="false" :strokeColor="passwordLevelColor" />
@@ -93,10 +93,10 @@
       </a-form-model>
 
       <div v-show="currentStep === 2" class="register-success">
-        <span class="register-success__icon">
+        <span class="ok-icon">
           <a-icon type="check" />
         </span>
-        <div class="register-success__tips">注册成功</div>
+        <div class="ok-tips">注册成功</div>
         <router-link to="/admin/login">
           <a-button type="primary" :size="size">
             马上登录
@@ -353,63 +353,63 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .page-register {
-    :deep(.user-header) {
-      padding-bottom: 80px;
-    }
-    .admin-form {
-      width: 410px;
-      margin: 0 auto;
-      padding: 48px 0 100px;
-    }
-    .img-code {
-      cursor: pointer;
-      width: 112px;
-      height: 38px;
-      border: 1px solid #d9d9d9;
-      margin-left: 10px;
-      border-radius: 4px;
-      &__url {
-        width: 100%;
-        height: 100%;
-        vertical-align: top;
-      }
-    }
-    .sms-code {
-      margin-left: 10px;
-      width: 112px;
-    }
-    .register-success {
-      text-align: center;
-      &__icon {
-        display: inline-block;
-        width: 66px;
-        height: 64px;
-        line-height: 48px;
-        padding: 8px;
-        text-align: center;
-        background-color: @success-color;
-        border-radius: 50%;
-        color: #fff;
-        font-size: 48px;
-      }
-      &__tips {
-        padding: 32px 0;
-        font-size: 20px;
-        font-weight: bold;
-      }
-    }
-    .password-tips {
-      width: 260px;
-      &__error {
-        color: #ff0000;
-      }
-      &__warning {
-        color: #ff7e05;
-      }
-      &__success {
-        color: #52c41a;
-      }
+.page-register {
+  :deep(.admin-header-wrap) {
+    padding-bottom: 80px;
+  }
+  .admin-form {
+    width: 410px;
+    margin: 0 auto;
+    padding: 48px 0 100px;
+  }
+  .img-code {
+    cursor: pointer;
+    width: 112px;
+    height: 38px;
+    border: 1px solid #d9d9d9;
+    margin-left: 10px;
+    border-radius: 4px;
+    &-url {
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
     }
   }
+  .sms-code {
+    margin-left: 10px;
+    width: 112px;
+  }
+  .register-success {
+    text-align: center;
+    .ok-icon {
+      display: inline-block;
+      width: 66px;
+      height: 64px;
+      line-height: 48px;
+      padding: 8px;
+      text-align: center;
+      background-color: @success-color;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 48px;
+    }
+    .ok-tips {
+      padding: 32px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  .password-tips {
+    width: 260px;
+    &-error {
+      color: #ff0000;
+    }
+    &-warning {
+      color: #ff7e05;
+    }
+    &-success {
+      color: #52c41a;
+    }
+  }
+}
 </style>

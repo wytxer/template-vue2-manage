@@ -1,11 +1,11 @@
 <template>
-  <div :class="['nav-menu', `nav-menu--${theme}`, {'is-unfold': menuCollapsed, 'is-fold': !menuCollapsed}]">
+  <div :class="['nav-menu-wrap', `nav-menu-${theme}`, {'is-unfold': menuCollapsed, 'is-fold': !menuCollapsed}]">
     <nav-logo v-if="logoFollowMenu" />
-    <div class="nav-menu__body">
+    <div class="nav-menu-body">
       <side-menu :collapsed="menuCollapsed" :menus="menus" :theme="theme" :mode="mode" @select="onSelect"></side-menu>
     </div>
 
-    <div v-if="showCollapsedAction" class="nav-menu__action">
+    <div v-if="showCollapsedAction" class="nav-menu-action">
       <a-icon :type="menuCollapsed ? 'menu-unfold' : 'menu-fold'" @click="onCollapsed" />
     </div>
   </div>
@@ -59,7 +59,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.nav-menu {
+.nav-menu-wrap {
   height: calc(100vh - @top-header-height);
   overflow: hidden;
   position: relative;
@@ -76,7 +76,7 @@ export default {
   :deep(.ant-menu) {
     border-right-color: transparent;
   }
-  .nav-logo {
+  .nav-logo-wrap {
     padding: 0 10px;
     justify-content: center;
   }
@@ -86,23 +86,23 @@ export default {
   &.is-fold {
     width: @side-menu-unfold-width;
   }
-  &__body {
+  .nav-menu-body {
     flex: 1;
     overflow: auto;
   }
-  &__action {
+  .nav-menu-action {
     padding: 8px 8px 16px 8px;
     text-align: center;
     font-size: 18px;
   }
-  &--dark {
+  &.nav-menu-dark {
     background-color: @layout-header-background;
-    .nav-menu__action,
-    :deep(.nav-logo) {
+    .nav-menu-action,
+    :deep(.nav-logo-wrap) {
       color: #ffffff;
     }
   }
-  &--light {
+  &.nav-menu-light {
     background-color: #fff;
   }
 }

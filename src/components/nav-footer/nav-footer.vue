@@ -1,7 +1,7 @@
 <template>
-  <footer class="nav-footer">
+  <footer class="nav-footer-wrap">
     Copyright @2022 wytxer
-    <a href="https://beian.miit.gov.cn" target="_blank" class="nav-footer__link">
+    <a href="https://beian.miit.gov.cn" target="_blank" class="footer-link">
       浙ICP备8888888号-8
     </a>
   </footer>
@@ -17,11 +17,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.nav-footer {
+.nav-footer-wrap {
   text-align: center;
   color: rgba(0, 0, 0, 0.45);
   padding: 32px 16px;
-  &__link {
+  .footer-link {
     color: rgba(0, 0, 0, 0.45);
   }
 }

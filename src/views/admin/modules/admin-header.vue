@@ -1,7 +1,7 @@
 <template>
-  <div class="admin-header">
-    <div class="admin-header__title">{{ title }}</div>
-    <div class="admin-header__description" v-if="description">{{ description }}</div>
+  <div class="admin-header-wrap">
+    <div class="title">{{ title }}</div>
+    <div class="description" v-if="description">{{ description }}</div>
   </div>
 </template>
 
@@ -22,13 +22,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.admin-header {
+.admin-header-wrap {
   padding-top: 80px;
   text-align: center;
-  &__title {
+  .title {
     font-size: 32px;
   }
-  &__description {
+  .description {
     color: #999;
     padding-top: 10px;
   }

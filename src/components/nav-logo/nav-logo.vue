@@ -1,7 +1,7 @@
 <template>
-  <router-link to="/" class="nav-logo">
-    <img v-if="logo" class="nav-logo__img" :src="logo" />
-    <span v-if="slogan && (isSideMenu ? (!logoFollowMenu || (logoFollowMenu && !menuCollapsed)) : true)" class="nav-logo__slogan">
+  <router-link to="/" class="nav-logo-wrap">
+    <img v-if="logo" class="logo-img" :src="logo" />
+    <span v-if="slogan && (isSideMenu ? (!logoFollowMenu || (logoFollowMenu && !menuCollapsed)) : true)" class="logo-slogan">
       {{ slogan }}
     </span>
   </router-link>
@@ -28,16 +28,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.nav-logo {
+.nav-logo-wrap {
   height: @top-header-height;
   display: flex;
   align-items: center;
   color: @main-color;
-  &__img {
+  .logo-img {
     width: 32px;
     height: 32px;
+    border-radius: 50%;
   }
-  &__slogan {
+  .logo-slogan {
     margin-left: 8px;
     font-size: 18px;
     max-width: 100%;

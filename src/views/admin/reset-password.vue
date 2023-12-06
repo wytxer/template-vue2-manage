@@ -15,7 +15,7 @@
           </a-input>
           <a-tooltip title="看不清？换一张">
             <div class="img-code" @click="onUpdateImageCode">
-              <img class="img-code__url" :src="imageCodeUrl" />
+              <img class="img-code-url" :src="imageCodeUrl" />
             </div>
           </a-tooltip>
         </div>
@@ -224,31 +224,31 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .page-reset-password {
-    :deep(.admin-header) {
-      padding-bottom: 80px;
-    }
-    .admin-form {
-      width: 410px;
-      margin: 0 auto;
-      padding: 48px 0 100px;
-    }
-    .img-code {
-      cursor: pointer;
-      width: 112px;
-      height: 38px;
-      border: 1px solid #d9d9d9;
-      margin-left: 10px;
-      border-radius: 4px;
-      &__url {
-        width: 100%;
-        height: 100%;
-        vertical-align: top;
-      }
-    }
-    .sms-code {
-      margin-left: 10px;
-      width: 112px;
+.page-reset-password {
+  :deep(.admin-header) {
+    padding-bottom: 80px;
+  }
+  .admin-form {
+    width: 410px;
+    margin: 0 auto;
+    padding: 48px 0 100px;
+  }
+  .img-code {
+    cursor: pointer;
+    width: 112px;
+    height: 38px;
+    border: 1px solid #d9d9d9;
+    margin-left: 10px;
+    border-radius: 4px;
+    &-url {
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
     }
   }
+  .sms-code {
+    margin-left: 10px;
+    width: 112px;
+  }
+}
 </style>

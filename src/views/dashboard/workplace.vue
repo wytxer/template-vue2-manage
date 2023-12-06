@@ -3,23 +3,23 @@
     <a-card class="MB16" :bordered="false">
       <div class="date-filter">
         <div>
-          <span v-for="item in dateFilters" :key="item.key" :class="['date-filter__item', {'is-active': filterKey === item.key}]" @click="onDateFilter(item.key)">
+          <span v-for="item in dateFilters" :key="item.key" :class="['date-item', {'is-active': filterKey === item.key}]" @click="onDateFilter(item.key)">
             {{ item.name }}
           </span>
         </div>
-        <a-range-picker class="date-filter__picker" v-model="dateFilter" @change="onDateChange" :allowClear="false" />
+        <a-range-picker class="date-picker" v-model="dateFilter" @change="onDateChange" :allowClear="false" />
       </div>
     </a-card>
 
     <div class="indicator-card">
-      <a-card class="indicator-card__item" v-for="item in titles" :key="item.key" :bordered="false" :loading="loading">
-        <div class="indicator-card__label">
+      <a-card class="indicator-item" v-for="item in titles" :key="item.key" :bordered="false" :loading="loading">
+        <div class="indicator-label">
           <span>{{ item.cardName }}</span>
           <a-tooltip :placement="item.key === 'score' ? 'left' : 'top'" :title="item.tips">
-            <a-icon class="indicator-card__icon-info" type="info-circle" />
+            <a-icon class="indicator-icon-info" type="info-circle" />
           </a-tooltip>
         </div>
-        <div class="indicator-card__value">{{ overview[item.key] }}</div>
+        <div class="indicator-value">{{ overview[item.key] }}</div>
       </a-card>
     </div>
 
@@ -239,7 +239,7 @@ export default {
   .date-filter {
     display: flex;
     justify-content: space-between;
-    &__item {
+    .date-item {
       line-height: 40px;
       margin-right: 24px;
       cursor: pointer;
@@ -248,13 +248,13 @@ export default {
         color: @primary-color;
       }
     }
-    &__picker {
+    .date-picker {
       width: 300px;
     }
   }
   .indicator-card {
     display: flex;
-    &__item {
+    .indicator-item {
       flex: 1;
       height: 160px;
       position: relative;
@@ -262,7 +262,7 @@ export default {
         margin-right: 24px;
       }
     }
-    &__label {
+    .indicator-label {
       width: 100%;
       height: 24px;
       line-height: 24px;
@@ -271,13 +271,13 @@ export default {
       align-items: center;
       color: rgba(0, 0, 0, 0.45) !important;
     }
-    &__icon-info {
+    .indicator-icon-info {
       margin-left: 16px;
       width: 14px;
       height: 14px;
       color: rgba(0, 0, 0, 0.45) !important;
     }
-    &__value {
+    .indicator-value {
       font-size: 30px;
       line-height: 88px;
       text-align: center;
