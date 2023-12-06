@@ -1,8 +1,8 @@
 <template>
-  <layout-wrapper card :cardClassName="viewClassName">
+  <layout-wrapper type="transparent" card :cardClassName="viewClassName">
     <div class="abnormal-body">
       <div><img class="abnormal-body__image" :src="imageUrl" /> </div>
-      <div>
+      <div style="min-width: 180px">
         <h2 class="abnormal-body__status">{{ status }}</h2>
         <div class="abnormal-body__tips">{{ tips }}</div>
         <a-button type="primary" @click="onGotoBack">返回</a-button>

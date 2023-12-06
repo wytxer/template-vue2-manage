@@ -20,7 +20,7 @@ export default {
     type: {
       type: String,
       default: 'gray',
-      validator: (value) => ['gray', 'white'].includes(value)
+      validator: (value) => ['gray', 'white', 'transparent'].includes(value)
     },
     // 如果 layout-wrapper container 底下只有一个 a-card 的话，设置为 true，内置 card 进去，非详情的页面用到的地方还是挺多的
     card: {
@@ -55,6 +55,14 @@ export default {
   &--gray {
     flex: 1;
     background-color: @gray-border-background;
+    .container {
+      padding-top: @common-spacing;
+      padding-bottom: @common-spacing;
+    }
+  }
+  &--transparent {
+    flex: 1;
+    background-color: transparent;
     .container {
       padding-top: @common-spacing;
       padding-bottom: @common-spacing;
