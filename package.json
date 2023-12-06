@@ -4,7 +4,7 @@
   "description": "基于 Vue.js 2.x 和 ant-design-vue 组件库且风格统一的用于快速构建中后台系统的脚手架。",
   "private": true,
   "scripts": {
-    "dev": "yarn run serve",
+    "dev": "pnpm run serve",
     "serve": "cross-env VUE_APP_BUILD_ENV=local vue-cli-service serve",
     "build": "cross-env VUE_APP_BUILD_ENV=online vue-cli-service build",
     "build:test": "cross-env VUE_APP_BUILD_ENV=test vue-cli-service build --mode test",
@@ -13,7 +13,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "app": "wy app",
-    "start": "pm2 start --name \"template-vu2-manage\" yarn -- run app",
+    "start": "pm2 start --name \"template-vu2-manage\" pnpm -- run app",
     "stop": "pm2 stop \"template-vu2-manage\""
   },
   "dependencies": {
@@ -72,7 +72,7 @@
     "mockjs2": "^1.0.8"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0, <=16"
   },
   "license": "MIT",
   "homepage": "https://github.com/wytxer/template-vue2-manage/#readme",

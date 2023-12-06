@@ -7,16 +7,16 @@
 
 ```bash
 # 安装
-yarn install
+pnpm install
 
 # 启动开发服务
-yarn run dev
+pnpm run dev
 
 # 生产环境打包
-yarn run build
+pnpm run build
 
 # 测试环境打包
-yarn run build:test
+pnpm run build:test
 ```
 
 
