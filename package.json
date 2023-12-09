@@ -1,7 +1,7 @@
 {
   "name": "template-vue2-manage",
   "version": "1.0.0",
-  "description": "基于 Vue.js 2.x 和 ant-design-vue 组件库且风格统一的用于快速构建中后台系统的脚手架。",
+  "description": "基于 Vue.js 2.x 和 ant-design-vue 1.x 组件库且风格统一的用于快速构建中后台系统的脚手架。",
   "private": true,
   "scripts": {
     "dev": "pnpm run serve",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@antv/g2": "^4.1.41",
-    "@wytxer/antdv-kit": "^1.1.3",
+    "@wytxer/antdv-kit": "^1.1.6",
     "@wytxer/shepherd-vue": "^1.0.0",
     "@wytxer/style-utils": "^1.0.5",
     "ant-design-vue": "^1.7.8",

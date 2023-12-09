@@ -95,7 +95,7 @@ export function parse (value) {
   return JSON.parse(value)
 }
 
-// 浅拷贝
+// 拷贝数据
 export function clone (value) {
   return parse(stringify(value))
 }

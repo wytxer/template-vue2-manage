@@ -16,11 +16,11 @@ module.exports = {
     return res
   },
   // 创建表格分页数据
-  createTablePage (currentPage = 1, pageSize = 10, totalData = []) {
+  createTablePage (pageNo = 1, pageSize = 10, totalData = []) {
     const totalSize = totalData.length
     const tableData = {
       rows: [],
-      currentPage,
+      pageNo,
       pageSize,
       totalSize
     }
@@ -33,7 +33,7 @@ module.exports = {
     // pageSize 小于总数据长度，数据多余 1 页
     } else {
       // 计算当前页（不含）之前的所有数据总条数
-      const total = pageSize * (currentPage - 1)
+      const total = pageSize * (pageNo - 1)
       // 如果当前页之前所有数据总条数小于（不能等于）总的数据集长度，则说明当前页码没有超出最大页码
       if (total < totalSize) {
         // 当前页第一条数据在总数据集中的索引

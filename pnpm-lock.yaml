@@ -9,8 +9,8 @@ dependencies:
     specifier: ^4.1.41
     version: 4.1.41
   '@wytxer/antdv-kit':
-    specifier: ^1.1.3
-    version: 1.1.3
+    specifier: ^1.1.6
+    version: 1.1.6
   '@wytxer/shepherd-vue':
     specifier: ^1.0.0
     version: 1.0.0
@@ -2873,8 +2873,8 @@ packages:
       '@xtuc/long': 4.2.2
     dev: true
 
-  /@wytxer/antdv-kit@1.1.3:
-    resolution: {integrity: sha512-kKpd1J6NN3QG29ayDqbZME2Z0h+oxwCQHHGq8PdVMJDeUsJIxRRblPmLxNO5sywmldA7N/atJ+f140hirKY9/w==}
+  /@wytxer/antdv-kit@1.1.6:
+    resolution: {integrity: sha512-YIJFWGT7lBS1V2bgJq2T7iFDD3O3+HqFU2p9LqYgE/g+lOrFyKGnx9ReSrZbLTLDdBaOPq8hGhn18/Y9Of+IXA==}
     engines: {node: '16'}
     dependencies:
       vue-draggable-resizable: 2.3.0

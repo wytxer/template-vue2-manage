@@ -26,7 +26,7 @@
       </a-col>
       <a-col :span="8">
         <div class="PB6 C666">涉及证券账户</div>
-        <div>魂殿的破产申请</div>
+        <div>巴菲特的破产申请</div>
       </a-col>
     </a-row>
   </layout-wrapper>

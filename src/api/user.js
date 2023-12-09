@@ -24,7 +24,7 @@ export function logout (data) {
 // 获取用户信息
 export function queryUser (data) {
   return request({
-    method: 'post',
+    method: 'get',
     url: '',
     mockUrl: '/mock/user/info',
     data,
@@ -37,7 +37,7 @@ export function queryUser (data) {
 // 获取菜单树
 export function queryMenus (data) {
   return request({
-    method: 'post',
+    method: 'get',
     url: '',
     mockUrl: '/mock/menus',
     data

@@ -90,11 +90,11 @@ const rules = {
 }
 
 const tenants = [{
-  id: 1, name: '玄武国'
+  id: 1, name: '选项一'
 }, {
-  id: 2, name: '七宝琉璃宗'
+  id: 2, name: '选项二'
 }, {
-  id: 3, name: '鬼灵门'
+  id: 3, name: '选项三'
 }]
 
 export default {

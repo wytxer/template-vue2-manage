@@ -8,7 +8,11 @@ const API_PREFIX = process.env.VUE_APP_API_PREFIX.replace(/\/$/, '')
 export default {
   // 上传
   upload: `${API_PREFIX}/upload.json`,
-  // 下载文件
+  /**
+   * 下载文件
+   * 如果是内网环境可配置成类似这样的：`${API_PREFIX}/download.json?filePath=`，使用接口来支持文件下载
+   * 如果是外网环境，该字段可留空
+   */
   download: `${API_PREFIX}/download.json?filePath=`,
   // 获取图片验证码
   imageCode: '/account/security/captcha',

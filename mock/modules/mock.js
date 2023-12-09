@@ -113,7 +113,7 @@ const callRecords = builder(mock.mock({
     callTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
     duration: mock.Random.integer(1000, 100000)
   })),
-  currentPage: 1,
+  pageNo: 1,
   totalSize: 28
 }))
 
@@ -128,14 +128,14 @@ const actionLogs = builder({
     actionTime: mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
     remarks: mock.Random.cparagraph(2)
   }))),
-  currentPage: 1,
+  pageNo: 1,
   totalSize: 6
 })
 
 // 表盒数据支持简单的分页查询
 const queryTableData = (req, res) => {
-  const { pageSize, currentPage, pageNo } = req.body
-  const result = builder(createTablePage(+currentPage || +pageNo, +pageSize, tableList))
+  const { pageSize, pageNo } = req.body
+  const result = builder(createTablePage(+pageNo, +pageSize, tableList))
   return res.json(result)
 }
 

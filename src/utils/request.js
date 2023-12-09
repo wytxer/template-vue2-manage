@@ -5,10 +5,10 @@ import { stringify } from 'qs'
 
 // 全局的 http code 配置，可根据实际情况删改
 const codes = {
-  // 成功，如果是设置 -1，code 等于 0 和 200 都当做是成功，如果是其他值就取 code 值
-  success: { code: -1, message: '' },
+  // 成功
+  success: { code: 0, message: '' },
   // 未登录
-  logout: { code: 601, message: '请先登录后再操作' },
+  logout: { code: 401, message: '请先登录后再操作' },
   // 服务器异常
   error: { code: 500, message: '服务器异常' },
   // 无权限访问
@@ -70,6 +70,15 @@ instance.interceptors.request.use(config => {
     config.url = `${baseUrl}/${config.url}`
   }
 
+  if (config.method === 'get') {
+    if (config.params) {
+      // 排序值参数转换
+      if (config.params.sortOrder) {
+        config.params.sortOrder = config.params.sortOrder === 'descend' ? 'DESC' : 'ASC'
+      }
+    }
+  }
+
   // 根据 headerType 内置不同的 Content-Type，简化使用
   config.headerType = config.headerType || headerType
   switch (config.headerType) {
@@ -120,10 +129,6 @@ instance.interceptors.response.use(res => {
     return Promise.reject(res.data)
   }
 
-  // 将 code 统一转换成 0 作为成功的状态
-  if (codes.success.code !== -1 ? res.data.code === codes.success.code : (+res.data.code === 0 || +res.data.code === 200)) {
-    res.data.code = 0
-  }
   // 转换消息字段
   res.data.message = res.data.message || res.data.errorMessage
   delete res.data.errorMessage
@@ -131,50 +136,37 @@ instance.interceptors.response.use(res => {
   // 只有 code === 0 时才返回成功，否则一律处理成失败，这样的话请求之后的 .then(res) 里面拿到的一定是成功的数据，否则从 catch(error) 里面取报错信息
   if (res.data.code === 0) {
     return Promise.resolve(res.data)
-  } else {
-    const code = +res.data.code
-    // 如果是未登录重定向到登录页面
-    if (code === codes.logout.code) {
-      Modal.info({
-        title: '提示',
-        content: '登录状态已失效，请重新登录',
-        onOk,
-        cancelText: ''
-      })
-      // 如果用户没有点击，3s 后自动跳转
-      setTimeout(onOk, 3000)
-    } else {
-      let tips = res.data.message
-      // 如果接口没有返回错误提示信息，从自定义的错误码里面读取错误提示
-      if (!tips) {
-        Object.entries(codes).find(([key, value]) => {
-          if (value.code === code && value.message) {
-            tips = value.message
-            return true
-          }
-          return false
-        })
-      }
-      res.data.message = tips
-      // 如果当前「没有关闭自动提示」且「存在错误提示」就抛出错误提示
-      if (!res.config.closeAutoTips && tips) {
-        message.error(tips)
-      }
-    }
-    return Promise.reject(res.data)
   }
+  return Promise.reject(res.data)
 }, error => {
-  // 控制台抛出详情的错误日志方便调试
-  console.error(error)
-  if (error.response) {
-    message.error(error.response.data.message || codes.error.message)
-    return Promise.reject(error.response.data)
+  const code = error.response.data.statusCode
+  // 如果是未登录重定向到登录页面
+  if (code === codes.logout.code) {
+    Modal.info({
+      title: '提示',
+      content: '登录状态已失效，请重新登录',
+      onOk,
+      cancelText: ''
+    })
+    // 如果用户没有点击，3s 后自动跳转
+    setTimeout(onOk, 3000)
   } else {
-    const tips = '请求超时，请刷新重试'
-    // 封装成统一的错误格式抛出
-    const newError = { code: 500, message: tips }
-    message.error(tips)
-    return Promise.reject(newError)
+    let tips = error.response.data.message || codes.error.message
+    // 如果接口没有返回错误提示信息，从自定义的错误码里面读取错误提示
+    if (!tips) {
+      Object.entries(codes).find(([key, value]) => {
+        if (value.code === code && value.message) {
+          tips = value.message
+          return true
+        }
+        return false
+      })
+    }
+    // 如果当前「没有关闭自动提示」且「存在错误提示」就抛出错误提示
+    if (!error.response.config.closeAutoTips && tips) {
+      message.error(tips)
+    }
+    return Promise.reject(error.response.data)
   }
 })
 

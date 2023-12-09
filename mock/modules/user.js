@@ -30,8 +30,8 @@ const user = {
 module.exports = {
   'POST /admin/login': user.info,
   'POST /user/logout': user.ok,
-  'POST /user/info': user.info,
-  'POST /menus': user.menus,
+  'GET /user/info': user.info,
+  'GET /menus': user.menus,
   'POST /user/sms/send': user.ok,
   'POST /user/reset/password': user.ok,
   'POST /user/register': user.ok

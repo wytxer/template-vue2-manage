@@ -19,7 +19,7 @@
       <a target="_blank" class="MR10" href="https://docs.bszhct.com/components/quick-start.html">
         <a-button type="primary">antdv-kit 组件库</a-button>
       </a>
-      <a target="_blank" class="MR10" href="https://www.antdv.com/components/button-cn/">
+      <a target="_blank" class="MR10" href="https://1x.antdv.com/components/button-cn/">
         <a-button type="primary">Antd 组件库</a-button>
       </a>
       <a target="_blank" class="MR10" href="https://docs.bszhct.com/docs/style-utils.html">

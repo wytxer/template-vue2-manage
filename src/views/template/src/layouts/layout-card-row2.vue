@@ -19,7 +19,7 @@
     <a-row :gutter="gutter" class="PB16">
       <a-col :span="6">
         <span class="C666">审判法官：</span>
-        比比东
+        张三
       </a-col>
       <a-col :span="6">
         <span class="C666">立案时间：</span>
@@ -34,11 +34,11 @@
     <a-row :gutter="gutter" class="PB16">
       <a-col :span="6">
         <span class="C666">原告：</span>
-        萧炎
+        李四
       </a-col>
       <a-col :span="6">
         <span class="C666">被告：</span>
-        秦羽
+        王五
       </a-col>
       <a-col :span="6">
         <span class="C666">案件状态：</span>
